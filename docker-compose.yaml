@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  app:
+    container_name: logistics-app
+    restart: unless-stopped
+    image: logistics-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: logistics-db
+      POSTGRES_USER: my-user
+      POSTGRES_PASSWORD: my-password
+      FRONT_URL: http://localhost:3000
+      ADMIN_USERNAME: COMPLETE_HERE
+      TARGET_PORT: 3000
+    ports:
+      - '3000:3000'
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+  postgres:
+    container_name: logistics-postgres
+    image: postgres:alpine3.16
+    environment:
+      POSTGRES_DB: logistics-db
+      POSTGRES_USER: my-user
+      POSTGRES_PASSWORD: my-password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - shared-network
+    depends_on: []
+volumes:
+  postgres-data:
+    driver: local
+networks:
+  shared-network: {}

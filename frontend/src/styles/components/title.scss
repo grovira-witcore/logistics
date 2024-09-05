@@ -1,0 +1,31 @@
+.wit-title {
+  gap: 10px;
+  color: $default-color;
+}
+
+.wit-title-icon svg {
+  width: 26px;
+  height: 26px;
+  color: $primary-color;
+}
+
+@each $name, $color in $colors {
+  .wit-title-icon-#{$name} svg {
+    color: $color;
+  }
+}
+
+.wit-title-label {
+  font-family: Inter-SemiBold;
+  font-size: 22px;
+}
+
+.wit-title-primary-label {
+  font-family: Inter-SemiBold;
+  font-size: 18px;
+}
+
+.wit-title-secondary-label {
+  font-family: Inter-SemiBold;
+  font-size: 12px;
+}

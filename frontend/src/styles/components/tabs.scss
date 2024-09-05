@@ -1,0 +1,21 @@
+.wit-tab {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-family: Inter-Regular;
+  font-size: 14px;
+  border-bottom: 1px solid $border-color;
+}
+
+.wit-tab-active {
+  font-family: Inter-Bold;
+  font-size: 14px;
+  color: $primary-color;
+  border-bottom: 2px solid $primary-color;
+}
+
+.wit-tab-icon svg {
+  width: 20px;
+  height: 20px;
+}

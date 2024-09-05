@@ -1,0 +1,104 @@
+.wit-header {
+  background-color: $section-color;
+  color: $default-color;
+  height: 70px;
+  padding: 15px;
+  box-shadow: 0px 3.5px 5.5px -1.21px $border-color;
+}
+
+.wit-header-title {
+  gap: 6px;
+  padding-left: 12px;
+  font-family: Raleway-Black;
+  font-size: 25px;
+}
+
+.wit-header-title svg {
+  color: $primary-color;
+  width: 50px;
+  height: 50px;
+}
+
+.wit-header-language {
+  padding: 4px 8px 4px 8px;
+  border-radius: 8px;
+  gap: 8px;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  >svg:first-child {
+    width: 30px;
+    height: 30px;
+  }
+
+  >svg:last-child {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.wit-header-language-dd {
+  background-color: $section-color;
+  color: $default-color;
+  font-family: Inter-SemiBold;
+  font-size: 12px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+
+  >div {
+    padding: 10px 12px 10px 12px;
+    gap: 8px;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.wit-header-user {
+  padding: 4px 8px 4px 8px;
+  border-radius: 8px;
+  gap: 8px;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  >svg:last-child {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.wit-header-user-dd {
+  background-color: $section-color;
+  color: $default-color;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  padding: 24px 48px 24px 48px;
+
+  >div:first-child {
+    width: 86px;
+    height: 86px;
+  }
+}
+
+.wit-header-user-dd-full-name {
+  font-family: Inter-SemiBold;
+  font-size: 16px;
+  padding-top: 18px;
+}
+
+.wit-header-user-dd-username {
+  font-family: Inter-Regular;
+  font-size: 12px;
+  padding-top: 6px;
+  padding-bottom: 24px;
+}

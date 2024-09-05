@@ -1,0 +1,381 @@
+$canvas-color: #E3F2FD;
+$section-color: #FFFFFF;
+$default-color: #263238;
+$primary-color: #1976D2;
+$border-color: #B0BEC5;
+$hover-color: #90CAF9;
+$disabled-color: #CFD8DC;
+$blue-color: #007BFF;
+$red-color: #DC3545;
+$orange-color: #FFA500;
+$yellow-color: #FFC107;
+$green-color: #28A745;
+$purple-color: #800080;
+$pink-color: #FFC0CB;
+$brown-color: #A52A2A;
+$sky-blue-color: #87CEEB;
+$turquoise-color: #40E0D0;
+$gold-color: #FFD700;
+$gray-color: #A0A0A0;
+
+$colors: (
+  "default": $default-color,
+  "primary": $primary-color,
+  "blue": $blue-color,
+  "red": $red-color,
+  "orange": $orange-color,
+  "yellow": $yellow-color,
+  "green": $green-color,
+  "purple": $purple-color,
+  "pink": $pink-color,
+  "brown": $brown-color,
+  "sky-blue": $sky-blue-color,
+  "turquoise": $turquoise-color,
+  "gold": $gold-color,
+  "gray": $gray-color
+);
+
+@function lighten($color, $alpha) {
+  @return rgba(red($color), green($color), blue($color), $alpha);
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: $canvas-color;
+  user-select: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.focus {
+  background-color: lighten($primary-color, 10%);
+}
+
+.hover {
+  background-color: $hover-color;
+}
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color !important;
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}
+
+.broken {
+  background-color: $red-color;
+  color: $section-color;
+}
+
+.canvas {
+  padding: 15px;
+}
+
+.section {
+  padding: 15px;
+
+  >div {
+    background-color: $section-color;
+    box-shadow: 0px 3.5px 5.5px -1.21px $border-color;
+    color: $default-color;
+    padding: 10px;
+    border-radius: 15px;
+  }
+}
+
+.section-header {
+  padding-bottom: 8px;
+  border-bottom: 1px solid $border-color;
+
+  >div:first-child {
+    gap: 30px;
+  }
+
+  >div:last-child {
+    gap: 10px;
+  }
+}
+
+.area-header {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  gap: 10px;
+  background-color: lighten($default-color, 4%);
+  border-radius: 6px;
+}
+
+.area-toolbar {
+  padding-top: 2px;
+  gap: 10px;
+}
+
+.popup {
+  background-color: $section-color;
+}
+
+.popup-header {
+  padding: 12px 16px 12px 8px;
+}
+
+.popup-body {
+  padding: 0px;
+
+  >div {
+    padding: 10px;
+  }
+}
+
+.popup-footer {
+  padding: 10px;
+}
+
+.tooltip {
+  background-color: $section-color;
+  color: $default-color;
+  padding: 8px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+}
+
+.dropdown-list {
+  background-color: $section-color;
+  color: $default-color;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  width: 220px;
+  font-family: Rubik-Regular;
+  font-size: 14px;
+
+  >div {
+    padding: 6px;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
+
+.submitter {
+  >div:last-child {
+    padding: 10px;
+    gap: 10px;
+  }
+}
+
+.prompt {
+  padding: 10px;
+  font-family: Inter-Regular;
+  font-size: 18px;
+}
+
+@each $name, $color in $colors {
+  .btn-#{$name} {
+    font-family: Rubik-SemiBold;
+    font-size: 14px;
+    display: inline-block;
+    background-color: $color;
+    color: $section-color;
+    cursor: pointer;
+    padding: 8px 16px 8px 16px;
+    border-radius: 8px;
+  }
+
+  .btn-#{$name}:hover {
+    background-color: lighten($color, 70%);
+  }
+
+  .btn-outline-#{$name} {
+    font-family: Rubik-SemiBold;
+    font-size: 14px;
+    display: inline-block;
+    border: $color 1px solid;
+    color: $color;
+    cursor: pointer;
+    padding: 8px 16px 8px 16px;
+    border-radius: 8px;
+  }
+
+  .btn-outline-#{$name}:hover {
+    background-color: lighten($color, 30%);
+  }
+
+  .outline-#{$name} {
+    font-family: Inter-SemiBold;
+    font-size: 14px;
+    display: inline-block;
+    border: $color 1px solid;
+    background-color: lighten($color, 10%);
+    color: $color;
+    padding: 4px 12px 4px 12px;
+    border-radius: 8px;
+  }
+}
+
+.clickable-icon {
+  padding: 6px;
+  border-radius: 8px;
+  color: $default-color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  svg {
+    width: 16px;
+    width: 16px;
+  }
+}
+
+.edit-icon {
+  color: $primary-color;
+  cursor: pointer;
+  line-height: 12px;
+
+  &:hover {
+    color: lighten($primary-color, 60%);
+  }
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.image-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $disabled-color;
+}
+
+.image-sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $disabled-color;
+}
+
+.icon-lg svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+.text-lg {
+  font-family: Inter-SemiBold;
+  font-size: 14px;
+}
+.text-sm {
+  font-family: Inter-Regular;
+  font-size: 12px;
+}
+
+.text-link {
+  color: $blue-color;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: lighten($blue-color, 70%);
+  }
+}
+
+.text-secondary {
+  color: $primary-color !important;
+}
+
+.form-group {
+  padding-top: 8px;
+  padding-bottom: 12px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.form-label {
+  color: $default-color;
+  font-family: Inter-SemiBold;
+  font-size: 14px;
+  gap: 8px;
+  padding-left: 2px;
+}
+
+.form-control {
+  font-family: Rubik-Regular;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: lighten($primary-color, 20%) !important;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.form-error {
+  padding-top: 8px;
+  font-family: Rubik-SemiBold;
+  font-size: 12px;
+  color: $red-color;
+  padding-left: 2px;
+}
+
+.form-group-inline {
+  line-height: 0px;
+  width: 100%;
+}
+
+.form-control-inline {
+  background-color: $section-color;
+  color: $default-color;
+  font-family: Rubik-Regular;
+  font-size: 12px;
+  padding: 2px;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+}
+
+.form-control-inline:focus {
+  background-color: $section-color;
+  color: $default-color;
+  outline: 1px solid $primary-color !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.form-error-inline {
+  padding-top: 12px;
+  font-family: Rubik-Regular;
+  font-size: 12px;
+  color: $red-color;
+  padding-left: 2px;
+}
+@import 'components/actions-bar';
+@import 'components/brief';
+@import 'components/date-picker';
+@import 'components/error-box';
+@import 'components/filters-bar';
+@import 'components/header';
+@import 'components/menu';
+@import 'components/omnisearch';
+@import 'components/paging-bar';
+@import 'components/secondary-title';
+@import 'components/step-progress-bar';
+@import 'components/tabs';
+@import 'components/time-picker';
+@import 'components/title';
