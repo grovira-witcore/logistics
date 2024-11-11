@@ -22,11 +22,11 @@ const TextArea = function ({
 
   const refTextarea = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refTextarea.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
   const handleOnChange = function (e) {
     let cleanValue = e.target.value;

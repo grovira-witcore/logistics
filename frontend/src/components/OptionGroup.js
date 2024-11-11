@@ -20,14 +20,17 @@ const OptionGroup = function ({
 
   const refInput = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refInput.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
   React.useEffect(() => {
-    setUniqueName('unique_' + Math.random().toString(36).substring(2, 15));
+    const crypto = window.crypto || window.msCrypto;
+    var array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    setUniqueName('unique_' + array[0]);
   }, []);
 
   const errors = [];

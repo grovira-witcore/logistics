@@ -431,12 +431,12 @@ const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitActionAdd}>
+              <div className="btn-primary" onClick={submitActionAdd} role="button">
                 {words.ok}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -464,12 +464,12 @@ const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitActionEdit}>
+              <div className="btn-primary" onClick={submitActionEdit} role="button">
                 {words.ok}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -497,12 +497,12 @@ const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitActionResetPassword}>
+              <div className="btn-primary" onClick={submitActionResetPassword} role="button">
                 {words.reset}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -539,12 +539,12 @@ const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-red" onClick={submitActionBlock}>
+              <div className="btn-red" onClick={submitActionBlock} role="button">
                 {words.block}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -581,12 +581,12 @@ const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-green" onClick={submitActionUnblock}>
+              <div className="btn-green" onClick={submitActionUnblock} role="button">
                 {words.unblock}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>

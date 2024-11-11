@@ -29,7 +29,7 @@ const NotFound = function () {
           <div style={{ paddingTop: '10px', fontFamily: 'Inter-Bold', fontSize: '20px' }}>{words.pageNotFound + '! ' + setTextFriendly(words.itIsLikeTryingToFindAHiddenTreasure) + '. ' + setTextFriendly(words.navigateBackToTheHomepageAndSetANewCourse) + '.'}</div>
           <div style={{ paddingTop: '20px', fontFamily: 'Inter-Regular', fontSize: '20px' }}>{words.errorCode + ': 404'}</div>
           <div style={{ paddingTop: '20px' }}>
-            <div className="btn-primary" onClick={handleBackToHome}>
+            <div className="btn-primary" onClick={handleBackToHome} role="button">
               {words.backToHome}
             </div>
           </div>

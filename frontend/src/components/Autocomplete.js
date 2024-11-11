@@ -30,11 +30,11 @@ const Autocomplete = function ({
 
   const refInput = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refInput.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
   const resetSearch = function () {
     setSearchValue(null);

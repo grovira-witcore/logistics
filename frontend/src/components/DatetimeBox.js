@@ -29,11 +29,11 @@ const DatetimeBox = function ({
 
   const refInput = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refInput.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
 
   const handleKeyDown = function (e) {

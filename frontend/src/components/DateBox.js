@@ -28,11 +28,11 @@ const DateBox = function ({
 
   const refInput = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refInput.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
   const handleKeyDown = function (e) {
     if (e.key === 'ArrowDown') {

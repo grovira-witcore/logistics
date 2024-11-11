@@ -10,7 +10,7 @@ import IconLogout from './icons/IconLogout.js';
 import SecurityService from '../services/SecurityService.js';
 import { getWords } from '../utils/get-words.js';
 
-const HeaderUser = ReactRouterDOM.withRouter(function ({}) {
+const HeaderUser = ReactRouterDOM.withRouter(function () {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 

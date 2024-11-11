@@ -286,12 +286,12 @@ const ContractsBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction0}>
+              <div className="btn-primary" onClick={submitAction0} role="button">
                 {words.create}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>

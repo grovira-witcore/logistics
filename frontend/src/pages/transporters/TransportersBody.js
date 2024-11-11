@@ -250,12 +250,12 @@ const TransportersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction0}>
+              <div className="btn-primary" onClick={submitAction0} role="button">
                 {words.save}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction}>
+              <div className="btn-outline-primary" onClick={cancelAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -284,12 +284,12 @@ const TransportersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitContextualAction0}>
+              <div className="btn-primary" onClick={submitContextualAction0} role="button">
                 {words.save}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelContextualAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -318,12 +318,12 @@ const TransportersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-red" onClick={submitContextualAction1}>
+              <div className="btn-red" onClick={submitContextualAction1} role="button">
                 {words.delete}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelContextualAction} role="button">
                 {words.cancel}
               </div>
             </div>

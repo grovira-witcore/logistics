@@ -69,7 +69,7 @@ const LoginUserPassword = function ({ defaultI18n, setMustChange }) {
         <input type="password" className="form-control" name="password" value={formData.password} onChange={handleChange} />
       </div>
       <div className="px-2" style={{ paddingTop: '12px' }}>
-        <div className="btn-primary w-100 text-center" onClick={handleSubmit}>
+        <div className="btn-primary w-100 text-center" onClick={handleSubmit} role="button">
           {words.login}
         </div>
       </div>

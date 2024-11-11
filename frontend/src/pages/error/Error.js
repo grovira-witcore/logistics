@@ -33,7 +33,7 @@ const Error = function () {
             null
           }
           <div style={{ paddingTop: '20px' }}>
-            <div className="btn-primary" onClick={handleBackToHome}>
+            <div className="btn-primary" onClick={handleBackToHome} role="button">
               {words.backToHome}
             </div>
           </div>

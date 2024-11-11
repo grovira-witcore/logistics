@@ -360,12 +360,12 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitContextualAction0}>
+              <div className="btn-primary" onClick={submitContextualAction0} role="button">
                 {words.save}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelContextualAction} role="button">
                 {words.cancel}
               </div>
             </div>
@@ -394,12 +394,12 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitContextualAction1}>
+              <div className="btn-primary" onClick={submitContextualAction1} role="button">
                 {words.save}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelContextualAction} role="button">
                 {words.cancel}
               </div>
             </div>

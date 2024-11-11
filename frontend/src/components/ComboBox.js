@@ -44,11 +44,11 @@ const ComboBox = function ({
 
   const refInput = React.useRef(null);
 
-  if (focus) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (focus) {
       refInput.current.focus();
-    }, []);
-  }
+    }
+  }, []);
 
   React.useEffect(() => {
     if (currentIndex !== null && currentIndex !== undefined) {

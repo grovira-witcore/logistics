@@ -45,14 +45,14 @@ const Field = function ({ value, type, translate, frame, formatter, color, style
       if (classNameParts.length > 0) {
         return (
           <div className={classNameParts.join(' ')} style={{ whiteSpace: 'pre-line' }}>
-            <a href={value.startsWith('www.') ? ('http://' + value) : value} target="_blank">{value}</a>
+            <a href={value.startsWith('www.') ? ('https://' + value) : value} target="_blank">{value}</a>
           </div>
         );
       }
       else {
         return (
           <div style={{ whiteSpace: 'pre-line' }}>
-            <a href={value.startsWith('www.') ? ('http://' + value) : value} target="_blank">{value}</a>
+            <a href={value.startsWith('www.') ? ('https://' + value) : value} target="_blank">{value}</a>
           </div>
         );
       }

@@ -47,100 +47,68 @@ export function format(value, type, { formatter, words, dateFormat, moneySymbol 
           const diffInMilliseconds = date - now;
           const diffInMinutes = Math.round(diffInMilliseconds / 60000);
           const diffInHours = Math.round(diffInMilliseconds / 3600000);
-          const isToday = function (refDate) {
-            return refDate.getFullYear() === now.getFullYear() &&
-              refDate.getMonth() === now.getMonth() &&
-              refDate.getDate() === now.getDate();
-          }
-          const isTomorrow = function (refDate) {
-            const tomorrow = new Date(now);
-            tomorrow.setDate(now.getDate() + 1);
-            return isToday(refDate, tomorrow);
-          }
-          const isYesterday = function (refDate) {
-            const yesterday = new Date(now);
-            yesterday.setDate(now.getDate() - 1);
-            return isToday(refDate, yesterday);
-          }
           if (diffInMinutes === 0) {
             return words['now'];
           }
           if (diffInMinutes === 1) {
             return words['inOneMinute'];
           }
-          else if (diffInMinutes > 1 && diffInMinutes < 60) {
+          if (diffInMinutes > 1 && diffInMinutes < 60) {
             return words['inFewMinutes'].replace('{0}', diffInMinutes);
           }
           if (diffInMinutes === -1) {
             return words['oneMinuteAgo'];
           }
-          else if (diffInMinutes < -1 && diffInMinutes > -60) {
+          if (diffInMinutes < -1 && diffInMinutes > -60) {
             return words['fewMinutesAgo'].replace('{0}', Math.abs(diffInMinutes));
           }
           if (diffInHours === 1) {
             return words['inOneHour'];
           }
-          else if (diffInHours > 1 && diffInHours < 60) {
+          if (diffInHours > 1 && diffInHours < 60) {
             return words['inFewHours'].replace('{0}', diffInHours);
           }
           if (diffInHours === -1) {
             return words['oneHourAgo'];
           }
-          else if (diffInHours < -1 && diffInHours > -60) {
+          if (diffInHours < -1 && diffInHours > -60) {
             return words['fewHoursAgo'].replace('{0}', Math.abs(diffInHours));
           }
-          else if (isToday(date)) {
+          if (date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
             return words['Today'] + ' ' + formatTime(value);
           }
-          else if (isTomorrow(date, now)) {
+          const tomorrow = new Date(now);
+          tomorrow.setDate(now.getDate() + 1);
+          if (date.getFullYear() === tomorrow.getFullYear() && date.getMonth() === tomorrow.getMonth() && date.getDate() === tomorrow.getDate()) {
             return words['Tomorrow'] + ' ' + formatTime(value);
           }
-          else if (isYesterday(date, now)) {
+          const yesterday = new Date(now);
+          yesterday.setDate(now.getDate() - 1);
+          if (date.getFullYear() === yesterday.getFullYear() && date.getMonth() === yesterday.getMonth() && date.getDate() === yesterday.getDate()) {
             return words['Yesterday'] + ' ' + formatTime(value);
           }
-          else {
-            return formatDatetime(value, dateFormat);
-          }
         }
-        else {
-          return formatDatetime(value, dateFormat);
-        }
+        return formatDatetime(value, dateFormat);
       }
       case 'date': {
         if (formatter === 'relative-time') {
           const date = new Date(value);
           const now = new Date()
-          const isToday = function (refDate) {
-            return refDate.getFullYear() === now.getFullYear() &&
-              refDate.getMonth() === now.getMonth() &&
-              refDate.getDate() === now.getDate();
+          if (date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
+            return words['Today'];
           }
-          const isTomorrow = function (refDate) {
-            const tomorrow = new Date(now);
-            tomorrow.setDate(now.getDate() + 1);
-            return isToday(refDate, tomorrow);
+          const tomorrow = new Date(now);
+          tomorrow.setDate(now.getDate() + 1);
+          if (date.getFullYear() === tomorrow.getFullYear() && date.getMonth() === tomorrow.getMonth() && date.getDate() === tomorrow.getDate()) {
+            return words['Tomorrow'];
           }
-          const isYesterday = function (refDate) {
-            const yesterday = new Date(now);
-            yesterday.setDate(now.getDate() - 1);
-            return isToday(refDate, yesterday);
-          }
-          if (isToday(date)) {
-            return words['Today'] + ' ' + formatTime(value);
-          }
-          else if (isTomorrow(date, now)) {
-            return words['Tomorrow'] + ' ' + formatTime(value);
-          }
-          else if (isYesterday(date, now)) {
-            return words['Yesterday'] + ' ' + formatTime(value);
-          }
-          else {
-            return formatDatetime(value, dateFormat);
+          const yesterday = new Date(now);
+          yesterday.setDate(now.getDate() - 1);
+          if (date.getFullYear() === yesterday.getFullYear() && date.getMonth() === yesterday.getMonth() && date.getDate() === yesterday.getDate()) {
+            return words['Yesterday'];
           }
         }
-        else {
-          return formatDate(value, dateFormat);
-        }
+        return formatDate(value, dateFormat);
       }
       default: {
         return value;
