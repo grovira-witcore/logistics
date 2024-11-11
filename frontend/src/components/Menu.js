@@ -47,7 +47,7 @@ const Menu = ReactRouterDOM.withRouter(function ({ menu }) {
     history.push(path);
   }
 
-  if (menu && (!menu.some(menuGroup => menuGroup.options.length > 0) || menu.some(menuGroup => menuGroup.options.some(menuOption => !menuOption.hidden)))) {
+  if (menu && (!menu.some(menuGroup => menuGroup && menuGroup.options.length > 0) || menu.some(menuGroup => menuGroup && menuGroup.options.some(menuOption => !menuOption.hidden)))) {
     return (
       <div>
         <div className="wit-menu-button cursor-pointer" onClick={handleClickMenu}>
@@ -56,7 +56,10 @@ const Menu = ReactRouterDOM.withRouter(function ({ menu }) {
         <ReactBootstrap.Offcanvas className="wit-menu" style={{ width: 280 }} show={showMenu} onHide={() => setShowMenu(false)}>
           <ReactBootstrap.Offcanvas.Body className="p-0">
             {menu.map(function (menuGroup, menuGroupIndex) {
-              const filteredMenuOptions = menuGroup.options.filter(menuOption => !menuOption.hidden);
+              if (menuGroup === null || menuGroup === undefined) {
+                return null;
+              }
+              const filteredMenuOptions =  menuGroup.options.filter(menuOption => !menuOption.hidden);
               if (menuGroup.options.length > 0 && filteredMenuOptions.length === 0) {
                 return null;
               }

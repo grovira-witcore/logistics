@@ -45,10 +45,10 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    const body = {};
-    body.bookingId = booking.bookingId;
-    body.baseCost = 550;
-    setAction({ index: 0, body: body, validated: false });
+    const data = {};
+    data.bookingId = booking.bookingId;
+    data.baseCost = 550;
+    setAction({ index: 0, data: data, validated: false });
   }
   const submitAction0 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -56,7 +56,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
     }
     if (isValid(bodyRefAction0.current)) {
       try {
-        await ApiService.postCargo(action.body);
+        await ApiService.postCargo(action.data);
       }
       catch (error) {
         setError(error);
@@ -71,12 +71,6 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
   }
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
-  }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
   }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -156,10 +150,9 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
       setError(error);
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setContextualAction({ index: 0, cargo: cargo, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setContextualAction({ index: 0, cargo: cargo, data: data, validated: false });
   }
   const submitContextualAction0 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -167,7 +160,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
     }
     if (isValid(bodyRefContextualAction0.current)) {
       try {
-        await ApiService.putCargoSetDispatched(contextualAction.path.cargoId, contextualAction.body);
+        await ApiService.putCargoAsDispatched(contextualAction.data.cargoId, (({ cargoId, ...body }) => body)(contextualAction.data));
       }
       catch (error) {
         setError(error);
@@ -191,10 +184,9 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
       setError(error);
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setContextualAction({ index: 1, cargo: cargo, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setContextualAction({ index: 1, cargo: cargo, data: data, validated: false });
   }
   const submitContextualAction1 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -202,7 +194,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
     }
     if (isValid(bodyRefContextualAction1.current)) {
       try {
-        await ApiService.putCargoSetDelivered(contextualAction.path.cargoId, contextualAction.body);
+        await ApiService.putCargoAsDelivered(contextualAction.data.cargoId, (({ cargoId, ...body }) => body)(contextualAction.data));
       }
       catch (error) {
         setError(error);
@@ -216,12 +208,6 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
   }
   const updateContextualActionData = function (field, value) {
     setContextualAction(prevContextualAction => ({ ...prevContextualAction, data: { ...prevContextualAction.data, [field]: value } }));
-  }
-  const updateContextualActionPath = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, path: { ...prevContextualAction.path, [field]: value } }));
-  }
-  const updateContextualActionBody = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, body: { ...prevContextualAction.body, [field]: value } }));
   }
   const cancelContextualAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -290,7 +276,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
               label: words.status,
               type: 'string',
               translate: true,
-              variant: 'frame',
+              frame: true,
               color: function (value) { return value === 'inPreparation' ? 'gray' : (value === 'dispatched' ? 'yellow' : (value === 'delivered' ? 'green' : null)); },
               bindIndex: 7,
             },
@@ -333,7 +319,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.body && <BookingLeft2Action1 booking={booking} body={action.body} updateBody={updateActionBody} validated={action.validated} />}
+              <BookingLeft2Action1 booking={booking} data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -367,7 +353,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction0} className="popup-body">
             <div>
-              {contextualAction.path && contextualAction.body && <BookingLeft2ContextualAction1 cargo={contextualAction ? contextualAction.cargo : null} path={contextualAction.path} updatePath={updateContextualActionPath} body={contextualAction.body} updateBody={updateContextualActionBody} validated={contextualAction.validated} />}
+              <BookingLeft2ContextualAction1 cargo={contextualAction ? contextualAction.cargo : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -401,7 +387,7 @@ const BookingLeft2 = ReactRouterDOM.withRouter(function ({ booking }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction1} className="popup-body">
             <div>
-              {contextualAction.path && contextualAction.body && <BookingLeft2ContextualAction2 cargo={contextualAction ? contextualAction.cargo : null} path={contextualAction.path} updatePath={updateContextualActionPath} body={contextualAction.body} updateBody={updateContextualActionBody} validated={contextualAction.validated} />}
+              <BookingLeft2ContextualAction2 cargo={contextualAction ? contextualAction.cargo : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

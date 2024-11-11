@@ -1,4 +1,3 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 module.exports = function (knex, apiRouter) {

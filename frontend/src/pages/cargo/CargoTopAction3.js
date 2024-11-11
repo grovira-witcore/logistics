@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/AppContext.js';
 import MoneyBox from '../../components/MoneyBox.js';
 import { getWords } from '../../utils/get-words.js';
 
-const CargoTopAction3 = ReactRouterDOM.withRouter(function ({ cargo, body, updateBody, validated }) {
+const CargoTopAction3 = ReactRouterDOM.withRouter(function ({ cargo, data, updateData, validated }) {
   const { i18n, setError } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -15,8 +15,8 @@ const CargoTopAction3 = ReactRouterDOM.withRouter(function ({ cargo, body, updat
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <MoneyBox
               label={words.additionalCostFull}
-              value={body.additionalCost}
-              onChange={(value) => updateBody('additionalCost', value)}
+              value={data.additionalCost}
+              onChange={(value) => updateData('additionalCost', value)}
               validated={validated}
               required={true}
               focus

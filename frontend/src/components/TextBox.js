@@ -15,6 +15,8 @@ const TextBox = function ({
   maxLength,
   regex,
   regexText,
+  password,
+  disabled,
   focus,
   inline,
   onOk,
@@ -83,7 +85,7 @@ const TextBox = function ({
         </div> :
         null
       }
-      <input ref={refInput} className={'form-control' + (inline ? '-inline' : '') + (validated && errors.length > 0 ? ' is-invalid' : '')} type="text" placeholder={placeholder} value={value !== null && value !== undefined ? value : ''} onKeyDown={handleKeyDown} onChange={handleOnChange} onFocus={(e) => e.target.select()} onBlur={handleOnBlur} />
+      <input ref={refInput} className={'form-control' + (inline ? '-inline' : '') + (validated && errors.length > 0 ? ' is-invalid' : '')} type={password ? 'password' : 'text'} placeholder={placeholder} value={value !== null && value !== undefined ? value : ''} disabled={disabled} onKeyDown={handleKeyDown} onChange={handleOnChange} onFocus={(e) => e.target.select()} onBlur={handleOnBlur} />
       {validated && errors.map((error, index) => (
         <div key={'error-' + index} className={'form-error' + (inline ? '-inline' : '')}>{error}</div>
       ))}

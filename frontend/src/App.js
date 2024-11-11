@@ -14,7 +14,6 @@ import IconShipper from './components/icons/IconShipper.js';
 import IconTransporter from './components/icons/IconTransporter.js';
 import IconCustomer from './components/icons/IconCustomer.js';
 import IconCost from './components/icons/IconCost.js';
-import IconUser from './components/icons/IconUser.js';
 import Error from './pages/error/Error.js';
 import NotFound from './pages/not-found/NotFound.js';
 import Booking from './pages/booking/Booking.js';
@@ -30,8 +29,6 @@ import Customers from './pages/customers/Customers.js';
 import Home from './pages/home/Home.js';
 import Shippers from './pages/shippers/Shippers.js';
 import Transporters from './pages/transporters/Transporters.js';
-import User from './pages/user/User.js';
-import Users from './pages/users/Users.js';
 import ApiService from './services/ApiService.js';
 import SecurityService from './services/SecurityService.js';
 import { getWords } from './utils/get-words.js';
@@ -107,12 +104,7 @@ const App = ReactRouterDOM.withRouter(function () {
               { icon: IconCost, label: words.costsByTransporter, path: "/costs-by-transporter" },
             ]
           },
-          {
-            label: words.security,
-            options: [
-              { icon: IconUser, label: words.users, path: "/users", hidden: !((SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator'))) },
-            ]
-          },
+          SecurityService.getAppSecurityMenuGroup(words)
         ]}
       />
       {error === null || error === undefined || (error instanceof Response && (error.status === 400 || error.status === 409)) || (!(error instanceof Response)) ?
@@ -157,16 +149,7 @@ const App = ReactRouterDOM.withRouter(function () {
             <ReactRouterDOM.Route exact path="/transporters">
               <Transporters />
             </ReactRouterDOM.Route>
-            {(SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator')) ? (
-              <ReactRouterDOM.Route exact path="/user/:userId">
-                <User />
-              </ReactRouterDOM.Route>
-            ) : null}
-            {(SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator')) ? (
-              <ReactRouterDOM.Route exact path="/users">
-                <Users />
-              </ReactRouterDOM.Route>
-            ) : null}
+            {SecurityService.getAppSecurityRoute()}
             <ReactRouterDOM.Route>
               <NotFound />
             </ReactRouterDOM.Route>

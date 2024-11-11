@@ -7,7 +7,7 @@ module.exports = async function (knex) {
   }
   catch (err) {
   }
-  console.log('Creating Database structure...');
+  console.log('Creating Database Structure...');
   // Tables
   if (!(await knex.schema.hasTable('bookings'))) {
     await knex.schema.createTable('bookings', function (knexTable) {
@@ -81,17 +81,6 @@ module.exports = async function (knex) {
       knexTable.string('url', 255).notNullable();
     });
   }
-  if (!(await knex.schema.hasTable('sessions'))) {
-    await knex.schema.createTable('sessions', function (knexTable) {
-      knexTable.increments('session_id').unsigned().primary();
-      knexTable.integer('user_id').unsigned().notNullable();
-      knexTable.string('code', 40).nullable();
-      knexTable.string('access_token', 4000).nullable();
-      knexTable.string('refresh_token', 800).nullable();
-      knexTable.datetime('created_datetime').notNullable();
-      knexTable.datetime('last_refreshed_datetime').nullable();
-    });
-  }
   if (!(await knex.schema.hasTable('shippers'))) {
     await knex.schema.createTable('shippers', function (knexTable) {
       knexTable.increments('shipper_id').unsigned().primary();
@@ -112,15 +101,7 @@ module.exports = async function (knex) {
       knexTable.string('last_name', 40).nullable();
       knexTable.string('email', 400).nullable();
       knexTable.string('avatar', 4000).nullable();
-      knexTable.string('provider', 80).nullable();
-      knexTable.boolean('enabled').notNullable();
-    });
-  }
-  if (!(await knex.schema.hasTable('users_roles'))) {
-    await knex.schema.createTable('users_roles', function (knexTable) {
-      knexTable.increments('user_role_id').unsigned().primary();
-      knexTable.integer('user_id').unsigned().notNullable();
-      knexTable.string('role', 40).notNullable();
+      knexTable.string('role', 80).notNullable();
     });
   }
   // Foreign Keys
@@ -160,34 +141,10 @@ module.exports = async function (knex) {
   catch (err) {
     console.error(err);
   }
-  try {
-    await knex.schema.table('sessions', function (knexTable) {
-      knexTable.foreign('user_id').references('users.user_id');
-    });
-  }
-  catch (err) {
-    console.error(err);
-  }
-  try {
-    await knex.schema.table('users_roles', function (knexTable) {
-      knexTable.foreign('user_id').references('users.user_id');
-    });
-  }
-  catch (err) {
-    console.error(err);
-  }
   // Unique Keys
   try {
-    await knex.schema.table('sessions', function (knexTable) {
-      knexTable.unique(['code']);
-    });
-  }
-  catch (err) {
-    console.error(err);
-  }
-  try {
-    await knex.schema.table('users_roles', function (knexTable) {
-      knexTable.unique(['user_id', 'role']);
+    await knex.schema.table('users', function (knexTable) {
+      knexTable.unique(['username']);
     });
   }
   catch (err) {
@@ -201,5 +158,5 @@ module.exports = async function (knex) {
     });
   }
   await knex('version_control').insert({ version_number: 1 });
-  console.log('Database structure successfully created.');
+  console.log('Database Structure successfully created.');
 }

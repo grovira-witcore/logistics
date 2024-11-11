@@ -62,12 +62,6 @@ const ContractRight2 = ReactRouterDOM.withRouter(function () {
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
   }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
-  }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
@@ -172,7 +166,7 @@ const ContractRight2 = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.data && <ContractRight2Action1 data={action.data} updateData={updateActionData} validated={action.validated} />}
+              <ContractRight2Action1 data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

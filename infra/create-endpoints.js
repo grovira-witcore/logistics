@@ -7,7 +7,7 @@ module.exports = async function (knex, express, roles) {
   express.use(Express.static(Path.join(__dirname, 'public')));
   const apiRouter = Express.Router();
   apiRouter.use(Express.json());
-  await Security.init(knex, apiRouter, roles);
+  await Security.initRoutes(knex, apiRouter, roles);
   const filesNames = await Fs.promises.readdir('./routes');
   filesNames.forEach(fileName => {
     require('./routes/' + fileName)(knex, apiRouter);

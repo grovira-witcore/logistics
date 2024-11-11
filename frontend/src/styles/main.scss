@@ -40,6 +40,7 @@ $colors: (
 }
 
 html {
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -221,6 +222,16 @@ body {
   }
 }
 
+.btn-disabled {
+  font-family: Rubik-SemiBold;
+  font-size: 14px;
+  display: inline-block;
+  background-color: $disabled-color;
+  color: $section-color;
+  padding: 8px 16px 8px 16px;
+  border-radius: 8px;
+}
+
 .clickable-icon {
   padding: 6px;
   border-radius: 8px;
@@ -257,7 +268,7 @@ body {
   height: 56px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: $disabled-color;
+  background-color: lighten($disabled-color, 50%);
 }
 
 .image-sm {
@@ -265,7 +276,7 @@ body {
   height: 28px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: $disabled-color;
+  background-color: lighten($disabled-color, 50%);
 }
 
 .icon-lg svg {

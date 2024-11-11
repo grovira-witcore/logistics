@@ -2,13 +2,12 @@
 // specified additional cost in the cargo.
 const RecalculateContractCosts = require('./recalculate-contract-costs.js');
 
-module.exports = async function (knex, req, res) {
-  const cargoId = parseInt(req.params.cargoId);
-  const { additionalCost } = req.body;
+module.exports = async function (knex, ctx, data) {
+  const { cargoId, additionalCost } = data;
 
   // Validate the additionalCost
   if (typeof additionalCost !== 'number' || additionalCost < 0) {
-    return res.status(400).send({ error: 'Invalid additional cost.' });
+    throw new Error('Invalid additional cost.');
   }
 
   // Update the additional cost in the cargos table
@@ -26,5 +25,5 @@ module.exports = async function (knex, req, res) {
     
   await RecalculateContractCosts(knex, cargos.contract_id);
 
-  res.status(200).send({ message: 'Additional cost updated successfully.' });
+  return null;
 }

@@ -8,15 +8,15 @@ import MoneyBox from '../../components/MoneyBox.js';
 import ApiService from '../../services/ApiService.js';
 import { getWords } from '../../utils/get-words.js';
 
-const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, body, updateBody, validated }) {
+const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, data, updateData, validated }) {
   const { i18n, setError } = useAppContext();
   const words = getWords(i18n.code);
 
-  const getBaseFriendlyNameBodyTransporterId = function () {
+  const getBaseFriendlyNameTransporterId = function () {
     return null;
   }
   
-  const loaderBodyTransporterId = async function () {
+  const loaderTransporterId = async function () {
     let records = null;
     try {
       const args = {};
@@ -36,8 +36,8 @@ const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, body,
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <TextBox
               label={words.code}
-              value={body.code}
-              onChange={(value) => updateBody('code', value)}
+              value={data.code}
+              onChange={(value) => updateData('code', value)}
               validated={validated}
               maxLength={80}
               required={true}
@@ -49,8 +49,8 @@ const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, body,
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <NumericBox
               label={words.pallets}
-              value={body.pallets}
-              onChange={(value) => updateBody('pallets', value)}
+              value={data.pallets}
+              onChange={(value) => updateData('pallets', value)}
               validated={validated}
               required={true}
             />
@@ -58,8 +58,8 @@ const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, body,
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <NumericBox
               label={words.grossLb}
-              value={body.grossLb}
-              onChange={(value) => updateBody('grossLb', value)}
+              value={data.grossLb}
+              onChange={(value) => updateData('grossLb', value)}
               validated={validated}
               required={true}
             />
@@ -67,19 +67,19 @@ const BookingLeft2Action1 = ReactRouterDOM.withRouter(function ({ booking, body,
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <ComboBox
               label={words.transporter}
-              value={body.transporterId}
-              onChange={(value) => updateBody('transporterId', value)}
+              value={data.transporterId}
+              onChange={(value) => updateData('transporterId', value)}
               validated={validated}
-              baseFriendlyName={getBaseFriendlyNameBodyTransporterId()}
-              loader={loaderBodyTransporterId}
+              baseFriendlyName={getBaseFriendlyNameTransporterId()}
+              loader={loaderTransporterId}
               required={true}
             />
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <MoneyBox
               label={words.baseCost}
-              value={body.baseCost}
-              onChange={(value) => updateBody('baseCost', value)}
+              value={data.baseCost}
+              onChange={(value) => updateData('baseCost', value)}
               validated={validated}
               required={true}
             />

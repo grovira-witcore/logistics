@@ -68,12 +68,6 @@ const ShippersBody = ReactRouterDOM.withRouter(function () {
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
   }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
-  }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
@@ -188,12 +182,6 @@ const ShippersBody = ReactRouterDOM.withRouter(function () {
   const updateContextualActionData = function (field, value) {
     setContextualAction(prevContextualAction => ({ ...prevContextualAction, data: { ...prevContextualAction.data, [field]: value } }));
   }
-  const updateContextualActionPath = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, path: { ...prevContextualAction.path, [field]: value } }));
-  }
-  const updateContextualActionBody = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, body: { ...prevContextualAction.body, [field]: value } }));
-  }
   const cancelContextualAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
@@ -257,7 +245,7 @@ const ShippersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.data && <ShippersBodyAction1 data={action.data} updateData={updateActionData} validated={action.validated} />}
+              <ShippersBodyAction1 data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -291,7 +279,7 @@ const ShippersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction0} className="popup-body">
             <div>
-              {contextualAction.data && <ShippersBodyContextualAction1 shipper={contextualAction ? contextualAction.shipper : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />}
+              <ShippersBodyContextualAction1 shipper={contextualAction ? contextualAction.shipper : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -325,7 +313,7 @@ const ShippersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction1} className="popup-body">
             <div>
-              <ShippersBodyContextualAction2 shipper={contextualAction ? contextualAction.shipper : null} />
+              <ShippersBodyContextualAction2 shipper={contextualAction ? contextualAction.shipper : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

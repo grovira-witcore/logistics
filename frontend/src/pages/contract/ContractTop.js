@@ -69,29 +69,30 @@ const ContractTop = ReactRouterDOM.withRouter(function ({ contract }) {
             value: contract.deadline,
             secondaryField: {
               type: 'string',
-              value: protect(function ([deadline]) { const today = new Date(); const deadlineDate = new Date(deadline); const differenceInTime = deadlineDate - today; const daysLeft = Math.floor(differenceInTime / (1000 * 3600 * 24));  return daysLeft > 0 ? `${daysLeft} day(s) left` : ''; }, [ contract.deadline ]),
+              value: protect(function ([deadline]) { return new Date() < new Date(deadline) }, [ contract.deadline ]) ? (protect(function ([deadline]) { const today = new Date(); const deadlineDate = new Date(deadline); const daysLeft = Math.ceil((deadlineDate - today) / (1000 * 60 * 60 * 24)); return `${daysLeft} day(s) left`; }, [ contract.deadline ])) : null,
             },
           },
           {
             label: words.status,
             type: 'string',
             translate: true,
-            variant: 'frame',
+            frame: true,
             color: function (value) { return value === 'completed' ? 'green' : (value === 'inProgress' ? 'yellow' : null); },
             value: contract.status,
           },
           {
             label: words.progress,
-            paragraph: {
-              template: words.progressBarTemplate,
+            progressBar: {
               fields: [
                 {
                   type: 'percentage',
-                  value: protect(function ([kgDispatched, kgTarget]) { return kgDispatched / kgTarget }, [ contract.kgDispatched, contract.kgTarget ]),
+                  color: function (value) { return 'green'; },
+                  value: protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ contract.kgDelivered, contract.kgTarget ]),
                 },
                 {
                   type: 'percentage',
-                  value: protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ contract.kgDelivered, contract.kgTarget ]),
+                  color: function (value) { return 'yellow'; },
+                  value: protect(function ([kgDelivered, kgDispatched, kgTarget]) { return (kgDispatched - kgDelivered) / kgTarget }, [ contract.kgDelivered, contract.kgDispatched, contract.kgTarget ]),
                 },
               ]
             },

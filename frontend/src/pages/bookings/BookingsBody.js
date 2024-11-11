@@ -112,8 +112,8 @@ const BookingsBody = ReactRouterDOM.withRouter(function () {
         record.departureDate,
         record.arrivalDate,
         record.status,
-        protect(function ([kgDispatched, kgTarget]) { return kgDispatched / kgTarget }, [ record.kgDispatched, record.kgTarget ]),
         protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ record.kgDelivered, record.kgTarget ]),
+        protect(function ([kgDelivered, kgDispatched, kgTarget]) { return (kgDispatched - kgDelivered) / kgTarget }, [ record.kgDelivered, record.kgDispatched, record.kgTarget ]),
       ],
       record: record
     })));
@@ -205,21 +205,22 @@ const BookingsBody = ReactRouterDOM.withRouter(function () {
               label: words.status,
               type: 'string',
               translate: true,
-              variant: 'frame',
+              frame: true,
               color: function (value) { return value === 'inProgress' ? 'yellow' : (value === 'completed' ? 'green' : null); },
               bindIndex: 7,
             },
             {
               label: words.progress,
-              paragraph: {
-                template: words.progressBarTemplate,
+              progressBar: {
                 fields: [
                   {
                     type: 'percentage',
+                    color: function (value) { return 'green'; },
                     bindIndex: 8,
                   },
                   {
                     type: 'percentage',
+                    color: function (value) { return 'yellow'; },
                     bindIndex: 9,
                   },
                 ]

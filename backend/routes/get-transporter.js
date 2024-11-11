@@ -1,4 +1,3 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 module.exports = function (knex, apiRouter) {
@@ -14,7 +13,21 @@ module.exports = function (knex, apiRouter) {
       const instances = await knexQuery;
       if (instances.length > 0) {
         const instance = instances[0];
-        res.send(instance);
+        res.send({
+          ...instance,
+          access_write: (function () {
+            if (true) {
+              return true;
+            }
+            return true;
+          })(),
+          access_delete: (function () {
+            if (true) {
+              return true;
+            }
+            return true;
+          })(),
+        });
       }
       else {
         res
@@ -22,7 +35,7 @@ module.exports = function (knex, apiRouter) {
           .send({
             code: 404,
             message: 'Not Found',
-            description: 'The requested Transporter could not be found.',
+            description: 'The requested Transporter could not be found',
             translationKey: 'theRequestedResourceCouldNotBeFound'
           });
         return;

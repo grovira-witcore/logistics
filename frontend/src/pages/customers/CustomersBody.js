@@ -68,12 +68,6 @@ const CustomersBody = ReactRouterDOM.withRouter(function () {
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
   }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
-  }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
@@ -192,12 +186,6 @@ const CustomersBody = ReactRouterDOM.withRouter(function () {
   const updateContextualActionData = function (field, value) {
     setContextualAction(prevContextualAction => ({ ...prevContextualAction, data: { ...prevContextualAction.data, [field]: value } }));
   }
-  const updateContextualActionPath = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, path: { ...prevContextualAction.path, [field]: value } }));
-  }
-  const updateContextualActionBody = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, body: { ...prevContextualAction.body, [field]: value } }));
-  }
   const cancelContextualAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
@@ -271,7 +259,7 @@ const CustomersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.data && <CustomersBodyAction1 data={action.data} updateData={updateActionData} validated={action.validated} />}
+              <CustomersBodyAction1 data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -305,7 +293,7 @@ const CustomersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction0} className="popup-body">
             <div>
-              {contextualAction.data && <CustomersBodyContextualAction1 customer={contextualAction ? contextualAction.customer : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />}
+              <CustomersBodyContextualAction1 customer={contextualAction ? contextualAction.customer : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -339,7 +327,7 @@ const CustomersBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction1} className="popup-body">
             <div>
-              <CustomersBodyContextualAction2 customer={contextualAction ? contextualAction.customer : null} />
+              <CustomersBodyContextualAction2 customer={contextualAction ? contextualAction.customer : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

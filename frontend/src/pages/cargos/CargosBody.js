@@ -155,10 +155,9 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
       setError(error);
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setContextualAction({ index: 0, cargo: cargo, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setContextualAction({ index: 0, cargo: cargo, data: data, validated: false });
   }
   const submitContextualAction0 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -166,7 +165,7 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
     }
     if (isValid(bodyRefContextualAction0.current)) {
       try {
-        await ApiService.putCargoSetDispatched(contextualAction.path.cargoId, contextualAction.body);
+        await ApiService.putCargoAsDispatched(contextualAction.data.cargoId, (({ cargoId, ...body }) => body)(contextualAction.data));
       }
       catch (error) {
         setError(error);
@@ -190,10 +189,9 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
       setError(error);
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setContextualAction({ index: 1, cargo: cargo, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setContextualAction({ index: 1, cargo: cargo, data: data, validated: false });
   }
   const submitContextualAction1 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -201,7 +199,7 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
     }
     if (isValid(bodyRefContextualAction1.current)) {
       try {
-        await ApiService.putCargoSetDelivered(contextualAction.path.cargoId, contextualAction.body);
+        await ApiService.putCargoAsDelivered(contextualAction.data.cargoId, (({ cargoId, ...body }) => body)(contextualAction.data));
       }
       catch (error) {
         setError(error);
@@ -215,12 +213,6 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
   }
   const updateContextualActionData = function (field, value) {
     setContextualAction(prevContextualAction => ({ ...prevContextualAction, data: { ...prevContextualAction.data, [field]: value } }));
-  }
-  const updateContextualActionPath = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, path: { ...prevContextualAction.path, [field]: value } }));
-  }
-  const updateContextualActionBody = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, body: { ...prevContextualAction.body, [field]: value } }));
   }
   const cancelContextualAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -320,7 +312,7 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
               label: words.status,
               type: 'string',
               translate: true,
-              variant: 'frame',
+              frame: true,
               color: function (value) { return value === 'inPreparation' ? 'gray' : (value === 'dispatched' ? 'yellow' : (value === 'delivered' ? 'green' : null)); },
               bindIndex: 10,
             },
@@ -363,7 +355,7 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction0} className="popup-body">
             <div>
-              {contextualAction.path && contextualAction.body && <CargosBodyContextualAction1 cargo={contextualAction ? contextualAction.cargo : null} path={contextualAction.path} updatePath={updateContextualActionPath} body={contextualAction.body} updateBody={updateContextualActionBody} validated={contextualAction.validated} />}
+              <CargosBodyContextualAction1 cargo={contextualAction ? contextualAction.cargo : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -397,7 +389,7 @@ const CargosBody = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefContextualAction1} className="popup-body">
             <div>
-              {contextualAction.path && contextualAction.body && <CargosBodyContextualAction2 cargo={contextualAction ? contextualAction.cargo : null} path={contextualAction.path} updatePath={updateContextualActionPath} body={contextualAction.body} updateBody={updateContextualActionBody} validated={contextualAction.validated} />}
+              <CargosBodyContextualAction2 cargo={contextualAction ? contextualAction.cargo : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

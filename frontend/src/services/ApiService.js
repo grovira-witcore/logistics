@@ -96,10 +96,10 @@ async function getCargo(cargoId) {
   return await response.json();
 }
 
-async function putCargoSetDispatched(cargoId, data) {
-  const response = await httpCall(`/api/cargo/${cargoId}/set-dispatched`, 'put', data);
+async function putCargoAsDispatched(cargoId, data) {
+  const response = await httpCall(`/api/cargo/${cargoId}/as-dispatched`, 'put', data);
   if (!response.ok) {
-    const error = new Error('Error executing "putCargoSetDispatched"');
+    const error = new Error('Error executing "putCargoAsDispatched"');
     try {
       error.additionalData = await response.json();
     }
@@ -110,10 +110,10 @@ async function putCargoSetDispatched(cargoId, data) {
   return await response.json();
 }
 
-async function putCargoSetDelivered(cargoId, data) {
-  const response = await httpCall(`/api/cargo/${cargoId}/set-delivered`, 'put', data);
+async function putCargoAsDelivered(cargoId, data) {
+  const response = await httpCall(`/api/cargo/${cargoId}/as-delivered`, 'put', data);
   if (!response.ok) {
-    const error = new Error('Error executing "putCargoSetDelivered"');
+    const error = new Error('Error executing "putCargoAsDelivered"');
     try {
       error.additionalData = await response.json();
     }
@@ -668,176 +668,6 @@ async function deleteTransporter(transporterId) {
   return null;
 }
 
-async function getUser(userId) {
-  const response = await httpCall(`/api/user/${userId}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getUser"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return await response.json();
-}
-
-async function postUserRole(userRole) {
-  const response = await httpCall(`/api/user-role`, 'post', userRole);
-  if (!response.ok) {
-    const error = new Error('Error executing "postUserRole"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return (await response.json()).id;
-}
-
-async function getUserRoles(args) {
-  let queryString = '';
-  if (args) {
-    queryString = '?' + new URLSearchParams(args).toString();
-  }
-  const response = await httpCall(`/api/user-roles${queryString}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getUserRoles"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return await response.json();
-}
-
-async function getCountUserRoles(args) {
-  let queryString = '';
-  if (args) {
-    queryString = '?' + new URLSearchParams(args).toString();
-  }
-  const response = await httpCall(`/api/count-user-roles${queryString}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getCountUserRoles"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return (await response.json()).count;
-}
-
-async function getUserRole(userRoleId) {
-  const response = await httpCall(`/api/user-role/${userRoleId}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getUserRole"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return await response.json();
-}
-
-async function deleteUserRole(userRoleId) {
-  const response = await httpCall(`/api/user-role/${userRoleId}`, 'delete');
-  if (!response.ok) {
-    const error = new Error('Error executing "deleteUserRole"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return null;
-}
-
-async function postUser(user) {
-  const response = await httpCall(`/api/user`, 'post', user);
-  if (!response.ok) {
-    const error = new Error('Error executing "postUser"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return (await response.json()).id;
-}
-
-async function getUsers(args) {
-  let queryString = '';
-  if (args) {
-    queryString = '?' + new URLSearchParams(args).toString();
-  }
-  const response = await httpCall(`/api/users${queryString}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getUsers"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return await response.json();
-}
-
-async function getCountUsers(args) {
-  let queryString = '';
-  if (args) {
-    queryString = '?' + new URLSearchParams(args).toString();
-  }
-  const response = await httpCall(`/api/count-users${queryString}`, 'get');
-  if (!response.ok) {
-    const error = new Error('Error executing "getCountUsers"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return (await response.json()).count;
-}
-
-async function putUser(userId, updatedUserData) {
-  const response = await httpCall(`/api/user/${userId}`, 'put', updatedUserData);
-  if (!response.ok) {
-    const error = new Error('Error executing "putUser"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return null;
-}
-
-async function deleteUser(userId) {
-  const response = await httpCall(`/api/user/${userId}`, 'delete');
-  if (!response.ok) {
-    const error = new Error('Error executing "deleteUser"');
-    try {
-      error.additionalData = await response.json();
-    }
-    catch (err) {
-    }
-    throw error;
-  }
-  return null;
-}
-
 async function getOmniSearch(value) {
   const response = await httpCall(`/api/omni-search/${value}`, 'get');
   if (!response.ok) {
@@ -858,8 +688,8 @@ const ApiService = {
   getCargos,
   getCountCargos,
   getCargo,
-  putCargoSetDispatched,
-  putCargoSetDelivered,
+  putCargoAsDispatched,
+  putCargoAsDelivered,
   getTransporters,
   postReference,
   getReferences,
@@ -894,17 +724,6 @@ const ApiService = {
   getTransporter,
   putTransporter,
   deleteTransporter,
-  getUser,
-  postUserRole,
-  getUserRoles,
-  getCountUserRoles,
-  getUserRole,
-  deleteUserRole,
-  postUser,
-  getUsers,
-  getCountUsers,
-  putUser,
-  deleteUser,
   getOmniSearch,
 }
 

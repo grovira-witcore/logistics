@@ -31,10 +31,9 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setAction({ index: 0, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setAction({ index: 0, data: data, validated: false });
   }
   const submitAction0 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -42,7 +41,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     }
     if (isValid(bodyRefAction0.current)) {
       try {
-        await ApiService.putCargoSetDispatched(action.path.cargoId, action.body);
+        await ApiService.putCargoAsDispatched(action.data.cargoId, (({ cargoId, ...body }) => body)(action.data));
       }
       catch (error) {
         setError(error);
@@ -59,10 +58,9 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    setAction({ index: 1, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    setAction({ index: 1, data: data, validated: false });
   }
   const submitAction1 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -70,7 +68,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     }
     if (isValid(bodyRefAction1.current)) {
       try {
-        await ApiService.putCargoSetDelivered(action.path.cargoId, action.body);
+        await ApiService.putCargoAsDelivered(action.data.cargoId, (({ cargoId, ...body }) => body)(action.data));
       }
       catch (error) {
         setError(error);
@@ -87,11 +85,10 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    const path = {};
-    const body = {};
-    path.cargoId = cargo.cargoId;
-    body.additionalCost = cargo.additionalCost;
-    setAction({ index: 2, path: path, body: body, validated: false });
+    const data = {};
+    data.cargoId = cargo.cargoId;
+    data.additionalCost = cargo.additionalCost;
+    setAction({ index: 2, data: data, validated: false });
   }
   const submitAction2 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -99,7 +96,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
     }
     if (isValid(bodyRefAction2.current)) {
       try {
-        await ApiService.putCargoAdditionalCost(action.path.cargoId, action.body);
+        await ApiService.putCargoAdditionalCost(action.data.cargoId, (({ cargoId, ...body }) => body)(action.data));
       }
       catch (error) {
         setError(error);
@@ -114,12 +111,6 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
   }
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
-  }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
   }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -207,7 +198,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.path && action.body && <CargoTopAction1 cargo={cargo} path={action.path} updatePath={updateActionPath} body={action.body} updateBody={updateActionBody} validated={action.validated} />}
+              <CargoTopAction1 cargo={cargo} data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -241,7 +232,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction1} className="popup-body">
             <div>
-              {action.path && action.body && <CargoTopAction2 cargo={cargo} path={action.path} updatePath={updateActionPath} body={action.body} updateBody={updateActionBody} validated={action.validated} />}
+              <CargoTopAction2 cargo={cargo} data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
@@ -275,7 +266,7 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction2} className="popup-body">
             <div>
-              {action.path && action.body && <CargoTopAction3 cargo={cargo} path={action.path} updatePath={updateActionPath} body={action.body} updateBody={updateActionBody} validated={action.validated} />}
+              <CargoTopAction3 cargo={cargo} data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

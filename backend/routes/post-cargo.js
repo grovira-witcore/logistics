@@ -1,4 +1,3 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 const CreateCargo = require('../custom/create-cargo.js');
@@ -6,7 +5,19 @@ const CreateCargo = require('../custom/create-cargo.js');
 module.exports = function (knex, apiRouter) {
   apiRouter.post('/cargo', async function (req, res) {
     try {
-      await CreateCargo(knex, req, res);
+      if (true) {
+        // Nothing to do
+      }
+      const ctx = {
+        userId: req.userId,
+        username: req.username,
+        role: req.role
+      };
+      const data = {
+        ...req.body
+      };
+      const result = await CreateCargo(knex, ctx, data);
+      res.status(200).send(result ?? {});
     }
     catch (err) {
       res

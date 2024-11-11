@@ -8,33 +8,32 @@ import ActionsBar from '../../components/ActionsBar.js';
 import Grid from '../../components/Grid.js';
 import PagingBar from '../../components/PagingBar.js';
 import IconUser from '../../components/icons/IconUser.js';
+import Paragraph from '../../components/Paragraph.js';
 import IconAdd from '../../components/icons/IconAdd.js';
 import IconEdit from '../../components/icons/IconEdit.js';
-import IconDelete from '../../components/icons/IconDelete.js';
-import IconDummy from '../../components/icons/IconDummy.js';
-import UsersBodyAction1 from './UsersBodyAction1.js';
-import UsersBodyContextualAction1 from './UsersBodyContextualAction1.js';
-import UsersBodyContextualAction2 from './UsersBodyContextualAction2.js';
-import ApiService from '../../services/ApiService.js';
+import IconResetPassword from '../../components/icons/IconResetPassword.js';
+import IconBlock from '../../components/icons/IconBlock.js';
+import IconUnblock from '../../components/icons/IconUnblock.js';
+import UsersBodyActionAdd from './UsersBodyActionAdd.js';
+import UsersBodyActionEdit from './UsersBodyActionEdit.js';
+import UsersBodyActionResetPassword from './UsersBodyActionResetPassword.js';
 import SecurityService from '../../services/SecurityService.js';
 import { getWords } from '../../utils/get-words.js';
 import { isValid } from '../../utils/is-valid.js';
 import { protect } from '../../utils/protect.js';
 
-const UsersBody = ReactRouterDOM.withRouter(function () {
+const UsersBody = ReactRouterDOM.withRouter(function ({ securityOptions }) {
   const { i18n, setError } = useAppContext();
   const words = getWords(i18n.code);
-  const history = ReactRouterDOM.useHistory();
-  const [action, setAction] = React.useState(null);
-  const bodyRefAction0 = React.useRef(null);
   const [count, setCount] = React.useState(null);
   const [pageNumber, setPageNumber] = React.useState(1);
   const pageSize = 10;
-  const [filtersValues, setFiltersValues] = React.useState([null, null]);
+  const [filtersValues, setFiltersValues] = React.useState([null]);
   const [items, setItems] = React.useState([]);
-  const [contextualAction, setContextualAction] = React.useState(null);
-  const bodyRefContextualAction0 = React.useRef(null);
-  const bodyRefContextualAction1 = React.useRef(null);
+  const [action, setAction] = React.useState(null);
+  const bodyRefActionAdd = React.useRef(null);
+  const bodyRefActionEdit = React.useRef(null);
+  const bodyRefActionResetPassword = React.useRef(null);
 
   React.useEffect(() => {
     setPageNumber(1);
@@ -45,59 +44,38 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
     loadRecords();
   }, [pageNumber, filtersValues]);
 
-  const handleAction0 = async function (e) {
-    if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    const data = {};
-    data.enabled = false;
-    setAction({ index: 0, data: data, validated: false });
-  }
-  const submitAction0 = async function (e) {
-    if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    if (isValid(bodyRefAction0.current)) {
+  const loadCount = async function () {
+    try {
       try {
-        await ApiService.postUser(action.data);
+        const args = {};
+        if (filtersValues[0] !== null && filtersValues[0] !== undefined) {
+          args.username = filtersValues[0] + '%';
+        }
+        const queryString = new URLSearchParams(args).toString();
+        const response = await httpCall('/api/auth/count-users' + (queryString ? ('?' + queryString) : ''), 'get');
+        if (!response.ok) {
+          const error = new Error('Error executing "countUsers"');
+          try {
+            error.additionalData = await response.json();
+          }
+          catch (err) {
+          }
+          throw error;
+        }
+        const result = await response.json();
+        setCount(result.count);
       }
       catch (error) {
         setError(error);
         return;
       }
-      setAction(null);
-      window.location.reload();
-    }
-    else {
-      setAction(prevAction => ({ ...prevAction, validated: true }));
-    }
-  }
-  const updateActionData = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
-  }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
-  }
-  const cancelAction = async function (e) {
-    if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    setAction(null);
-  }
-  
-  const loadCount = async function () {
-    try {
-      setCount(await ApiService.getCountUsers(null));
     }
     catch (error) {
       setError(error);
       return;
     }
   }
-  
+
   const loadRecords = async function () {
     let records = null;
     try {
@@ -105,12 +83,19 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
       if (filtersValues[0] !== null && filtersValues[0] !== undefined) {
         args.username = filtersValues[0] + '%';
       }
-      if (filtersValues[1] !== null && filtersValues[1] !== undefined) {
-        args.enabled = filtersValues[1];
-      }
       args.offset = (pageNumber - 1) * pageSize;
       args.limit = pageSize;
-      records = await ApiService.getUsers(args);
+      const response = await httpCall('/api/auth/users?' + new URLSearchParams(args).toString(), 'get');
+      if (!response.ok) {
+        const error = new Error('Error executing "getUsers"');
+        try {
+          error.additionalData = await response.json();
+        }
+        catch (err) {
+        }
+        throw error;
+      }
+      records = await response.json();
     }
     catch (error) {
       setError(error);
@@ -119,116 +104,222 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
     setItems(records.map((record, index) => ({
       key: record.userId,
       data: [
-        protect(function ([firstName, lastName]) { return `${firstName} ${lastName}` }, [ record.firstName, record.lastName ]),
-        record.avatar,
         record.username,
+        protect(function ([firstName, lastName]) { return `${firstName} ${lastName}` }, [record.firstName, record.lastName]),
+        record.avatar ?? '/images/user.png',
         record.email,
-        record.enabled,
+        record.role,
+        record.providerName,
+        record.blocked
       ],
       record: record
     })));
   }
-  
+
   const refreshMe = async function () {
     await loadCount();
     await loadRecords();
   }
-  
-  const handleClickItem = async function (e, item) {
+
+  const handleActionAdd = async function (e) {
     if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    history.push('/user/' + item.record.userId);
-  }
-  
-  const handleContextualAction0 = async function (e, item) {
-    if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    let user = null;
-    try {
-      user = await ApiService.getUser(item.record.userId);
-    }
-    catch (error) {
-      setError(error);
       return;
     }
     const data = {};
-    data.username = user.username;
-    data.firstName = user.firstName;
-    data.lastName = user.lastName;
-    data.email = user.email;
-    data.enabled = user.enabled;
-    setContextualAction({ index: 0, user: user, data: data, validated: false });
+    setAction({ code: 'add', data: data, validated: false });
   }
-  const submitContextualAction0 = async function (e) {
+  const submitActionAdd = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    if (isValid(bodyRefContextualAction0.current)) {
+    if (isValid(bodyRefActionAdd.current)) {
       try {
-        await ApiService.putUser(contextualAction.user.userId, contextualAction.data);
+        const response = await httpCall('/api/auth/user', 'post', action.data);
+        if (!response.ok) {
+          const error = new Error('Error executing "postUser"');
+          try {
+            error.additionalData = await response.json();
+          }
+          catch (err) {
+          }
+          throw error;
+        }
       }
       catch (error) {
         setError(error);
         return;
       }
-      setContextualAction(null);
+      setAction(null);
       refreshMe();
     }
     else {
-      setContextualAction(prevContextualAction => ({ ...prevContextualAction, validated: true }));
+      setAction(prevAction => ({ ...prevAction, validated: true }));
     }
   }
-  const handleContextualAction1 = async function (e, item) {
+
+  const handleActionEdit = async function (e, item) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    let user = null;
+    const data = {};
+    data.firstName = item.record.firstName;
+    data.lastName = item.record.lastName;
+    data.email = item.record.email;
+    data.role = item.record.role;
+    setAction({ code: 'edit', userId: item.record.userId, username: item.record.username, data: data, validated: false });
+  }
+  const submitActionEdit = async function (e) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    if (isValid(bodyRefActionEdit.current)) {
+      try {
+        const response = await httpCall(`/api/auth/user/${action.userId}`, 'put', action.data);
+        if (!response.ok) {
+          const error = new Error('Error executing "putUser"');
+          try {
+            error.additionalData = await response.json();
+          }
+          catch (err) {
+          }
+          throw error;
+        }
+      }
+      catch (error) {
+        setError(error);
+        return;
+      }
+      setAction(null);
+      refreshMe();
+    }
+    else {
+      setAction(prevAction => ({ ...prevAction, validated: true }));
+    }
+  }
+
+  const handleActionResetPassword = async function (e, item) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    const data = {};
+    setAction({ code: 'reset-password', userId: item.record.userId, username: item.record.username, data: data, validated: false });
+  }
+  const submitActionResetPassword = async function (e) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    if (isValid(bodyRefActionResetPassword.current)) {
+      try {
+        const response = await httpCall(`/api/auth/user/${action.userId}/reset-password`, 'put', action.data);
+        if (!response.ok) {
+          const error = new Error('Error executing "putUserResetPassword"');
+          try {
+            error.additionalData = await response.json();
+          }
+          catch (err) {
+          }
+          throw error;
+        }
+      }
+      catch (error) {
+        setError(error);
+        return;
+      }
+      setAction(null);
+      refreshMe();
+    }
+    else {
+      setAction(prevAction => ({ ...prevAction, validated: true }));
+    }
+  }
+
+  const handleActionBlock = async function (e, item) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    setAction({ code: 'block', userId: item.record.userId, username: item.record.username });
+  }
+  const submitActionBlock = async function (e) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
     try {
-      user = await ApiService.getUser(item.record.userId);
+      const response = await httpCall(`/api/auth/user/${action.userId}/block`, 'put');
+      if (!response.ok) {
+        const error = new Error('Error executing "putUserBlock"');
+        try {
+          error.additionalData = await response.json();
+        }
+        catch (err) {
+        }
+        throw error;
+      }
+     }
+    catch (error) {
+      setError(error);
+      return;
+    }
+    setAction(null);
+    refreshMe();
+  }
+
+  const handleActionUnblock = async function (e, item) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    setAction({ code: 'unblock', userId: item.record.userId, username: item.record.username });
+  }
+  const submitActionUnblock = async function (e) {
+    if (e.ctrlKey || e.altKey) {
+      return;
+    }
+    try {
+      const response = await httpCall(`/api/auth/user/${action.userId}/unblock`, 'put');
+      if (!response.ok) {
+        const error = new Error('Error executing "putUserUnblock"');
+        try {
+          error.additionalData = await response.json();
+        }
+        catch (err) {
+        }
+        throw error;
+      }
     }
     catch (error) {
       setError(error);
       return;
     }
-    setContextualAction({ index: 1, user: user });
+    setAction(null);
+    refreshMe();
   }
-  const submitContextualAction1 = async function (e) {
+
+  const updateActionData = function (field, value) {
+    setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
+  }
+  const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    if (isValid(bodyRefContextualAction1.current)) {
-      try {
-        await ApiService.deleteUser(contextualAction.user.userId);
-      }
-      catch (error) {
-        setError(error);
-        return;
-      }
-      setContextualAction(null);
-      refreshMe();
-    }
-    else {
-      setContextualAction(prevContextualAction => ({ ...prevContextualAction, validated: true }));
-    }
+    setAction(null);
   }
-  const updateContextualActionData = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, data: { ...prevContextualAction.data, [field]: value } }));
+  const httpCall = function (url, method, data) {
+    return new Promise(function (resolve) {
+      SecurityService.updateToken(async function () {
+        const options = {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SecurityService.getToken()}`,
+          }
+        };
+        if (data) {
+          options.body = JSON.stringify(data);
+        }
+        resolve(await fetch(url, options));
+      });
+    });
   }
-  const updateContextualActionPath = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, path: { ...prevContextualAction.path, [field]: value } }));
-  }
-  const updateContextualActionBody = function (field, value) {
-    setContextualAction(prevContextualAction => ({ ...prevContextualAction, body: { ...prevContextualAction.body, [field]: value } }));
-  }
-  const cancelContextualAction = async function (e) {
-    if (e.ctrlKey || e.altKey) {
-      return;
-    }
-    setContextualAction(null);
-  }
-  
+
   return (
     <div>
       <div className="section-header d-flex align-items-center">
@@ -240,12 +331,6 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
                 label: words.username,
                 variant: 'text'
               },
-              {
-                label: words.enabled,
-                variant: 'option',
-                dataSource: [[true, words.yes], [false, words.no]],
-                exclusive: true
-              },
             ]}
             filtersValues={filtersValues}
             setFiltersValues={setFiltersValues}
@@ -255,7 +340,7 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
         <div className="d-flex align-items-center">
           <ActionsBar
             actions={[
-              { label: words.add, color: 'primary', onClick: handleAction0 },
+              { label: words.add, color: 'primary', onClick: handleActionAdd },
             ]}
           />
         </div>
@@ -263,36 +348,57 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
       <div>
         <Grid
           contextualActions={[
-            { icon: IconEdit, label: words.edit, color: 'primary', onClick: handleContextualAction0 },
-            { icon: IconDelete, label: words.delete, color: 'red', onClick: handleContextualAction1 },
+            { icon: IconEdit, label: words.edit, color: 'primary', onClick: handleActionEdit, hidden: function (item) { return item.record.userId === 1 } },
+            { icon: IconResetPassword, label: words.resetPassword, color: 'primary', onClick: handleActionResetPassword, hidden: function (item) { return !securityOptions.enableByUserPassword || item.record.providerName } },
+            { icon: IconBlock, label: words.block, color: 'red', onClick: handleActionBlock, hidden: function (item) { return item.record.userId === 1 || item.record.blocked } },
+            { icon: IconUnblock, label: words.unblock, color: 'green', onClick: handleActionUnblock, hidden: function (item) { return !item.record.blocked } }
           ]}
           fields={[
-            {
-              icon: IconDummy,
-              label: words.username,
-              type: 'string',
-              bindIndex: 0,
-              avatarField: {
-                type: 'imageUrl',
-                bindIndex: 1,
-              },
-              secondaryField: {
+            ...[
+              {
+                label: words.name,
                 type: 'string',
-                bindIndex: 2,
+                bindIndex: 1,
+                avatarField: {
+                  type: 'imageUrl',
+                  bindIndex: 2,
+                },
+                secondaryField: {
+                  type: 'string',
+                  bindIndex: 0,
+                }
               },
-            },
-            {
-              label: words.email,
-              type: 'string',
-              bindIndex: 3,
-            },
-            {
-              label: words.enabled,
-              type: 'boolean',
-              bindIndex: 4,
-            },
+              {
+                label: words.email,
+                type: 'string',
+                bindIndex: 3
+              },
+              {
+                label: words.role,
+                type: 'string',
+                translate: true,
+                bindIndex: 4
+              },
+            ],
+            ...(
+              (securityOptions.enableProvidersNames && securityOptions.enableProvidersNames.length > 0) ?
+                [
+                  {
+                    label: words.provider,
+                    type: 'string',
+                    bindIndex: 5
+                  }
+                ] :
+                []
+            ),
+            ...[
+              {
+                label: words.blocked,
+                type: 'boolean',
+                bindIndex: 6
+              }
+            ]
           ]}
-          onClickItem={(SecurityService.hasRole('administrator')) && (SecurityService.hasRole('administrator')) ? handleClickItem : null}
           items={items}
         />
         {count !== null && count !== undefined ?
@@ -300,12 +406,12 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
             countOfItems={count}
-            countOfPages={Math.ceil(count/pageSize)}
+            countOfPages={Math.ceil(count / pageSize)}
           /> :
           null
         }
       </div>
-      {action && action.index === 0 ?
+      {action && action.code === 'add' ?
         <ReactBootstrap.Modal
           contentClassName="popup"
           show={true}
@@ -314,19 +420,18 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
           centered={true}
           backdrop="static"
           keyboard={false}
-         
         >
           <ReactBootstrap.Modal.Header className="popup-header">
             <Title icon={IconAdd} color="primary" label={words.addUser} />
           </ReactBootstrap.Modal.Header>
-          <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
+          <ReactBootstrap.Modal.Body ref={bodyRefActionAdd} className="popup-body">
             <div>
-              {action.data && <UsersBodyAction1 data={action.data} updateData={updateActionData} validated={action.validated} />}
+              {action.data && <UsersBodyActionAdd securityOptions={securityOptions} data={action.data} updateData={updateActionData} validated={action.validated} />}
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction0}>
+              <div className="btn-primary" onClick={submitActionAdd}>
                 {words.ok}
               </div>
             </div>
@@ -339,33 +444,32 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
         </ReactBootstrap.Modal> :
         null
       }
-      {contextualAction && contextualAction.index === 0 ?
+      {action && action.code === 'edit' ?
         <ReactBootstrap.Modal
           contentClassName="popup"
           show={true}
-          onHide={() => cancelContextualAction({})}
+          onHide={() => cancelAction({})}
           scrollable={true}
           centered={true}
           backdrop="static"
           keyboard={false}
-         
         >
           <ReactBootstrap.Modal.Header className="popup-header">
             <Title icon={IconEdit} color="primary" label={words.editUser} />
           </ReactBootstrap.Modal.Header>
-          <ReactBootstrap.Modal.Body ref={bodyRefContextualAction0} className="popup-body">
+          <ReactBootstrap.Modal.Body ref={bodyRefActionEdit} className="popup-body">
             <div>
-              {contextualAction.data && <UsersBodyContextualAction1 user={contextualAction ? contextualAction.user : null} data={contextualAction.data} updateData={updateContextualActionData} validated={contextualAction.validated} />}
+              {action.data && <UsersBodyActionEdit securityOptions={securityOptions} username={action.username} data={action.data} updateData={updateActionData} validated={action.validated} />}
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitContextualAction0}>
+              <div className="btn-primary" onClick={submitActionEdit}>
                 {words.ok}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
               </div>
             </div>
@@ -373,33 +477,116 @@ const UsersBody = ReactRouterDOM.withRouter(function () {
         </ReactBootstrap.Modal> :
         null
       }
-      {contextualAction && contextualAction.index === 1 ?
+      {action && action.code === 'reset-password' ?
         <ReactBootstrap.Modal
           contentClassName="popup"
           show={true}
-          onHide={() => cancelContextualAction({})}
+          onHide={() => cancelAction({})}
           scrollable={true}
           centered={true}
           backdrop="static"
           keyboard={false}
-         
         >
           <ReactBootstrap.Modal.Header className="popup-header">
-            <Title icon={IconDelete} color="red" label={words.deleteUser} />
+            <Title icon={IconResetPassword} color="primary" label={words.resetPassword} />
           </ReactBootstrap.Modal.Header>
-          <ReactBootstrap.Modal.Body ref={bodyRefContextualAction1} className="popup-body">
+          <ReactBootstrap.Modal.Body ref={bodyRefActionResetPassword} className="popup-body">
             <div>
-              <UsersBodyContextualAction2 user={contextualAction ? contextualAction.user : null} />
+              {action.data && <UsersBodyActionResetPassword username={action.username} data={action.data} updateData={updateActionData} validated={action.validated} />}
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-red" onClick={submitContextualAction1}>
-                {words.delete}
+              <div className="btn-primary" onClick={submitActionResetPassword}>
+                {words.reset}
               </div>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelContextualAction}>
+              <div className="btn-outline-primary" onClick={cancelAction}>
+                {words.cancel}
+              </div>
+            </div>
+          </ReactBootstrap.Modal.Footer>
+        </ReactBootstrap.Modal> :
+        null
+      }
+      {action && action.code === 'block' ?
+        <ReactBootstrap.Modal
+          contentClassName="popup"
+          show={true}
+          onHide={() => cancelAction({})}
+          scrollable={true}
+          centered={true}
+          backdrop="static"
+          keyboard={false}
+        >
+          <ReactBootstrap.Modal.Header className="popup-header">
+            <Title icon={IconBlock} color="red" label={words.blockUser} />
+          </ReactBootstrap.Modal.Header>
+          <ReactBootstrap.Modal.Body className="popup-body">
+            <div className="prompt d-flex justify-content-center">
+              <Paragraph
+                template={words.confirmBlockUser}
+                fields={[
+                  {
+                    type: 'string',
+                    style: function () { return 'fw-bold'; },
+                    value: action.username
+                  }
+                ]}
+              />
+            </div>
+          </ReactBootstrap.Modal.Body>
+          <ReactBootstrap.Modal.Footer className="popup-footer">
+            <div>
+              <div className="btn-red" onClick={submitActionBlock}>
+                {words.block}
+              </div>
+            </div>
+            <div>
+              <div className="btn-outline-primary" onClick={cancelAction}>
+                {words.cancel}
+              </div>
+            </div>
+          </ReactBootstrap.Modal.Footer>
+        </ReactBootstrap.Modal> :
+        null
+      }
+      {action && action.code === 'unblock' ?
+        <ReactBootstrap.Modal
+          contentClassName="popup"
+          show={true}
+          onHide={() => cancelAction({})}
+          scrollable={true}
+          centered={true}
+          backdrop="static"
+          keyboard={false}
+        >
+          <ReactBootstrap.Modal.Header className="popup-header">
+            <Title icon={IconUnblock} color="green" label={words.unblockUser} />
+          </ReactBootstrap.Modal.Header>
+          <ReactBootstrap.Modal.Body className="popup-body">
+            <div className="prompt d-flex justify-content-center">
+              <Paragraph
+                template={words.confirmUnblockUser}
+                fields={[
+                  {
+                    type: 'string',
+                    style: function () { return 'fw-bold'; },
+                    value: action.username
+                  }
+                ]}
+              />
+            </div>
+          </ReactBootstrap.Modal.Body>
+          <ReactBootstrap.Modal.Footer className="popup-footer">
+            <div>
+              <div className="btn-green" onClick={submitActionUnblock}>
+                {words.unblock}
+              </div>
+            </div>
+            <div>
+              <div className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
               </div>
             </div>

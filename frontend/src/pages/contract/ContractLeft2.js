@@ -38,9 +38,9 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
     if (e.ctrlKey || e.altKey) {
       return;
     }
-    const body = {};
-    body.contractId = contract.contractId;
-    setAction({ index: 0, body: body, validated: false });
+    const data = {};
+    data.contractId = contract.contractId;
+    setAction({ index: 0, data: data, validated: false });
   }
   const submitAction0 = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -48,7 +48,7 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
     }
     if (isValid(bodyRefAction0.current)) {
       try {
-        await ApiService.postBooking(action.body);
+        await ApiService.postBooking(action.data);
       }
       catch (error) {
         setError(error);
@@ -63,12 +63,6 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
   }
   const updateActionData = function (field, value) {
     setAction(prevAction => ({ ...prevAction, data: { ...prevAction.data, [field]: value } }));
-  }
-  const updateActionPath = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, path: { ...prevAction.path, [field]: value } }));
-  }
-  const updateActionBody = function (field, value) {
-    setAction(prevAction => ({ ...prevAction, body: { ...prevAction.body, [field]: value } }));
   }
   const cancelAction = async function (e) {
     if (e.ctrlKey || e.altKey) {
@@ -115,8 +109,8 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
         record.departureDate,
         record.arrivalDate,
         record.status,
-        protect(function ([kgDispatched, kgTarget]) { return kgDispatched / kgTarget }, [ record.kgDispatched, record.kgTarget ]),
         protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ record.kgDelivered, record.kgTarget ]),
+        protect(function ([kgDelivered, kgDispatched, kgTarget]) { return (kgDispatched - kgDelivered) / kgTarget }, [ record.kgDelivered, record.kgDispatched, record.kgTarget ]),
       ],
       record: record
     })));
@@ -182,21 +176,22 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
               label: words.status,
               type: 'string',
               translate: true,
-              variant: 'frame',
+              frame: true,
               color: function (value) { return value === 'inProgress' ? 'yellow' : (value === 'completed' ? 'green' : null); },
               bindIndex: 5,
             },
             {
               label: words.progress,
-              paragraph: {
-                template: words.progressBarTemplate,
+              progressBar: {
                 fields: [
                   {
                     type: 'percentage',
+                    color: function (value) { return 'green'; },
                     bindIndex: 6,
                   },
                   {
                     type: 'percentage',
+                    color: function (value) { return 'yellow'; },
                     bindIndex: 7,
                   },
                 ]
@@ -232,7 +227,7 @@ const ContractLeft2 = ReactRouterDOM.withRouter(function ({ contract }) {
           </ReactBootstrap.Modal.Header>
           <ReactBootstrap.Modal.Body ref={bodyRefAction0} className="popup-body">
             <div>
-              {action.body && <ContractLeft2Action1 contract={contract} body={action.body} updateBody={updateActionBody} validated={action.validated} />}
+              <ContractLeft2Action1 contract={contract} data={action.data} updateData={updateActionData} validated={action.validated} />
             </div>
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">

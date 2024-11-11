@@ -6,13 +6,59 @@ import IconNeutral from './icons/IconNeutral';
 import IconIncrement from './icons/IconIncrement';
 import IconDecrement from './icons/IconDecrement';
 import Paragraph from './Paragraph.js';
+import ProgressBar from './ProgressBar.js';
+import RatingBar from './RatingBar.js';
 import Field from './Field.js';
 import { protect } from '../utils/protect.js';
 
 const ComplexField = function ({ size, field }) {
 
-  if ((field.value === null || field.value === undefined || field.value === '') && (field.paragraph === null || field.paragraph === undefined)) {
+  if ((field.value === null || field.value === undefined || field.value === '') && (field.paragraph === null || field.paragraph === undefined) && (field.progressBar === null || field.progressBar === undefined) && (field.ratingBar === null || field.ratingBar === undefined)) {
     return (<div/>);
+  }
+
+  const renderField = function (field) {
+    if (field.paragraph) {
+      let firstParagraphFieldValue = null;
+      if (field.paragraph.fields.length > 0) {
+        firstParagraphFieldValue = field.paragraph.fields[0].value;
+      }
+      return (
+        <Paragraph
+          template={field.paragraph.template}
+          fields={field.paragraph.fields}
+          color={protect(field.color, firstParagraphFieldValue)}
+          style={protect(field.style, firstParagraphFieldValue)}
+        />
+      );
+    }
+    else if (field.progressBar) {
+      return (
+        <ProgressBar
+          fields={field.progressBar.fields}
+        />
+      );
+    }
+    else if (field.ratingBar) {
+      return (
+        <RatingBar
+          field={field.ratingBar.fields[0]}
+        />
+      );
+    }
+    else {
+      return (
+        <Field
+          value={field.value}
+          type={field.type}
+          translate={field.translate}
+          frame={field.frame}
+          formatter={field.formatter}
+          color={protect(field.color, field.value)}
+          style={protect(field.style, field.value)}
+        />
+      );
+    }
   }
 
   return (
@@ -20,42 +66,10 @@ const ComplexField = function ({ size, field }) {
       className={'text-' + size + (field.onClick ? ' text-link' : ' text-default')}
       onClick={field.onClick}
     >
-      {field.paragraph ?
-        <Paragraph
-          template={field.paragraph.template}
-          fields={field.paragraph.fields}
-          color={protect(field.color, field.value)}
-          style={protect(field.style, field.value)}
-        /> :
-        <Field
-          value={field.value}
-          type={field.type}
-          translate={field.translate}
-          variant={field.variant}
-          formatter={field.formatter}
-          color={protect(field.color, field.value)}
-          style={protect(field.style, field.value)}
-        />
-      }
+      {renderField(field)}
       {field.secondaryField && ((field.secondaryField.value !== null && field.secondaryField.value !== undefined && field.secondaryField.value !== '') || (field.secondaryField.paragraph !== null && field.secondaryField.paragraph !== undefined)) ?
         <div className="text-secondary">
-          {field.secondaryField.paragraph ?
-            <Paragraph
-              template={field.secondaryField.paragraph.template}
-              fields={field.secondaryField.paragraph.fields}
-              color={protect(field.secondaryField.color, field.secondaryField.value)}
-              style={protect(field.secondaryField.style, field.secondaryField.value)}
-            /> :
-            <Field
-              value={field.secondaryField.value}
-              type={field.secondaryField.type}
-              translate={field.secondaryField.translate}
-              variant={field.secondaryField.variant}
-              formatter={field.secondaryField.formatter}
-              color={protect(field.secondaryField.color, field.secondaryField.value)}
-              style={protect(field.secondaryField.style, field.secondaryField.value)}
-            />
-          }
+          {renderField(field.secondaryField)}
         </div> :
         null
       }

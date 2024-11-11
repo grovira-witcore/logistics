@@ -1,9 +1,11 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 module.exports = function (knex, apiRouter) {
   apiRouter.post('/customer', async function (req, res) {
     try {
+      if (true) {
+        // Nothing to do
+      }
       const data = req.body;
       const [insertedCustomer] = await knex('customers')
         .insert({
@@ -22,7 +24,7 @@ module.exports = function (knex, apiRouter) {
           .send({
             code: 409,
             message: 'Conflict',
-            description: 'Unique key constraint fails trying to insert Customer.',
+            description: 'Unique key constraint fails trying to insert Customer',
             translationKey: 'cannotCreateThisObjectBecauseItAlreadyExists'
           });
         return;

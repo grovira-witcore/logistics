@@ -6,7 +6,7 @@ import { protect } from '../utils/protect.js';
 
 const AvatarField = function ({ size, field }) {
 
-  if ((field.value === null || field.value === undefined || field.value === '') && (field.paragraph === null || field.paragraph === undefined)) {
+  if ((field.value === null || field.value === undefined || field.value === '') && (field.paragraph === null || field.paragraph === undefined) && (field.progressBar === null || field.progressBar === undefined) && (field.ratingBar === null || field.ratingBar === undefined)) {
     return (<div />);
   }
 

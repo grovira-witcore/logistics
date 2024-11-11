@@ -9,15 +9,15 @@ import DateBox from '../../components/DateBox.js';
 import ApiService from '../../services/ApiService.js';
 import { getWords } from '../../utils/get-words.js';
 
-const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, body, updateBody, validated }) {
+const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, data, updateData, validated }) {
   const { i18n, setError } = useAppContext();
   const words = getWords(i18n.code);
 
-  const getBaseFriendlyNameBodyShipperId = function () {
+  const getBaseFriendlyNameShipperId = function () {
     return null;
   }
   
-  const loaderBodyShipperId = async function () {
+  const loaderShipperId = async function () {
     let records = null;
     try {
       const args = {};
@@ -37,8 +37,8 @@ const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, bod
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <TextBox
               label={words.code}
-              value={body.code}
-              onChange={(value) => updateBody('code', value)}
+              value={data.code}
+              onChange={(value) => updateData('code', value)}
               validated={validated}
               maxLength={80}
               required={true}
@@ -48,8 +48,8 @@ const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, bod
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <NumericBox
               label={words.totalCargos}
-              value={body.totalCargos}
-              onChange={(value) => updateBody('totalCargos', value)}
+              value={data.totalCargos}
+              onChange={(value) => updateData('totalCargos', value)}
               validated={validated}
               required={true}
             />
@@ -57,19 +57,19 @@ const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, bod
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <ComboBox
               label={words.shipper}
-              value={body.shipperId}
-              onChange={(value) => updateBody('shipperId', value)}
+              value={data.shipperId}
+              onChange={(value) => updateData('shipperId', value)}
               validated={validated}
-              baseFriendlyName={getBaseFriendlyNameBodyShipperId()}
-              loader={loaderBodyShipperId}
+              baseFriendlyName={getBaseFriendlyNameShipperId()}
+              loader={loaderShipperId}
               required={true}
             />
           </div>
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <MoneyBox
               label={words.cost}
-              value={body.cost}
-              onChange={(value) => updateBody('cost', value)}
+              value={data.cost}
+              onChange={(value) => updateData('cost', value)}
               validated={validated}
               required={true}
             />
@@ -77,8 +77,8 @@ const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, bod
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <DateBox
               label={words.departureDate}
-              value={body.departureDate}
-              onChange={(value) => updateBody('departureDate', value)}
+              value={data.departureDate}
+              onChange={(value) => updateData('departureDate', value)}
               validated={validated}
               required={true}
             />
@@ -86,8 +86,8 @@ const ContractLeft2Action1 = ReactRouterDOM.withRouter(function ({ contract, bod
           <div className="col-lg-6 col-md-6 col-sm-6 col-6">
             <DateBox
               label={words.arrivalDate}
-              value={body.arrivalDate}
-              onChange={(value) => updateBody('arrivalDate', value)}
+              value={data.arrivalDate}
+              onChange={(value) => updateData('arrivalDate', value)}
               validated={validated}
               required={true}
             />

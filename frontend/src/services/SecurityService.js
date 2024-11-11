@@ -1,151 +1,203 @@
+// Witcore Suite - Version 1.0.0
+// Copyright(c) 2024 Witcore LLC. All rights reserved.
+
 import React from 'react';
-import IconLogo from '../components/icons/IconLogo.js';
-import { getWords } from '../utils/get-words.js';
+import * as ReactRouterDOM from 'react-router-dom';
+import Login from '../pages/login/Login.js';
+import IconUser from '../components/icons/IconUser.js';
+import Users from '../pages/users/Users.js';
+import { jwtDecode } from 'jwt-decode';
 
-let _sessions = null;
-
-const getCurrentSession = function () {
-  let currentUsername = sessionStorage.getItem('username');
-  if (currentUsername === null || currentUsername === undefined) {
-    sessionStorage.setItem('username', 'admin');
-    currentUsername = 'admin';
-  }
-  return _sessions.find(session => session.username === currentUsername);
-}
+let _accessToken = null;
+let _accessTokenParsed = null;
+let _refreshToken = null;
 
 const init = function (root, defaultI18n, cb) {
-  fetch(`/api/sessions`, {
-    method: 'get',
+  _accessToken = sessionStorage.getItem('token');
+  if (_accessToken) {
+    _accessTokenParsed = jwtDecode(_accessToken);
+    const currentTime = Math.floor(Date.now() / 1000);
+    const pendingSeconds = _accessTokenParsed.exp - currentTime;
+    if (pendingSeconds <= 60) {
+      sessionStorage.clear();
+      _accessToken = null;
+      _accessTokenParsed = null;
+      _refreshToken = null;
+      login(root, defaultI18n);
+    }
+    else {
+      root.render(cb());
+    }
+  }
+  else {
+    const authorizationCode = new URLSearchParams(location.search).get('code');
+    if (authorizationCode) {
+      fetch('/api/auth/token?' + new URLSearchParams({ code: authorizationCode }).toString(), {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            response.json()
+              .then(function (result) {
+                sessionStorage.setItem('token', result.accessToken);
+                _refreshToken = result.refreshToken;
+                window.location.href = '/';
+              })
+              .catch(function (err) {
+                initError(root, defaultI18n, err);
+              });
+          }
+          else {
+            initError(root, defaultI18n, 'Error Response');
+          }
+        })
+        .catch(function (err) {
+          initError(root, defaultI18n, err);
+        });
+    }
+    else {
+      login(root, defaultI18n);
+    }
+  }
+}
+const initError = function (root, defaultI18n, err) {
+  console.error(err);
+}
+const login = function (root, defaultI18n) {
+  root.render(<Login defaultI18n={defaultI18n} />);
+}
+
+const getAppSecurityMenuGroup = function (words) {
+  if (hasRole('administrator')) {
+    return {
+      label: words.security,
+      options: [
+        { icon: IconUser, label: words.users, path: "/users" },
+      ]
+    }
+  }
+  else {
+    return null;
+  }
+}
+
+const getAppSecurityRoute = function () {
+  if (hasRole('administrator')) {
+    return (
+      <ReactRouterDOM.Route exact path="/users">
+        <Users />
+      </ReactRouterDOM.Route>
+    )
+  }
+  else {
+    return null;
+  }
+}
+
+const logout = function () {
+  fetch('/api/auth/logout', {
+    method: 'post',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${_accessToken}`,
     }
   })
     .then(function (response) {
       if (response.ok) {
-        response.json()
-          .then(function (sessions) {
-            _sessions = sessions;
-            const currentSession = getCurrentSession();
-            if (currentSession) {
-              root.render(cb());
-            }
-            else {
-              const words = getWords(defaultI18n.code);
-              root.render(
-                <div>
-                  <div className="wit-header d-flex align-items-center">
-                    <div className="wit-header-title d-flex align-items-center">
-                      <div><IconLogo/></div>
-                      <div>{words.ggtLogistics}</div>
-                    </div>
-                  </div>
-                  <div className="canvas d-flex justify-content-center flex-wrap">
-                    {_sessions.map(session => (
-                      <div index={session.username} className="section" style={{ width: '300px' }}>
-                        <div style={{ padding: '20px' }}>
-                          <div className="d-flex align-items-center" style={{ gap: '10px' }}>
-                            <div>
-                              <div className="image-lg mx-auto">
-                                {session.avatar ?
-                                  <img src={session.avatar} alt="Image" className="img-fluid rounded-circle" /> :
-                                  <div />
-                                }
-                              </div>
-                            </div>
-                            <div style={{ fontFamily: 'Inter-SemiBold', fontSize: '18px' }}>
-                              {session.firstName + ' ' + session.lastName}
-                              <div className='text-gray' style={{ fontFamily: 'Inter-Regular', fontSize: '12px' }}>
-                                {session.username}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="text-center" style={{ paddingTop: '20px' }}>
-                            <div className="btn-green" onClick={function (e) { sessionStorage.setItem('username', session.username); window.location.reload(); }}>
-                              {words.login}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            }
-          });
+        sessionStorage.clear();
+        _accessToken = null;
+        _accessTokenParsed = null;
+        _refreshToken = null;
+        window.location.href = window.location.origin;
       }
       else {
-        const words = getWords(defaultI18n.code);
-        root.render(
-          <div>
-            <div className="wit-header d-flex align-items-center">
-              <div className="wit-header-title d-flex align-items-center">
-                <div><IconLogo/></div>
-                <div>{words.ggtLogistics}</div>
-              </div>
-            </div>
-            <div className="text-gray" style={{ fontFamily: 'Inter-SemiBold', fontSize: '18px',  marginTop: '120px' }}>
-              <div className="text-center" style={{ paddingTop: '30px' }}>
-                {'Oops! Our backend service hasn\'t loaded yet.'}
-              </div>
-              <div className="text-center" style={{ paddingTop: '30px' }}>
-                {'Please wait a few seconds and try again.'}
-              </div>
-            </div>
-          </div>
-        );
+        logoutError('Error Response');
       }
+    })
+    .catch(function (err) {
+      logoutError(err);
     });
 }
-
-const logout = function () {
-  sessionStorage.clear();
-  sessionStorage.setItem('username', '-');
-  window.location.reload();
-  window.location.href = '/';
+const logoutError = function (err) {
+  console.error(err);
 }
 
 const getToken = function () {
-  const currentSession = getCurrentSession();
-  if (currentSession) {
-    return currentSession.accessToken;
-  }
-  else {
-    return null;
-  }
+  return _accessToken;
 }
 
 const hasRole = function (role) {
-  const currentSession = getCurrentSession();
-  if (currentSession) {
-    return currentSession.roles.includes(role);
-  }
-  else {
-    return false;
-  }
+  return _accessTokenParsed &&
+    _accessTokenParsed.role === role;
 }
 
 const updateToken = function (cb) {
-  cb();
+  const currentTime = Math.floor(Date.now() / 1000);
+  const pendingSeconds = _accessTokenParsed.exp - currentTime;
+  if (pendingSeconds <= 60) {
+    sessionStorage.clear();
+    _accessToken = null;
+    _accessTokenParsed = null;
+    _refreshToken = null;
+    window.location.href = window.location.origin;
+    //logout();
+  }
+  /*
+  else if (pendingSeconds <= 120) {
+    fetch('/api/auth/refresh-token', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${_accessToken}`,
+      },
+      body: JSON.stringify({ refreshToken: _refreshToken })
+    })
+      .then(function (response) {
+        if (response.ok) {
+          response.json()
+            .then(function (result) {
+              sessionStorage.setItem('token', result.accessToken);
+              _accessToken = result.accessToken;
+              _accessTokenParsed = jwtDecode(_accessTokenParsed);
+              cb();
+            })
+            .catch(function (err) {
+              updateTokenError(err);
+            });
+        }
+        else {
+          updateTokenError('Error Response');
+        }
+      })
+      .catch(function (err) {
+        updateTokenError(err);
+      });
+  }*/
+  else {
+    cb();
+  }
+}
+const updateTokenError = function (err) {
+  console.error(err);
 }
 
 const getUserData = function () {
-  const currentSession = getCurrentSession();
-  if (currentSession) {
-    return {
-      username: currentSession.username,
-      firstName: currentSession.firstName,
-      lastName: currentSession.lastName,
-      email: currentSession.email,
-      avatar: currentSession.avatar
-    }
-  }
-  else {
-    return null;
+  return {
+    username: _accessTokenParsed.username,
+    firstName: _accessTokenParsed.given_name || '',
+    lastName: _accessTokenParsed.family_name || '',
+    email: _accessTokenParsed.email,
+    avatar: _accessTokenParsed.avatar
   }
 }
 
 const SecurityService = {
   init,
+  getAppSecurityMenuGroup,
+  getAppSecurityRoute,
   logout,
   getToken,
   hasRole,

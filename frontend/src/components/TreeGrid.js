@@ -16,23 +16,41 @@ const TreeGrid = function ({ levels, items }) {
 
   const getRenderizableField = function (field, item) {
     const renderizableField = { ...field };
-    if (field.bindIndex !== null && field.bindIndex !== undefined) {
-      renderizableField.value = item.data[field.bindIndex];
+    if (field.visibilityBindIndex !== null && field.visibilityBindIndex !== undefined && !item.data[field.visibilityBindIndex]) {
+      renderizableField.value = null;
+      delete renderizableField.paragraph;
+      delete renderizableField.progressBar;
+      delete renderizableField.ratingBar;
     }
-    if (field.paragraph && field.paragraph.fields) {
-      renderizableField.paragraph = {
-        template: field.paragraph.template,
-        fields: field.paragraph.fields.map(paragraphField => getRenderizableField(paragraphField, item))
-      };
-    }
-    if (field.avatarField) {
-      renderizableField.avatarField = getRenderizableField(field.avatarField, item);
-    }
-    if (field.secondaryField) {
-      renderizableField.secondaryField = getRenderizableField(field.secondaryField, item);
-    }
-    if (field.comparativeField) {
-      renderizableField.comparativeField = getRenderizableField(field.comparativeField, item);
+    else {
+      if (field.bindIndex !== null && field.bindIndex !== undefined) {
+        renderizableField.value = item.data[field.bindIndex];
+      }
+      if (field.paragraph && field.paragraph.fields) {
+        renderizableField.paragraph = {
+          template: field.paragraph.template,
+          fields: field.paragraph.fields.map(paragraphField => getRenderizableField(paragraphField, item))
+        };
+      }
+      if (field.progressBar && field.progressBar.fields) {
+        renderizableField.progressBar = {
+          fields: field.progressBar.fields.map(progressBarField => getRenderizableField(progressBarField, item))
+        };
+      }
+      if (field.ratingBar && field.ratingBar.fields) {
+        renderizableField.ratingBar = {
+          fields: field.ratingBar.fields.map(ratingBarField => getRenderizableField(ratingBarField, item))
+        };
+      }
+      if (field.avatarField) {
+        renderizableField.avatarField = getRenderizableField(field.avatarField, item);
+      }
+      if (field.secondaryField) {
+        renderizableField.secondaryField = getRenderizableField(field.secondaryField, item);
+      }
+      if (field.comparativeField) {
+        renderizableField.comparativeField = getRenderizableField(field.comparativeField, item);
+      }
     }
     return renderizableField;
   }

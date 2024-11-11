@@ -117,7 +117,7 @@ const ContractCostsBodyPart2 = ReactRouterDOM.withRouter(function ({ contract })
               {
                 label: words.baseCostFull,
                 type: 'money',
-                variant: 'frame',
+                frame: true,
                 style: function (value) { return 'fw-bold'; },
                 alignment: 'right',
                 bindIndex: 1,
@@ -125,7 +125,7 @@ const ContractCostsBodyPart2 = ReactRouterDOM.withRouter(function ({ contract })
               {
                 label: words.additionalCostFull,
                 type: 'money',
-                variant: 'frame',
+                frame: true,
                 style: function (value) { return 'fw-bold'; },
                 alignment: 'right',
                 bindIndex: 2,
@@ -133,7 +133,7 @@ const ContractCostsBodyPart2 = ReactRouterDOM.withRouter(function ({ contract })
               {
                 label: words.totalCostFull,
                 type: 'money',
-                variant: 'frame',
+                frame: true,
                 color: function (value) { return 'blue'; },
                 style: function (value) { return 'fw-bold'; },
                 alignment: 'right',

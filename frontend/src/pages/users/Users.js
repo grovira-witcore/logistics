@@ -1,11 +1,8 @@
 import React from 'react';
 import * as ReactRouterDOM from 'react-router-dom';
-import { useAppContext } from '../../context/AppContext.js';
 import UsersBody from './UsersBody.js';
 
 const Users = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
-
   return (
     <div>
       <div className="canvas">
@@ -13,9 +10,7 @@ const Users = ReactRouterDOM.withRouter(function () {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-12 p-0">
               <div className="section">
-                <div>
-                  <UsersBody />
-                </div>
+                <UsersBody securityOptions={{ enableByUserPassword: true, roles: ['administrator'] }} />
               </div>
             </div>
           </div>

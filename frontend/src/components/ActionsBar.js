@@ -13,11 +13,17 @@ const ActionsBar = function ({ actions }) {
     <div className="wit-actions-bar d-flex align-items-center">
       {actions.map((action, index) =>
         !action.hidden ? (
-          <div key={'action-' + index}>
-            <div className={'btn-' + (action.color ?? 'primary')} onClick={(e) => actionClick(e, action)}>
-              {action.label}
+          !action.disabled ?
+            <div key={'action-' + index}>
+              <div className={'btn-' + (action.color ?? 'primary')} onClick={(e) => actionClick(e, action)}>
+                {action.label}
+              </div>
+            </div> :
+            <div key={'action-' + index}>
+              <div className="btn-disabled">
+                {action.label}
+              </div>
             </div>
-          </div>
         ) : null
       )}
     </div>

@@ -1,4 +1,3 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 module.exports = function (knex, apiRouter) {
@@ -15,9 +14,9 @@ module.exports = function (knex, apiRouter) {
           't0.departure_date as departureDate',
           't0.arrival_date as arrivalDate',
           't0.status as status',
-          't0.kg_dispatched as kgDispatched',
-          't0.kg_target as kgTarget',
           't0.kg_delivered as kgDelivered',
+          't0.kg_target as kgTarget',
+          't0.kg_dispatched as kgDispatched',
           't0.cost as cost',
           't0.contract_id as contractId'
         )
@@ -49,7 +48,21 @@ module.exports = function (knex, apiRouter) {
       if (req.query['limit']) {
         knexQuery = knexQuery.limit(parseInt(req.query['limit']));
       }
-      const instances = await knexQuery;
+      const instances = (await knexQuery).map(instance => ({
+        ...instance,
+        access_write: (function () {
+          if (true) {
+            return true;
+          }
+          return true;
+        })(),
+        access_delete: (function () {
+          if (true) {
+            return true;
+          }
+          return true;
+        })(),
+      }));
       res.send(instances);
     }
     catch (err) {

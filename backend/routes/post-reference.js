@@ -1,9 +1,11 @@
-const Security = require('../security/security.js');
 const Utils = require('../utils.js');
 
 module.exports = function (knex, apiRouter) {
   apiRouter.post('/reference', async function (req, res) {
     try {
+      if (true) {
+        // Nothing to do
+      }
       const data = req.body;
       const [insertedReference] = await knex('references')
         .insert({
@@ -23,7 +25,7 @@ module.exports = function (knex, apiRouter) {
           .send({
             code: 409,
             message: 'Conflict',
-            description: 'Unique key constraint fails trying to insert Reference.',
+            description: 'Unique key constraint fails trying to insert Reference',
             translationKey: 'cannotCreateThisObjectBecauseItAlreadyExists'
           });
         return;

@@ -12,8 +12,14 @@ services:
       POSTGRES_DB: logistics-db
       POSTGRES_USER: my-user
       POSTGRES_PASSWORD: my-password
+      POSTGRES_SSL: 'false'
+      ACCESS_TOKEN_SECRET: my-access-token-secret
+      ACCESS_TOKEN_EXPIRES: 1h
+      REFRESH_TOKEN_SECRET: my-refresh-token-secret
+      REFRESH_TOKEN_EXPIRES: 1w
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: '123456'
       FRONT_URL: http://localhost:3000
-      ADMIN_USERNAME: COMPLETE_HERE
       TARGET_PORT: 3000
     ports:
       - '3000:3000'

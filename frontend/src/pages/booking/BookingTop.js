@@ -58,22 +58,23 @@ const BookingTop = ReactRouterDOM.withRouter(function ({ booking }) {
             label: words.status,
             type: 'string',
             translate: true,
-            variant: 'frame',
+            frame: true,
             color: function (value) { return value === 'inProgress' ? 'yellow' : (value === 'completed' ? 'green' : null); },
             value: booking.status,
           },
           {
             label: words.progress,
-            paragraph: {
-              template: words.progressBarTemplate,
+            progressBar: {
               fields: [
                 {
                   type: 'percentage',
-                  value: protect(function ([kgDispatched, kgTarget]) { return kgDispatched / kgTarget }, [ booking.kgDispatched, booking.kgTarget ]),
+                  color: function (value) { return 'green'; },
+                  value: protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ booking.kgDelivered, booking.kgTarget ]),
                 },
                 {
                   type: 'percentage',
-                  value: protect(function ([kgDelivered, kgTarget]) { return kgDelivered / kgTarget }, [ booking.kgDelivered, booking.kgTarget ]),
+                  color: function (value) { return 'yellow'; },
+                  value: protect(function ([kgDelivered, kgDispatched, kgTarget]) { return (kgDispatched - kgDelivered) / kgTarget }, [ booking.kgDelivered, booking.kgDispatched, booking.kgTarget ]),
                 },
               ]
             },

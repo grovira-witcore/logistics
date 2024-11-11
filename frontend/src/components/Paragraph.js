@@ -4,28 +4,8 @@
 import React from 'react';
 import Field from './Field.js';
 import { protect } from '../utils/protect.js';
-import { format } from '../utils/format.js';
 
 const Paragraph = function ({ template, fields, color, style }) {
-
-  if (template === 'ProgressBar') { // Temporal
-    return (
-      <div>
-        <div className="progress bg-disabled" style={{ width: '200px' }}>
-          <div className="progress-bar bg-yellow" style={{ width: Math.floor(fields[0].value * 200) + 'px' }}>
-            <div className="progress-bar bg-green" style={{ height: '100px', width: Math.floor(fields[1].value * 200) + 'px' }}>
-            </div>
-          </div>
-        </div>
-        <div className="pt-1 d-flex">
-          <div className="text-green">{format(fields[1].value, 'percentage', {})}</div>
-          <div className="px-2 fw-bold">{'/'}</div>
-          <div className="text-yellow">{format(fields[0].value - fields[1].value, 'percentage', {})}</div>
-        </div>
-      </div>
-    );
-  }
-
   const parts = [];
   let subTemplate = template;
   let match = /({\d+})/g.exec(subTemplate);
@@ -45,7 +25,7 @@ const Paragraph = function ({ template, fields, color, style }) {
             value={field.value}
             type={field.type}
             translate={field.translate}
-            variant={field.variant}
+            frame={field.frame}
             formatter={field.formatter}
             color={protect(field.color, field.value)}
             style={protect(field.style, field.value)}
