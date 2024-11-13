@@ -154,7 +154,7 @@ body {
   border: 1px solid $border-color;
   border-radius: 4px;
   width: 220px;
-  font-family: Rubik-Regular;
+  font-family: Rubik-Regular, sans-serif;
   font-size: 14px;
 
   >div {
@@ -175,13 +175,13 @@ body {
 
 .prompt {
   padding: 10px;
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 18px;
 }
 
 @each $name, $color in $colors {
   .btn-#{$name} {
-    font-family: Rubik-SemiBold;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 14px;
     display: inline-block;
     border: $color 1px solid;
@@ -202,7 +202,7 @@ body {
   }
 
   .btn-outline-#{$name} {
-    font-family: Rubik-SemiBold;
+    font-family: Rubik-SemiBold, sans-serif;
     font-size: 14px;
     display: inline-block;
     border: $color 1px solid;
@@ -222,7 +222,7 @@ body {
   }
 
   .outline-#{$name} {
-    font-family: Inter-SemiBold;
+    font-family: Inter-SemiBold, sans-serif;
     font-size: 14px;
     display: inline-block;
     border: $color 1px solid;
@@ -234,7 +234,7 @@ body {
 }
 
 .btn-disabled {
-  font-family: Rubik-SemiBold;
+  font-family: Rubik-SemiBold, sans-serif;
   font-size: 14px;
   display: inline-block;
   background-color: $disabled-color;
@@ -301,11 +301,11 @@ body {
 }
 
 .text-lg {
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 14px;
 }
 .text-sm {
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 12px;
 }
 
@@ -332,14 +332,14 @@ body {
 
 .form-label {
   color: $default-color;
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 14px;
   gap: 8px;
   padding-left: 2px;
 }
 
 .form-control {
-  font-family: Rubik-Regular;
+  font-family: Rubik-Regular, sans-serif;
   font-size: 14px;
 }
 
@@ -350,7 +350,7 @@ body {
 
 .form-error {
   padding-top: 8px;
-  font-family: Rubik-SemiBold;
+  font-family: Rubik-SemiBold, sans-serif;
   font-size: 12px;
   color: $red-color;
   padding-left: 2px;
@@ -364,7 +364,7 @@ body {
 .form-control-inline {
   background-color: $section-color;
   color: $default-color;
-  font-family: Rubik-Regular;
+  font-family: Rubik-Regular, sans-serif;
   font-size: 12px;
   padding: 2px;
   border: none !important;
@@ -382,7 +382,7 @@ body {
 
 .form-error-inline {
   padding-top: 12px;
-  font-family: Rubik-Regular;
+  font-family: Rubik-Regular, sans-serif;
   font-size: 12px;
   color: $red-color;
   padding-left: 2px;

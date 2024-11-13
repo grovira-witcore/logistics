@@ -42,7 +42,7 @@
 .wit-header-language-dd {
   background-color: $section-color;
   color: $default-color;
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 12px;
   border: 1px solid $border-color;
   border-radius: 10px;
@@ -91,13 +91,13 @@
 }
 
 .wit-header-user-dd-full-name {
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 16px;
   padding-top: 18px;
 }
 
 .wit-header-user-dd-username {
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 12px;
   padding-top: 6px;
   padding-bottom: 24px;

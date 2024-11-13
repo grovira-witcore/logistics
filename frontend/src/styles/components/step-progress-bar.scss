@@ -6,7 +6,7 @@
 }
 
 .wit-step-progress-bar-item {
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 14px;
   position: relative;
   display: flex;
@@ -77,14 +77,14 @@
 }
 
 .wit-step-progress-bar-text-enabled {
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 14px;
   color: $default-color;
   text-align: center;
 }
 
 .wit-step-progress-bar-text-disabled {
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 14px;
   color: $disabled-color;
   text-align: center;

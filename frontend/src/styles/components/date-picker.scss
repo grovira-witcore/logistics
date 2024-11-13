@@ -4,7 +4,7 @@
     padding-bottom: 8px;
     padding-left: 8px;
     padding-right: 8px;
-    font-family: Inter-SemiBold;
+    font-family: Inter-SemiBold, sans-serif;
     font-size: 14px;
 
     >div:first-child {
@@ -42,13 +42,13 @@
 }
 
 .wit-date-picker-day-column {
-  font-family: Inter-SemiBold;
+  font-family: Inter-SemiBold, sans-serif;
   font-size: 12px;
   width: 36px;
 }
 
 .wit-date-picker-day-value {
-  font-family: Inter-Regular;
+  font-family: Inter-Regular, sans-serif;
   font-size: 12px;
   width: 36px;
   cursor: pointer;
