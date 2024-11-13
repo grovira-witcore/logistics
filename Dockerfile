@@ -2,7 +2,7 @@ FROM node:22-alpine as build
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./frontend/package*.json .
-RUN npm install --legacy-peer-deps
+RUN npm install
 COPY ./frontend .
 RUN npm run build
 
@@ -11,7 +11,7 @@ ENV NODE_ENV=production
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./backend/package*.json .
-RUN npm install --only=production --legacy-peer-deps
+RUN npm install --only=production
 COPY ./backend .
 COPY ./infra/create-endpoints.js ./create-endpoints.js
 COPY --from=build /usr/src/app/dist ./public

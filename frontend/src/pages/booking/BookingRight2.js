@@ -171,14 +171,14 @@ const BookingRight2 = ReactRouterDOM.withRouter(function () {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction0} role="button">
+              <button className="btn-primary" onClick={submitAction0}>
                 {words.save}
-              </div>
+              </button>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction} role="button">
+              <button className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
-              </div>
+              </button>
             </div>
           </ReactBootstrap.Modal.Footer>
         </ReactBootstrap.Modal> :

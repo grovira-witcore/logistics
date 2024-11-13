@@ -184,6 +184,7 @@ body {
     font-family: Rubik-SemiBold;
     font-size: 14px;
     display: inline-block;
+    border: $color 1px solid;
     background-color: $color;
     color: $section-color;
     cursor: pointer;
@@ -193,6 +194,11 @@ body {
 
   .btn-#{$name}:hover {
     background-color: lighten($color, 70%);
+  }
+
+  .btn-#{$name}:focus {
+    border-color: lighten($color, 20%) !important;
+    box-shadow: 0 0 0 0.2rem lighten($color, 40%);
   }
 
   .btn-outline-#{$name} {
@@ -208,6 +214,11 @@ body {
 
   .btn-outline-#{$name}:hover {
     background-color: lighten($color, 30%);
+  }
+
+  .btn-outline-#{$name}:focus {
+    border-color: lighten($color, 20%) !important;
+    box-shadow: 0 0 0 0.2rem lighten($color, 40%);
   }
 
   .outline-#{$name} {

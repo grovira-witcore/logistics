@@ -15,9 +15,9 @@ const ActionsBar = function ({ actions }) {
         !action.hidden ? (
           !action.disabled ?
             <div key={'action-' + index}>
-              <div className={'btn-' + (action.color ?? 'primary')} onClick={(e) => actionClick(e, action)}>
+              <button className={'btn-' + (action.color ?? 'primary')} onClick={(e) => actionClick(e, action)}>
                 {action.label}
-              </div>
+              </button>
             </div> :
             <div key={'action-' + index}>
               <div className="btn-disabled">

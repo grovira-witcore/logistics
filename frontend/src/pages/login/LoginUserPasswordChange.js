@@ -86,12 +86,12 @@ const LoginUserPasswordChange = function ({ defaultI18n, username, setMustChange
         <input type="password" className="form-control" name="confirmNewPassword" value={formData.confirmNewPassword} onChange={handleChange} />
       </div>
       <div className="px-2 d-flex gap-2" style={{ paddingTop: '12px' }}>
-        <div className="btn-primary w-100 text-center" onClick={handleSubmit} role="button">
+        <button className="btn-primary w-100 text-center" onClick={handleSubmit}>
           {words.save}
-        </div>
-        <div className="btn-outline-primary w-100 text-center" onClick={handleCancel} role="button">
+        </button>
+        <button className="btn-outline-primary w-100 text-center" onClick={handleCancel}>
           {words.cancel}
-        </div>
+        </button>
       </div>
       {errorMessage ?
         <div className="px-2" style={{ paddingTop: '18px' }}>

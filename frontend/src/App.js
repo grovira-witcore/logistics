@@ -171,9 +171,9 @@ const App = ReactRouterDOM.withRouter(function () {
                 <ErrorBox />
               </ReactBootstrap.Modal.Body>
               <ReactBootstrap.Modal.Footer className="popup-footer">
-                <div className="btn-primary" onClick={(e) => setError(null)} role="button">
+                <button className="btn-primary" onClick={(e) => setError(null)}>
                   {words.close}
-                </div>
+                </button>
               </ReactBootstrap.Modal.Footer>
             </ReactBootstrap.Modal> :
             null

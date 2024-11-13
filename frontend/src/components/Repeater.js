@@ -127,14 +127,14 @@ const Repeater = function ({ fields, hideLabels, contextualActions, onClickItem,
             {contextualActions.map((contextualAction, index) =>
               !(contextualAction.hidden && contextualAction.hidden(item)) ? (
                 <div key={index} className="ps-2">
-                  <div className={'p-2 d-flex btn-outline-' + contextualAction.color + ' border-0'} onClick={(e) => contextualActionClick(e, contextualAction, item)}>
+                  <button className={'p-2 d-flex btn-outline-' + contextualAction.color + ' border-0'} onClick={(e) => contextualActionClick(e, contextualAction, item)}>
                     <div className="icon-sm">
                       {React.createElement(contextualAction.icon)}
                     </div>
                     <div className="ps-2">
                       {contextualAction.label}
                     </div>
-                  </div>
+                  </button>
                 </div>
               ) : null
             )}

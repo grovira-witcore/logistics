@@ -300,14 +300,14 @@ const TreeGrid = function ({ levels, items }) {
             {currentLevel.contextualActions.map((contextualAction, index) =>
               !(contextualAction.hidden && contextualAction.hidden(current.item)) ? (
                 <div key={'contextual-action-' + index}>
-                  <div className={'d-flex btn-outline-' + (contextualAction.color ?? 'primary') + ' border-0'} onClick={(e) => contextualActionClick(e, contextualAction, current.item)}>
+                  <button className={'d-flex btn-outline-' + (contextualAction.color ?? 'primary') + ' border-0'} onClick={(e) => contextualActionClick(e, contextualAction, current.item)}>
                     <div className="icon-sm">
                       {React.createElement(contextualAction.icon)}
                     </div>
                     <div className="ps-2">
                       {contextualAction.label}
                     </div>
-                  </div>
+                  </button>
                 </div>
               ) : null
             )}

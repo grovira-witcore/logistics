@@ -59,14 +59,14 @@ const HeaderUser = ReactRouterDOM.withRouter(function () {
             </div>
             <div className="wit-header-user-dd-full-name">{userData.firstName + ' ' + userData.lastName}</div>
             <div className="wit-header-user-dd-username">{userData.username}</div>
-            <div className="d-flex btn-outline-red" onClick={handleClickLogout}>
+            <button className="d-flex btn-outline-red" onClick={handleClickLogout}>
               <div className="icon-sm">
                 <IconLogout />
               </div>
               <div className="ps-2">
                 {words.logout}
               </div>
-            </div>
+            </button>
           </div>
         </ReactBootstrap.Overlay>
       }

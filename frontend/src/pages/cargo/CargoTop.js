@@ -203,14 +203,14 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction0} role="button">
+              <button className="btn-primary" onClick={submitAction0}>
                 {words.save}
-              </div>
+              </button>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction} role="button">
+              <button className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
-              </div>
+              </button>
             </div>
           </ReactBootstrap.Modal.Footer>
         </ReactBootstrap.Modal> :
@@ -237,14 +237,14 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction1} role="button">
+              <button className="btn-primary" onClick={submitAction1}>
                 {words.save}
-              </div>
+              </button>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction} role="button">
+              <button className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
-              </div>
+              </button>
             </div>
           </ReactBootstrap.Modal.Footer>
         </ReactBootstrap.Modal> :
@@ -271,14 +271,14 @@ const CargoTop = ReactRouterDOM.withRouter(function ({ cargo }) {
           </ReactBootstrap.Modal.Body>
           <ReactBootstrap.Modal.Footer className="popup-footer">
             <div>
-              <div className="btn-primary" onClick={submitAction2} role="button">
+              <button className="btn-primary" onClick={submitAction2}>
                 {words.save}
-              </div>
+              </button>
             </div>
             <div>
-              <div className="btn-outline-primary" onClick={cancelAction} role="button">
+              <button className="btn-outline-primary" onClick={cancelAction}>
                 {words.cancel}
-              </div>
+              </button>
             </div>
           </ReactBootstrap.Modal.Footer>
         </ReactBootstrap.Modal> :

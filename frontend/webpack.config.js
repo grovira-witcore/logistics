@@ -1,6 +1,7 @@
 const Path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = {
@@ -21,11 +22,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
@@ -56,6 +57,9 @@ module.exports = {
           }
         }
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
     })
   ],
   devServer: {
