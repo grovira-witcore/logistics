@@ -6,20 +6,9 @@ export function getDefaultI18n() {
       navigatorLanguage = navigatorLanguage.substring(0, 2);
     }
   }
-  switch (navigatorLanguage) {
-    case 'en': {
-      return {
-        code: 'En',
-        dateFormat: 'mm/dd/yyyy',
-        moneySymbol: '$'
-      }
-    }
-    default: {
-      return {
-        code: 'En',
-        dateFormat: 'mm/dd/yyyy',
-        moneySymbol: '$'
-      }
-    }
+  return {
+    code: 'En',
+    dateFormat: 'mm/dd/yyyy',
+    moneySymbol: '$'
   }
 }

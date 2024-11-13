@@ -14,8 +14,8 @@ import IconShipper from './components/icons/IconShipper.js';
 import IconTransporter from './components/icons/IconTransporter.js';
 import IconCustomer from './components/icons/IconCustomer.js';
 import IconCost from './components/icons/IconCost.js';
-import Error from './pages/error/Error.js';
 import NotFound from './pages/not-found/NotFound.js';
+import UnexpectedError from './pages/unexpected-error/UnexpectedError.js';
 import Booking from './pages/booking/Booking.js';
 import Bookings from './pages/bookings/Bookings.js';
 import Cargo from './pages/cargo/Cargo.js';
@@ -179,7 +179,7 @@ const App = ReactRouterDOM.withRouter(function () {
             null
           }
         </div> :
-        <Error />
+        <UnexpectedError />
       }
     </div>
   );

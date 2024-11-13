@@ -7,7 +7,7 @@ import { useAppContext } from '../../context/AppContext.js';
 import { getWords } from '../../utils/get-words.js';
 import ErrorBox from '../../components/ErrorBox.js';
 
-const Error = function () {
+const UnexpectedError = function () {
   const { i18n, error, setError } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -57,4 +57,4 @@ const Error = function () {
   );
 }
 
-export default Error;
+export default UnexpectedError;
