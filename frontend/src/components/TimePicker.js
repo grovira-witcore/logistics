@@ -28,7 +28,7 @@ const TimePicker = function ({ value, onChange }) {
           ['00', '30'].map(function (textk, k) {
             const hour = i * 12 + j;
             const minute = k * 30;
-            return (<button key={hour + ':' + minute} className={'wit-time-picker-hour' + (currentHour === hour && currentMinute === minute ? ' wit-time-picker-hour-selected' : '')} onClick={(e) => handleHourMinute(hour, minute)}>{textj + ':' + textk + ' ' + texti}</button>)
+            return (<button key={hour + ':' + minute} className={'wit-time-picker-hour' + (currentHour === hour && currentMinute === minute ? ' wit-time-picker-hour-selected' : '')} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleHourMinute(hour, minute)}>{textj + ':' + textk + ' ' + texti}</button>)
           })
         )
       )}

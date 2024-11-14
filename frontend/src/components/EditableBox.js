@@ -35,9 +35,9 @@ const EditableBox = function ({ component, properties, initialValue, updater, al
         <div>
           {children}
         </div>
-        <div className='edit-icon' onClick={handleEdit}>
+        <button className='edit-icon' onClick={handleEdit}>
           <IconEdit />
-        </div>
+        </button>
       </div>
     );
   }

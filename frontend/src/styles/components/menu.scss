@@ -37,21 +37,33 @@
   padding-top: 30px;
 }
 
-.wit-menu-group>div:first-child {
+.wit-menu-group>button:first-child {
+  background-color: transparent;
+  border: 0px;
+  width: 100%;
   font-family: Inter-SemiBold, sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.wit-menu-group>div:first-child svg {
+.wit-menu-group>button:first-child svg {
   width: 16px;
   height: 16px;
 }
 
+.wit-menu-group>button:first-child:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
 .wit-menu-option {
+  background-color: transparent;
+  border: 0px;
+  width: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
   padding-left: 40px;
@@ -60,6 +72,11 @@
 
 .wit-menu-option:hover {
   background-color: $hover-color;
+}
+
+.wit-menu-option:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
 .wit-menu-option-icon {

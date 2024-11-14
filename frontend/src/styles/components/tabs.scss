@@ -1,4 +1,6 @@
 .wit-tab {
+  background-color: transparent;
+  border: 0px;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -6,6 +8,11 @@
   font-family: Inter-Regular, sans-serif;
   font-size: 14px;
   border-bottom: 1px solid $border-color;
+}
+
+.wit-tab:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 40%);
 }
 
 .wit-tab-active {

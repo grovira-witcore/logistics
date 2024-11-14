@@ -52,14 +52,14 @@ const HeaderUser = ReactRouterDOM.withRouter(function () {
       </button>
       {show &&
         <ReactBootstrap.Overlay ref={refTarget} show={true} target={refInput.current} placement="bottom-start" onHide={(e) => setShow(false)}>
-          <div className="wit-header-user-dd d-flex flex-column align-items-center justify-content-center" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="wit-header-user-dd d-flex flex-column align-items-center justify-content-center" style={{ zIndex: 100000 }}>
             <div className="image-lg mx-auto rounded-circle">
               <img src={userData.avatar ?? '/images/user.png'} alt="Image" className="img-fluid rounded-circle" /> :
               <div />
             </div>
             <div className="wit-header-user-dd-full-name">{userData.firstName + ' ' + userData.lastName}</div>
             <div className="wit-header-user-dd-username">{userData.username}</div>
-            <button className="d-flex btn-outline-red" onClick={handleClickLogout}>
+            <button className="d-flex btn-outline-red" onMouseDown={(e) => e.preventDefault()} onClick={handleClickLogout}>
               <div className="icon-sm">
                 <IconLogout />
               </div>

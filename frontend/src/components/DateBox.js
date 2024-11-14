@@ -151,7 +151,7 @@ const DateBox = function ({
       </div>
       {showDropdown &&
         <ReactBootstrap.Overlay show={true} target={refInput.current} placement={getDropdownPlacement()}>
-          <div className="tooltip rounded" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="tooltip rounded" style={{ zIndex: 100000 }}>
             <DatePicker value={value} onChange={handleDatePickerChange} />
           </div>
         </ReactBootstrap.Overlay>

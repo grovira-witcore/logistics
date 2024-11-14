@@ -24,7 +24,7 @@ const Tabs = function ({ tabs }) {
           {tabs.map((tab, index) =>
             !tab.hidden ? (
               <div key={'tab-' + index}>
-                <div
+                <button
                   className={'wit-tab ' + (activeTabIndex === index ? 'wit-tab-active' : 'cursor-pointer')}
                   onClick={(e) => handleClickTab(e, index)}
                  
@@ -43,7 +43,7 @@ const Tabs = function ({ tabs }) {
                       {'Tab'}
                     </div>
                   }
-                </div>
+                </button>
               </div>
             ) : null
           )}

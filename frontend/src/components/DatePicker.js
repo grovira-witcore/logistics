@@ -131,9 +131,9 @@ const DatePicker = function ({ value, onChange }) {
   return (
     <div className="wit-date-picker">
       <div className="d-flex align-items-center">
-        <button onClick={handlePreviousMonthClick}><IconArrowLeft/></button>
+        <button onMouseDown={(e) => e.preventDefault()} onClick={handlePreviousMonthClick}><IconArrowLeft/></button>
         <div className="flex-grow-1 text-center">{getMonthText(calendarPointer.month) + ' ' + calendarPointer.year}</div>
-        <button onClick={handleNextMonthClick}><IconArrowRight /></button>
+        <button onMouseDown={(e) => e.preventDefault()} onClick={handleNextMonthClick}><IconArrowRight /></button>
       </div>
       <table className="table table-borderless">
         <thead className="border-bottom">
@@ -154,7 +154,7 @@ const DatePicker = function ({ value, onChange }) {
                 {[1, 2, 3, 4, 5, 6, 7].map(function (j) {
                   const calendarItem = calendarItems[((i - 1) * 7) + (j - 1)];
                   return (
-                    <td key={j} className={'wit-date-picker-day-value' + (equalCalendarItems(currentCalendarItem, calendarItem) ? ' wit-date-picker-day-value-selected' : '') + (equalCalendarItems(nowCalendarItem, calendarItem) ? ' fw-bold' : (calendarItem.month !== calendarPointer.month ? ' text-gray' : '')) + ' text-center'} onClick={(e) => handleCalendarItemClick(e, calendarItem)} >
+                    <td key={j} className={'wit-date-picker-day-value' + (equalCalendarItems(currentCalendarItem, calendarItem) ? ' wit-date-picker-day-value-selected' : '') + (equalCalendarItems(nowCalendarItem, calendarItem) ? ' fw-bold' : (calendarItem.month !== calendarPointer.month ? ' text-gray' : '')) + ' text-center'} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleCalendarItemClick(e, calendarItem)} >
                       {calendarItem.day}
                     </td>
                   );

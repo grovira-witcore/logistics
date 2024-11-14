@@ -194,7 +194,7 @@ const DatetimeBox = function ({
       </div>
       {showDropdown &&
         <ReactBootstrap.Overlay show={true} target={refInput.current} placement={getDropdownPlacement()}>
-          <div className="tooltip d-flex" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="tooltip d-flex" style={{ zIndex: 100000 }}>
             <DatePicker value={value} onChange={handleDatePickerChange} />
             <TimePicker value={value} onChange={handleTimePickerChange} />
           </div>

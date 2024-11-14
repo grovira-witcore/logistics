@@ -266,12 +266,19 @@ body {
 }
 
 .edit-icon {
+  background-color: transparent;
   color: $primary-color;
-  cursor: pointer;
+  border: 0px;
+  border-radius: 4px;
   line-height: 12px;
 
   &:hover {
     color: lighten($primary-color, 60%);
+  }
+
+  &:focus {
+    outline: 0px;
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
   }
 
   svg {

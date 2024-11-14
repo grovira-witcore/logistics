@@ -28,6 +28,8 @@
 }
 
 .wit-header-language {
+  background-color: transparent;
+  border: 0px;
   padding: 4px 8px 4px 8px;
   border-radius: 8px;
   gap: 8px;
@@ -47,6 +49,11 @@
   }
 }
 
+.wit-header-language:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
 .wit-header-language-dd {
   background-color: $section-color;
   color: $default-color;
@@ -55,12 +62,21 @@
   border: 1px solid $border-color;
   border-radius: 10px;
 
-  >div {
+  >button {
+    background-color: transparent;
+    border: 0px;
+    width: 100%;
     padding: 10px 12px 10px 12px;
+    border-radius: 10px;
     gap: 8px;
 
     &:hover {
       background-color: $hover-color;
+    }
+
+    &:focus {
+      outline: 0px;
+      box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
     }
     
     svg {
@@ -71,7 +87,7 @@
 }
 
 .wit-header-user {
-  background-color: $section-color;
+  background-color: transparent;
   border: 0px;
   padding: 4px 8px 4px 8px;
   border-radius: 8px;

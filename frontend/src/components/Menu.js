@@ -66,7 +66,7 @@ const Menu = ReactRouterDOM.withRouter(function ({ menu }) {
               const collapsed = collapsedMenuGroupIndexes.indexOf(menuGroupIndex) !== -1;
               return (
                 <div key={'group-' + menuGroupIndex} className="wit-menu-group">
-                  <div className="d-flex justify-content-between align-items-center cursor-pointer" onClick={(e) => handleClickMenuGroup(e, menuGroupIndex)}>
+                  <button className="d-flex justify-content-between align-items-center cursor-pointer" onClick={(e) => handleClickMenuGroup(e, menuGroupIndex)}>
                     <div className="flex-1">{menuGroup.label}</div>
                     <div>
                       {collapsed ?
@@ -74,13 +74,13 @@ const Menu = ReactRouterDOM.withRouter(function ({ menu }) {
                         <IconMenuExpanded />
                       }
                     </div>
-                  </div>
+                  </button>
                   {!collapsed ?
                     filteredMenuOptions.map((menuOption, menuOptionIndex) => (
-                      <div key={'option-' + menuOptionIndex} className="wit-menu-option d-flex align-items-center cursor-pointer" onClick={(e) => handleClickMenuOption(e, menuOption.path)}>
+                      <button key={'option-' + menuOptionIndex} className="wit-menu-option d-flex align-items-center cursor-pointer" onClick={(e) => handleClickMenuOption(e, menuOption.path)}>
                         <div className="wit-menu-option-icon d-flex align-items-center">{React.createElement(menuOption.icon)}</div>
                         <div className="wit-menu-option-label">{menuOption.label}</div>
-                      </div>
+                      </button>
                     )) :
                     null
                   }

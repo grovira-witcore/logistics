@@ -85,18 +85,18 @@ const HeaderLanguage = ReactRouterDOM.withRouter(function ({ languages }) {
 
   return (
     <div>
-      <div ref={refInput} className="wit-header-language d-flex align-items-center cursor-pointer" onClick={(e) => setShow(true)}>
+      <button ref={refInput} className="wit-header-language d-flex align-items-center cursor-pointer" onClick={(e) => setShow(true)}>
         {getIconFlag(currentLanguage.code)}
         <IconMenuCollapsed />
-      </div>
+      </button>
       {show &&
         <ReactBootstrap.Overlay ref={refTarget} show={true} target={refInput.current} placement="bottom-start" onHide={(e) => setShow(false)}>
-          <div className="wit-header-language-dd" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="wit-header-language-dd" style={{ zIndex: 100000 }}>
             {languages.map((language) => (
-              <div key={language.code} className="d-flex align-items-center cursor-pointer" onClick={(e) => handleClickLanguage(e, language)}>
+              <button key={language.code} className="d-flex align-items-center cursor-pointer" onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleClickLanguage(e, language)}>
                 {getIconFlag(language.code)}
                 <div>{language.name}</div>
-              </div>
+              </button>
             ))}
           </div>
         </ReactBootstrap.Overlay>
