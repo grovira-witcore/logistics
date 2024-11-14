@@ -61,11 +61,8 @@ const ComplexField = function ({ size, field }) {
     }
   }
 
-  return (
-    <div
-      className={'text-' + size + (field.onClick ? ' text-link' : ' text-default')}
-      onClick={field.onClick}
-    >
+  const internalElement = (
+    <div>
       {renderField(field)}
       {field.secondaryField && ((field.secondaryField.value !== null && field.secondaryField.value !== undefined && field.secondaryField.value !== '') || (field.secondaryField.paragraph !== null && field.secondaryField.paragraph !== undefined)) ?
         <div className="text-secondary">
@@ -76,7 +73,7 @@ const ComplexField = function ({ size, field }) {
       {field.comparativeField && field.comparativeField.value !== null && field.comparativeField.value !== undefined && field.comparativeField.value !== '' ?
         (field.value === field.comparativeField.value ?
           <div className="d-flex align-items-center text-disabled icon-sm">
-            <IconNeutral/>
+            <IconNeutral />
             <div className="ps-2">
               <Field value={field.value - field.comparativeField.value} type={field.type} />
             </div>
@@ -86,7 +83,7 @@ const ComplexField = function ({ size, field }) {
           </div> :
           (field.value > field.comparativeField.value ?
             <div className="d-flex align-items-center text-green icon-sm">
-              <IconIncrement/>
+              <IconIncrement />
               <div className="ps-2">
                 <Field value={field.value - field.comparativeField.value} type={field.type} />
               </div>
@@ -95,7 +92,7 @@ const ComplexField = function ({ size, field }) {
               <div>{')'}</div>
             </div> :
             <div className="d-flex align-items-center text-red icon-sm">
-              <IconDecrement/>
+              <IconDecrement />
               <div className="ps-2">
                 <Field value={field.value - field.comparativeField.value} type={field.type} />
               </div>
@@ -109,7 +106,13 @@ const ComplexField = function ({ size, field }) {
       }
     </div>
   );
-  
+
+  if (field.onClick) {
+    return <button className={'text-' + size + ' text-link'} onClick={field.onClick}>{internalElement}</button>;
+  }
+  else {
+    return <div className={'text-' + size + ' text-default'}>{internalElement}</div>;
+  }
 }
 
 export default ComplexField;

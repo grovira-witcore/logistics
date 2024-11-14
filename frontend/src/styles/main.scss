@@ -316,9 +316,11 @@ body {
 }
 
 .text-link {
+  background-color: transparent;
   color: $blue-color;
+  border: 0px;
+  padding: 0px;
   text-decoration: underline;
-  cursor: pointer;
 
   &:hover {
     color: lighten($blue-color, 70%);

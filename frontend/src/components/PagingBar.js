@@ -48,9 +48,9 @@ const PagingBar = function ({ pageNumber, setPageNumber, countOfItems, countOfPa
     return (
       <div className="wit-paging-bar d-flex align-items-center">
         {pageNumber > 1 ?
-          <div className="wit-paging-icon wit-paging-icon-enabled cursor-pointer" onClick={handlePreviousPageClick}>
+          <button className="wit-paging-icon wit-paging-icon-enabled" onClick={handlePreviousPageClick}>
             <IconArrowLeft/>
-          </div> :
+          </button> :
           <div className="wit-paging-icon wit-paging-icon-disabled">
             <IconArrowLeft/>
           </div>
@@ -60,9 +60,9 @@ const PagingBar = function ({ pageNumber, setPageNumber, countOfItems, countOfPa
             {pageNumber}
           </div>
         </div>
-        <div className="wit-paging-icon wit-paging-icon-enabled cursor-pointer" onClick={handleNextPageClick}>
+        <button className="wit-paging-icon wit-paging-icon-enabled" onClick={handleNextPageClick}>
           <IconArrowRight/>
-        </div>
+        </button>
       </div>
     );
   }
@@ -82,9 +82,9 @@ const PagingBar = function ({ pageNumber, setPageNumber, countOfItems, countOfPa
       return (
         <div className="wit-paging-bar d-flex align-items-center">
           {pageNumber > 1 ?
-            <div className="wit-paging-icon wit-paging-icon-enabled cursor-pointer" onClick={handlePreviousPageClick}>
+            <button className="wit-paging-icon wit-paging-icon-enabled" onClick={handlePreviousPageClick}>
               <IconArrowLeft/>
-            </div> :
+            </button> :
             <div className="wit-paging-icon wit-paging-icon-disabled">
               <IconArrowLeft/>
             </div>
@@ -92,18 +92,18 @@ const PagingBar = function ({ pageNumber, setPageNumber, countOfItems, countOfPa
           <div className="wit-paging-numbers d-flex align-items-center">
             {targetPagesNumbers.map((targetPageNumber) =>
               targetPageNumber !== pageNumber ?
-                <div key={targetPageNumber} className="wit-paging-number cursor-pointer" onClick={(e) => handlePageClick(targetPageNumber)}>
+                <button key={targetPageNumber} className="wit-paging-number" onClick={(e) => handlePageClick(targetPageNumber)}>
                   {targetPageNumber}
-                </div> :
+                </button> :
                 <div key={targetPageNumber} className="wit-paging-number wit-paging-number-active">
                   {targetPageNumber}
                 </div>
             )}
           </div>
           {pageNumber < countOfPages ?
-            <div className="wit-paging-icon wit-paging-icon-enabled cursor-pointer" onClick={handleNextPageClick}>
+            <button className="wit-paging-icon wit-paging-icon-enabled" onClick={handleNextPageClick}>
               <IconArrowRight/>
-            </div> :
+            </button> :
             <div className="wit-paging-icon wit-paging-icon-disabled">
               <IconArrowRight/>
             </div>
