@@ -31,11 +31,11 @@ const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFil
   const [currentFilterValue, setCurrentFilterValue] = React.useState(null);
   const filterBarRef = React.useRef(null);
   
-  if (sessionStorageKey) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (sessionStorageKey) {
       sessionStorage.setItem(sessionStorageKey, JSON.stringify(filtersValues));
-    }, [filtersValues]);
-  }
+    }
+  }, [filtersValues]);
 
   const currentFilter = currentFilterIndex !== null && currentFilterIndex !== undefined ? filters[currentFilterIndex] : null;
   const overlay = {};

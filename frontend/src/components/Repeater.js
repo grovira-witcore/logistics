@@ -150,7 +150,7 @@ const Repeater = function ({ fields, hideLabels, contextualActions, onClickItem,
       {items.map((item) => (
         <div
           key={item.key}
-          className={'border-bottom ' + (selectedKey === item.key ? 'focus' : '')}
+          className={'border-bottom ' + (selectedKey === item.key ? 'current' : '')}
         >
           {renderItem(item)}
         </div>

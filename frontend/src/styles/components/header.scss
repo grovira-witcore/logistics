@@ -7,10 +7,18 @@
 }
 
 .wit-header-title {
+  background-color: $section-color;
+  border: 0px;
   gap: 6px;
-  padding-left: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: Raleway-Black, sans-serif;
   font-size: 25px;
+  border-radius: 8px;
+}
+.wit-header-title:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
 .wit-header-title svg {
@@ -63,6 +71,8 @@
 }
 
 .wit-header-user {
+  background-color: $section-color;
+  border: 0px;
   padding: 4px 8px 4px 8px;
   border-radius: 8px;
   gap: 8px;
@@ -75,6 +85,11 @@
     width: 18px;
     height: 18px;
   }
+}
+
+.wit-header-user:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
 .wit-header-user-dd {

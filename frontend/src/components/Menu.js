@@ -50,9 +50,9 @@ const Menu = ReactRouterDOM.withRouter(function ({ menu }) {
   if (menu && (!menu.some(menuGroup => menuGroup && menuGroup.options.length > 0) || menu.some(menuGroup => menuGroup && menuGroup.options.some(menuOption => !menuOption.hidden)))) {
     return (
       <div>
-        <div className="wit-menu-button cursor-pointer" onClick={handleClickMenu}>
+        <button className="wit-menu-button cursor-pointer" onClick={handleClickMenu}>
           <IconMenu />
-        </div>
+        </button>
         <ReactBootstrap.Offcanvas className="wit-menu" style={{ width: 280 }} show={showMenu} onHide={() => setShowMenu(false)}>
           <ReactBootstrap.Offcanvas.Body className="p-0">
             {menu.map(function (menuGroup, menuGroupIndex) {

@@ -131,9 +131,9 @@ const DatePicker = function ({ value, onChange }) {
   return (
     <div className="wit-date-picker">
       <div className="d-flex align-items-center">
-        <div onClick={handlePreviousMonthClick}><IconArrowLeft/></div>
+        <button onClick={handlePreviousMonthClick}><IconArrowLeft/></button>
         <div className="flex-grow-1 text-center">{getMonthText(calendarPointer.month) + ' ' + calendarPointer.year}</div>
-        <div onClick={handleNextMonthClick}><IconArrowRight/></div>
+        <button onClick={handleNextMonthClick}><IconArrowRight /></button>
       </div>
       <table className="table table-borderless">
         <thead className="border-bottom">

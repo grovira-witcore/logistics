@@ -123,7 +123,7 @@ const Grid = function ({ fields, hideLabels, contextualActions, onClickItem, ite
           {items.map((item) => (
             <tr
               key={item.key}
-              className={selectedKey !== item.key ? (current && current.item.key === item.key ? 'hover' + (onClickItem ? ' cursor-pointer' : '') : '') : 'focus'}
+              className={selectedKey !== item.key ? (current && current.item.key === item.key ? 'hover' + (onClickItem ? ' cursor-pointer' : '') : '') : 'current'}
               onMouseOver={selectedKey !== item.key ? (e) => handleItemMouseOver(e, item) : null}
               onClick={selectedKey !== item.key ? function (e) {
                 if (e.ctrlKey || e.altKey) {

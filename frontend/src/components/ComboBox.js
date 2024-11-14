@@ -53,15 +53,17 @@ const ComboBox = function ({
   React.useEffect(() => {
     if (currentIndex !== null && currentIndex !== undefined) {
       const comboBoxDd = document.getElementById('comboBoxDd');
-      const comboBoxDdItem = comboBoxDd.querySelector('div');
-      const absolutePosition = currentIndex * comboBoxDdItem.clientHeight;
-      const availableHeight = 230 - comboBoxDdItem.clientHeight;
-      if (absolutePosition < comboBoxDd.scrollTop || absolutePosition > (comboBoxDd.scrollTop + availableHeight)) {
-        if (absolutePosition < availableHeight) {
-          comboBoxDd.scrollTop = 0;
-        }
-        else {
-          comboBoxDd.scrollTop = absolutePosition - availableHeight;
+      const comboBoxDdItem = comboBoxDd.querySelector('button');
+      if (comboBoxDdItem) {
+        const absolutePosition = currentIndex * comboBoxDdItem.clientHeight;
+        const availableHeight = 230 - comboBoxDdItem.clientHeight;
+        if (absolutePosition < comboBoxDd.scrollTop || absolutePosition > (comboBoxDd.scrollTop + availableHeight)) {
+          if (absolutePosition < availableHeight) {
+            comboBoxDd.scrollTop = 0;
+          }
+          else {
+            comboBoxDd.scrollTop = absolutePosition - availableHeight;
+          }
         }
       }
     }
@@ -225,12 +227,12 @@ const ComboBox = function ({
       </div>
       {currentDataSource && show &&
         <ReactBootstrap.Overlay show={true} target={refInput.current} placement={getDropdownPlacement()}>
-          <div id="comboBoxDd" className="dropdown-list" style={{ overflowX: 'auto', maxHeight: 230, zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div id="comboBoxDd" className="dropdown-list" style={{ overflowX: 'auto', maxHeight: 230, zIndex: 100000 }}>
             {currentDataSource.map(function (dataSourceItem, index) {
               return (
-                <div key={'item-' + index} className={(currentIndex === index ? 'focus ' : '') + 'cursor-pointer'} onClick={(e) => handleClickItem(e, index)}>
+                <button key={'item-' + index} className={currentIndex === index ? 'current' : ''} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleClickItem(e, index)}>
                   {dataSourceItem[1]}
-                </div>
+                </button>
               );
             })}
           </div>

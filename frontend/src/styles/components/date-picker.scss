@@ -7,9 +7,10 @@
     font-family: Inter-SemiBold, sans-serif;
     font-size: 14px;
 
-    >div:first-child {
+    >button:first-child {
+      background-color: $section-color;
       color: $primary-color;
-      cursor: pointer;
+      border: 0px;
       padding: 4px;
       border-radius: 8px;
 
@@ -23,9 +24,10 @@
       }
     }
 
-    >div:last-child {
+    >button:last-child {
+      background-color: $section-color;
       color: $primary-color;
-      cursor: pointer;
+      border: 0px;
       padding: 4px;
       border-radius: 8px;
 

@@ -139,7 +139,7 @@ const TreeGrid = function ({ levels, items }) {
         renders.push(
           <tr
             key={fullKey}
-            className={level.selectedKey !== item.key ? (current && current.item.levelKey === item.levelKey && current.item.key === item.key && (current.childLevelKey === null || current.childLevelKey === undefined) ? 'hover' + (hasChildren || level.onClickItem ? ' cursor-pointer' : '') : '') : 'focus'}
+            className={level.selectedKey !== item.key ? (current && current.item.levelKey === item.levelKey && current.item.key === item.key && (current.childLevelKey === null || current.childLevelKey === undefined) ? 'hover' + (hasChildren || level.onClickItem ? ' cursor-pointer' : '') : '') : 'current'}
             onMouseOver={level.selectedKey !== item.key ? (e) => handleItemMouseOver(e, item) : null}
             onClick={level.selectedKey !== item.key ? function (e) {
               if (e.ctrlKey || e.altKey) {

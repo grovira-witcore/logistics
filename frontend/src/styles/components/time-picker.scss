@@ -5,6 +5,11 @@
 }
 
 .wit-time-picker-hour {
+  display: block;
+  background-color: $section-color;
+  border: 0px;
+  width: 100%;
+  text-align: left;
   font-family: Inter-Regular, sans-serif;
   font-size: 12px;
   padding: 4px;

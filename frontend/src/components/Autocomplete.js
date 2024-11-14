@@ -186,23 +186,23 @@ const Autocomplete = function ({
       </div>
       {dataSource &&
         <ReactBootstrap.Overlay show={true} target={refInput.current} placement={getDropdownPlacement()}>
-          <div className="dropdown-list" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="dropdown-list" style={{ zIndex: 100000 }}>
             {dataSource.map(function (dataSourceItem, index) {
               const text = dataSourceItem[1];
               const textIndex = text ? text.toLowerCase().indexOf(freezeValue.toLowerCase()) : -1;
               if (textIndex === -1) {
                 return (
-                  <div key={'item-' + index} className={(currentIndex === index ? 'focus ' : '') + 'cursor-pointer'} onClick={(e) => handleClickItem(e, index)}>
+                  <button key={'item-' + index} className={currentIndex === index ? 'current ' : ''} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleClickItem(e, index)}>
                     {text}
-                  </div>
+                  </button>
                 );
               }
               return (
-                <div key={'item-' + index} className={(currentIndex === index ? 'focus ' : '') + 'cursor-pointer'} onClick={(e) => handleClickItem(e, index)}>
+                <button key={'item-' + index} className={currentIndex === index ? 'current ' : ''} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleClickItem(e, index)}>
                   <span>{text.substring(0, textIndex)}</span>
                   <span className="fw-bold">{text.substring(textIndex, textIndex + freezeValue.length)}</span>
                   <span>{text.substring(textIndex + freezeValue.length)}</span>
-                </div>
+                </button>
               );
             })}
           </div>

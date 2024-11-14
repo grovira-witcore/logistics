@@ -183,7 +183,7 @@ const Omnisearch = function ({
                       }
                     }
                     return (
-                      <div key={'item-' + indexItem} className={'wit-omnisearch-dd-item ' + (selected && selected.indexGroup === indexGroup && selected.indexItem === indexItem ? 'focus ' : '') + 'd-flex align-items-center cursor-pointer'} onClick={(e) => handleClickItem(e, resultItem[0])}>
+                      <div key={'item-' + indexItem} className={'wit-omnisearch-dd-item ' + (selected && selected.indexGroup === indexGroup && selected.indexItem === indexItem ? 'current ' : '') + 'd-flex align-items-center cursor-pointer'} onClick={(e) => handleClickItem(e, resultItem[0])}>
                         {React.createElement(resultGroup.icon)}
                         <div>
                           <div>{solvedLine1.element}</div>

@@ -43,13 +43,13 @@ const HeaderUser = ReactRouterDOM.withRouter(function () {
 
   return (
     <div>
-      <div ref={refInput} className="wit-header-user d-flex align-items-center cursor-pointer" onClick={(e) => setShow(true)}>
+      <button ref={refInput} className="wit-header-user d-flex align-items-center cursor-pointer" onClick={(e) => setShow(true)}>
         <div className="image-sm mx-auto rounded-circle">
           <img src={userData.avatar ?? '/images/user.png'} alt="Image" className="img-fluid rounded-circle" /> :
           <div />
         </div>
         <IconMenuCollapsed />
-      </div>
+      </button>
       {show &&
         <ReactBootstrap.Overlay ref={refTarget} show={true} target={refInput.current} placement="bottom-start" onHide={(e) => setShow(false)}>
           <div className="wit-header-user-dd d-flex flex-column align-items-center justify-content-center" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>

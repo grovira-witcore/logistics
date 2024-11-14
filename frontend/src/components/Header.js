@@ -24,12 +24,12 @@ const Header = ReactRouterDOM.withRouter(function ({ icon, label, searcher, lang
 
   return (
     <div className="wit-header d-flex align-items-center justify-content-between">
-      <div className="col-4 d-flex align-items-center justify-content-start">
+      <div className="col-4 gap-1 d-flex align-items-center justify-content-start">
         <Menu menu={menu} />
-        <div className="wit-header-title d-flex align-items-center cursor-pointer" onClick={handleClickHome}>
+        <button className="wit-header-title d-flex align-items-center cursor-pointer" onClick={handleClickHome}>
           <div>{React.createElement(icon)}</div>
           <div>{label}</div>
-        </div>
+        </button>
       </div>
       {searcher ?
         <div className="col-4 d-flex align-items-center justify-content-around">

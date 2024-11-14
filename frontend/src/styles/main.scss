@@ -53,8 +53,8 @@ body {
   cursor: pointer;
 }
 
-.focus {
-  background-color: lighten($primary-color, 10%);
+.current {
+  background-color: lighten($primary-color, 10%) !important;
 }
 
 .hover {
@@ -157,7 +157,12 @@ body {
   font-family: Rubik-Regular, sans-serif;
   font-size: 14px;
 
-  >div {
+  >button {
+    background-color: $section-color;
+    color: $default-color;
+    text-align: left;
+    border: 0px;
+    width: 100%;
     padding: 6px;
 
     &:hover {
@@ -197,7 +202,7 @@ body {
   }
 
   .btn-#{$name}:focus {
-    border-color: lighten($color, 20%) !important;
+    outline: 0px;
     box-shadow: 0 0 0 0.2rem lighten($color, 40%);
   }
 
@@ -207,6 +212,7 @@ body {
     display: inline-block;
     border: $color 1px solid;
     color: $color;
+    background-color: transparent;
     cursor: pointer;
     padding: 8px 16px 8px 16px;
     border-radius: 8px;
@@ -217,7 +223,7 @@ body {
   }
 
   .btn-outline-#{$name}:focus {
-    border-color: lighten($color, 20%) !important;
+    outline: 0px;
     box-shadow: 0 0 0 0.2rem lighten($color, 40%);
   }
 
@@ -344,7 +350,7 @@ body {
 }
 
 .form-control:focus {
-  border-color: lighten($primary-color, 20%) !important;
+  outline: 0px;
   box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
