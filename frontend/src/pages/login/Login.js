@@ -2,9 +2,10 @@ import React from 'react';
 import IconLogo from '../../components/icons/IconLogo.js';
 import LoginUserPassword from './LoginUserPassword.js';
 import LoginUserPasswordChange from './LoginUserPasswordChange.js';
+import { identity } from '../../utils/identity.js';
 import { getWords } from '../../utils/get-words.js';
 
-const Login = function ({ defaultI18n }) {
+const Login = identity(function ({ defaultI18n }) {
   const [mustChange, setMustChange] = React.useState(null);
   
   const words = getWords(defaultI18n.code);
@@ -37,6 +38,6 @@ const Login = function ({ defaultI18n }) {
       </div>
     </div>
   );
-}
+});
 
 export default Login;

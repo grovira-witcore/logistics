@@ -11,7 +11,7 @@ const Title = identity(function ({ icon, color, label, secondaryLabel, avatar })
         <div className="d-flex align-items-center cursor-pointer">
           <div className="image-lg mx-auto rounded-circle">
             {avatar ?
-              <img src={avatar} alt="Image" className="img-fluid rounded-circle" /> :
+              <img src={avatar} alt="Avatar" className="img-fluid rounded-circle" /> :
               null
             }
           </div>

@@ -16,7 +16,7 @@ const AvatarField = identity(function ({ size, field }) {
       <div className="pe-2">
         <div className={'image-' + size + ' mx-auto'}>
           {field.avatarField.value ?
-            <img src={field.avatarField.value} alt="Image" className="img-fluid rounded-circle" /> :
+            <img src={field.avatarField.value} alt="Avatar" className="img-fluid rounded-circle" /> :
             null
           }
         </div>

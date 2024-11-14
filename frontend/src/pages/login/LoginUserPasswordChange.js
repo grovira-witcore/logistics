@@ -1,7 +1,8 @@
 import React from 'react';
+import { identity } from '../../utils/identity.js';
 import { getWords } from '../../utils/get-words.js';
 
-const LoginUserPasswordChange = function ({ defaultI18n, username, setMustChange }) {
+const LoginUserPasswordChange = identity(function ({ defaultI18n, username, setMustChange }) {
   const [formData, setFormData] = React.useState({ password: '', newPassword: '', confirmNewPassword: '' });
   const [errorMessage, setErrorMessage] = React.useState(null);
 
@@ -103,6 +104,6 @@ const LoginUserPasswordChange = function ({ defaultI18n, username, setMustChange
       }
     </div>
   );
-}
+});
 
 export default LoginUserPasswordChange;

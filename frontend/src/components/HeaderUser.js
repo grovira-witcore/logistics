@@ -45,7 +45,7 @@ const HeaderUser = ReactRouterDOM.withRouter(function () {
     <div>
       <button ref={refInput} className="wit-header-user d-flex align-items-center cursor-pointer" onClick={(e) => setShow(true)}>
         <div className="image-sm mx-auto rounded-circle">
-          <img src={userData.avatar ?? '/images/user.png'} alt="Image" className="img-fluid rounded-circle" /> :
+          <img src={userData.avatar ?? '/images/user.png'} alt="User" className="img-fluid rounded-circle" /> :
           <div />
         </div>
         <IconMenuCollapsed />
@@ -54,7 +54,7 @@ const HeaderUser = ReactRouterDOM.withRouter(function () {
         <ReactBootstrap.Overlay ref={refTarget} show={true} target={refInput.current} placement="bottom-start" onHide={(e) => setShow(false)}>
           <div className="wit-header-user-dd d-flex flex-column align-items-center justify-content-center" style={{ zIndex: 100000 }}>
             <div className="image-lg mx-auto rounded-circle">
-              <img src={userData.avatar ?? '/images/user.png'} alt="Image" className="img-fluid rounded-circle" /> :
+              <img src={userData.avatar ?? '/images/user.png'} alt="User" className="img-fluid rounded-circle" /> :
               <div />
             </div>
             <div className="wit-header-user-dd-full-name">{userData.firstName + ' ' + userData.lastName}</div>
