@@ -2,9 +2,10 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 import { format } from '../utils/format.js';
 
-const ProgressBar = function ({ fields }) {
+const ProgressBar = identity(function ({ fields }) {
   const renderBar = function (fields, index) {
     const field = fields[index];
     if (index === 0) {
@@ -42,6 +43,6 @@ const ProgressBar = function ({ fields }) {
       </div>
     </div>
   );
-}
+});
 
 export default ProgressBar;

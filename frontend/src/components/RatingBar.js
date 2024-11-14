@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const RatingBar = function ({ field }) {
+const RatingBar = identity(function ({ field }) {
   const starsContainerRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -55,6 +56,6 @@ const RatingBar = function ({ field }) {
       </div>
     </div>
   );
-};
+});
 
 export default RatingBar;

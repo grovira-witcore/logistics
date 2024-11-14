@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const FilterText = function ({ filterValue, setFilterValue, trySubmit }) {
+const FilterText = identity(function ({ filterValue, setFilterValue, trySubmit }) {
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -24,6 +25,6 @@ const FilterText = function ({ filterValue, setFilterValue, trySubmit }) {
       <input ref={inputRef} className="form-control" type="text" value={filterValue} onChange={handleChange} onKeyPress={handleKeyPress} />
     </div>
   );
-}
+});
 
 export default FilterText;

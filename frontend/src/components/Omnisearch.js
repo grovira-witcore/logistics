@@ -6,9 +6,10 @@ import * as ReactRouterDOM from 'react-router-dom';
 import * as ReactBootstrap from 'react-bootstrap';
 import IconSearch from './icons/IconSearch';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const Omnisearch = function ({
+const Omnisearch = identity(function ({
   searcher
 }) {
   const { i18n } = useAppContext();
@@ -203,6 +204,6 @@ const Omnisearch = function ({
       }
     </div>
   );
-}
+});
 
 export default Omnisearch;

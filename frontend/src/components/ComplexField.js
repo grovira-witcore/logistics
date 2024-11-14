@@ -9,9 +9,10 @@ import Paragraph from './Paragraph.js';
 import ProgressBar from './ProgressBar.js';
 import RatingBar from './RatingBar.js';
 import Field from './Field.js';
+import { identity } from '../utils/identity.js';
 import { protect } from '../utils/protect.js';
 
-const ComplexField = function ({ size, field }) {
+const ComplexField = identity(function ({ size, field }) {
 
   if ((field.value === null || field.value === undefined || field.value === '') && (field.paragraph === null || field.paragraph === undefined) && (field.progressBar === null || field.progressBar === undefined) && (field.ratingBar === null || field.ratingBar === undefined)) {
     return (<div/>);
@@ -113,6 +114,6 @@ const ComplexField = function ({ size, field }) {
   else {
     return <div className={'text-' + size + ' text-default'}>{internalElement}</div>;
   }
-}
+});
 
 export default ComplexField;

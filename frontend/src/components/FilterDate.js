@@ -4,9 +4,10 @@
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
 import DatePicker from './DatePicker.js';
+import { identity } from '../utils/identity.js';
 import { formatDate } from '../utils/format.js';
 
-const FilterDate = function ({ filterValue, setFilterValue, trySubmit }) {
+const FilterDate = identity(function ({ filterValue, setFilterValue, trySubmit }) {
   const { i18n } = useAppContext();
 
   const [textValue, setTextValue] = React.useState(null);
@@ -87,6 +88,6 @@ const FilterDate = function ({ filterValue, setFilterValue, trySubmit }) {
       </div>
     </div>
   );
-}
+});
 
 export default FilterDate;

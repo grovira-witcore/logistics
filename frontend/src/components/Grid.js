@@ -5,9 +5,10 @@ import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import AvatarField from './AvatarField.js';
 import ComplexField from './ComplexField.js';
+import { identity } from '../utils/identity.js';
 
 
-const Grid = function ({ fields, hideLabels, contextualActions, onClickItem, items, selectedKey }) {
+const Grid = identity(function ({ fields, hideLabels, contextualActions, onClickItem, items, selectedKey }) {
   const [current, setCurrent] = React.useState(null);
 
   const getRenderizableField = function (field, item) {
@@ -172,6 +173,6 @@ const Grid = function ({ fields, hideLabels, contextualActions, onClickItem, ite
       }
     </div>
   );
-}
+});
 
 export default Grid;

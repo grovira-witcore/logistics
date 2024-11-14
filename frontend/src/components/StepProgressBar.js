@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const StepProgressBar = function ({ value, dataSource, colors, stepsGroups }) {
+const StepProgressBar = identity(function ({ value, dataSource, colors, stepsGroups }) {
   return (
     <div className="wit-step-progress-bar">
       {dataSource.map(function (dataSourceItem, index) {
@@ -32,6 +33,6 @@ const StepProgressBar = function ({ value, dataSource, colors, stepsGroups }) {
       })}
     </div>
   );
-}
+});
 
 export default StepProgressBar;

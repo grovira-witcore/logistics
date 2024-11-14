@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const OptionGroup = function ({
+const OptionGroup = identity(function ({
   label,
   value,
   onChange,
@@ -60,6 +61,6 @@ const OptionGroup = function ({
       ))}
     </div>
   );
-}
+});
 
 export default OptionGroup;

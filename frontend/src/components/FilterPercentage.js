@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const FilterPercentage = function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
+const FilterPercentage = identity(function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
   const [textValue, setTextValue] = React.useState(null);
 
   const inputRef = React.useRef(null);
@@ -76,6 +77,6 @@ const FilterPercentage = function ({ filterValue, setFilterValue, trySubmit, dec
       <input ref={inputRef} className="form-control text-end" type="text" value={textFrom ?? (filterValue ? numberToString(filterValue) : null)} onChange={handleChange} onBlur={handleBlur} onKeyPress={handleKeyPress} />
     </div>
   );
-}
+});
 
 export default FilterPercentage;

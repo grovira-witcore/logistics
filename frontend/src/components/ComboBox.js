@@ -4,9 +4,10 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const ComboBox = function ({
+const ComboBox = identity(function ({
   label,
   placeholder,
   value,
@@ -240,6 +241,6 @@ const ComboBox = function ({
       }
     </div>
   );
-}
+});
 
 export default ComboBox;

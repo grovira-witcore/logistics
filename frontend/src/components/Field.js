@@ -3,10 +3,11 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { format } from '../utils/format.js';
 import { getWords } from '../utils/get-words.js';
 
-const Field = function ({ value, type, translate, frame, formatter, color, style }) {
+const Field = identity(function ({ value, type, translate, frame, formatter, color, style }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -74,6 +75,6 @@ const Field = function ({ value, type, translate, frame, formatter, color, style
       }
     }
   }
-}
+});
 
 export default Field;

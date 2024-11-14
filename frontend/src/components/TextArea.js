@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const TextArea = function ({
+const TextArea = identity(function ({
   label,
   placeholder,
   value,
@@ -67,6 +68,6 @@ const TextArea = function ({
       ))}
     </div>
   );
-}
+});
 
 export default TextArea;

@@ -5,9 +5,10 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
 import IconArrowLeft from './icons/IconArrowLeft.js';
 import IconArrowRight from './icons/IconArrowRight.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const DatePicker = function ({ value, onChange }) {
+const DatePicker = identity(function ({ value, onChange }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -166,6 +167,6 @@ const DatePicker = function ({ value, onChange }) {
       </table>
     </div>
   );
-}
+});
 
 export default DatePicker;

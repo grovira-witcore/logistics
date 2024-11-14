@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const FilterOption = function ({ filterValue, setFilterValue, trySubmit, dataSource, exclusive }) {
+const FilterOption = identity(function ({ filterValue, setFilterValue, trySubmit, dataSource, exclusive }) {
 
   const handleCheckboxChange = function (e, item) {
     if (exclusive) {
@@ -29,6 +30,6 @@ const FilterOption = function ({ filterValue, setFilterValue, trySubmit, dataSou
       )}
     </div>
   );
-}
+});
 
 export default FilterOption;

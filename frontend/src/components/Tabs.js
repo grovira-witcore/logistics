@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const Tabs = function ({ tabs }) {
+const Tabs = identity(function ({ tabs }) {
   const [activeTabIndex, setActiveTabIndex] = React.useState(-1);
 
   React.useEffect(() => {
@@ -73,6 +74,6 @@ const Tabs = function ({ tabs }) {
       </div>
    );
  }
-}
+});
 
 export default Tabs;

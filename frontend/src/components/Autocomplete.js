@@ -4,9 +4,10 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const Autocomplete = function ({
+const Autocomplete = identity(function ({
   label,
   placeholder,
   value,
@@ -210,6 +211,6 @@ const Autocomplete = function ({
       }
     </div>
   );
-}
+});
 
 export default Autocomplete;

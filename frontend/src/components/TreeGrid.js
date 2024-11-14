@@ -8,9 +8,10 @@ import ComplexField from './ComplexField.js';
 import IconExpanded from './icons/IconExpanded.js';
 import IconCollapsed from './icons/IconCollapsed.js';
 import IconEmpty from './icons/IconEmpty.js';
+import { identity } from '../utils/identity.js';
 
 
-const TreeGrid = function ({ levels, items }) {
+const TreeGrid = identity(function ({ levels, items }) {
   const [current, setCurrent] = React.useState(null);
   const [expandedsCollapseds, setExpandedsCollapseds] = React.useState({});
 
@@ -316,6 +317,6 @@ const TreeGrid = function ({ levels, items }) {
       }
     </div>
   );
-}
+});
 
 export default TreeGrid;

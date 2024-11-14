@@ -3,9 +3,10 @@
 
 import React from 'react';
 import Field from './Field.js';
+import { identity } from '../utils/identity.js';
 import { protect } from '../utils/protect.js';
 
-const Paragraph = function ({ template, fields, color, style }) {
+const Paragraph = identity(function ({ template, fields, color, style }) {
   const parts = [];
   let subTemplate = template;
   let match = /({\d+})/g.exec(subTemplate);
@@ -68,6 +69,6 @@ const Paragraph = function ({ template, fields, color, style }) {
       </div>
     );
   }
-}
+});
 
 export default Paragraph;

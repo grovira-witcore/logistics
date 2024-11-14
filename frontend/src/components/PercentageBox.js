@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const PercentageBox = function ({
+const PercentageBox = identity(function ({
   label, 
   placeholder,
   value, 
@@ -132,6 +133,6 @@ const PercentageBox = function ({
       ))}
     </div>
   );
-}
+});
 
 export default PercentageBox;

@@ -20,10 +20,11 @@ import IconOk from './icons/IconOk.js';
 import IconCancel from './icons/IconCancel.js';
 import IconDelete from './icons/IconDelete.js';
 import IconMenuCollapsed from './icons/IconMenuCollapsed.js';
+import { identity } from '../utils/identity.js';
 import { format, formatNumber, formatDate, formatDatetime } from '../utils/format.js';
 import { getWords } from '../utils/get-words.js';
 
-const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFiltersValues }) {
+const FiltersBar = identity(function ({ sessionStorageKey, filters, filtersValues, setFiltersValues }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -300,6 +301,6 @@ const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFil
       }
     </div>
   );
-}
+});
 
 export default FiltersBar;

@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const TextBox = function ({
+const TextBox = identity(function ({
   label,
   placeholder,
   value,
@@ -91,6 +92,6 @@ const TextBox = function ({
       ))}
     </div>
   );
-}
+});
 
 export default TextBox;

@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const ErrorBox = function () {
+const ErrorBox = identity(function () {
   const { i18n, error } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -43,6 +44,6 @@ const ErrorBox = function () {
   return (
     <div className="wit-error-box">{getErrorText()}</div>
   );
-}
+});
 
 export default ErrorBox;

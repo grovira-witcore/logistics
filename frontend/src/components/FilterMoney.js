@@ -3,8 +3,9 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 
-const FilterMoney = function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
+const FilterMoney = identity(function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
   const { i18n } = useAppContext();
 
   const [textValue, setTextValue] = React.useState(null);
@@ -79,6 +80,6 @@ const FilterMoney = function ({ filterValue, setFilterValue, trySubmit, decimalP
       <input ref={inputRef} className="form-control text-end" type="text" value={textValue ?? (filterValue ? numberToString(filterValue) : null)} onChange={handleChange} onBlur={handleBlur} onKeyPress={handleKeyPress} />
     </div>
   );
-}
+});
 
 export default FilterMoney;

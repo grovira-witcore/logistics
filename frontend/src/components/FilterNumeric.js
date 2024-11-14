@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const FilterNumeric = function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
+const FilterNumeric = identity(function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
   const [textValue, setTextValue] = React.useState(null);
 
   const inputRef = React.useRef(null);
@@ -76,6 +77,6 @@ const FilterNumeric = function ({ filterValue, setFilterValue, trySubmit, decima
       <input ref={inputRef} className="form-control text-end" type="text" value={textValue ?? (filterValue ? numberToString(filterValue) : null)} onChange={handleChange} onBlur={handleBlur} onKeyPress={handleKeyPress} />
     </div>
   );
-}
+});
 
 export default FilterNumeric;

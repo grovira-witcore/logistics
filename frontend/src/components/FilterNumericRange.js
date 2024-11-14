@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const FilterNumericRange = function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
+const FilterNumericRange = identity(function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -102,6 +103,6 @@ const FilterNumericRange = function ({ filterValue, setFilterValue, trySubmit, d
       </div>
     </div>
   );
-}
+});
 
 export default FilterNumericRange;

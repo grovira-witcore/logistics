@@ -2,9 +2,10 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
 
-const ActionsBar = function ({ actions }) {
+const ActionsBar = identity(function ({ actions }) {
   const actionClick = function (e, action) {
     action.onClick(e);
   }
@@ -28,6 +29,6 @@ const ActionsBar = function ({ actions }) {
       )}
     </div>
   );
-}
+});
 
 export default ActionsBar;

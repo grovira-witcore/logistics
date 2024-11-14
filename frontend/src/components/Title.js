@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const Title = function ({ icon, color, label, secondaryLabel, avatar }) {
+const Title = identity(function ({ icon, color, label, secondaryLabel, avatar }) {
   return (
     <div className="wit-title d-flex align-items-center">
       {avatar !== undefined ?
@@ -28,6 +29,6 @@ const Title = function ({ icon, color, label, secondaryLabel, avatar }) {
       }
     </div>
   );
-}
+});
 
 export default Title;

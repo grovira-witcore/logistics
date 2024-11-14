@@ -5,8 +5,9 @@ import React from 'react';
 import AvatarField from './AvatarField.js';
 import ComplexField from './ComplexField.js';
 import EditableBox from './EditableBox.js';
+import { identity } from '../utils/identity.js';
 
-const Brief = function ({ fieldsDisposition, fieldsSize, fields }) {
+const Brief = identity(function ({ fieldsDisposition, fieldsSize, fields }) {
   switch (fieldsDisposition) {
     case 'table': {
       return (
@@ -169,6 +170,6 @@ const Brief = function ({ fieldsDisposition, fieldsSize, fields }) {
       );
     }
   }
-}
+});
 
 export default Brief;

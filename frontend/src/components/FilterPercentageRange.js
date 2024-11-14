@@ -3,9 +3,10 @@
 
 import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
+import { identity } from '../utils/identity.js';
 import { getWords } from '../utils/get-words.js';
 
-const FilterPercentageRange = function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
+const FilterPercentageRange = identity(function ({ filterValue, setFilterValue, trySubmit, decimalPlaces }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -102,6 +103,6 @@ const FilterPercentageRange = function ({ filterValue, setFilterValue, trySubmit
       </div>
     </div>
   );
-}
+});
 
 export default FilterPercentageRange;

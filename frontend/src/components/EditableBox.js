@@ -3,8 +3,9 @@
 
 import React from 'react';
 import IconEdit from './icons/IconEdit';
+import { identity } from '../utils/identity.js';
 
-const EditableBox = function ({ component, properties, initialValue, updater, alignment, children }) {
+const EditableBox = identity(function ({ component, properties, initialValue, updater, alignment, children }) {
   const [editMode, setEditMode] = React.useState(false);
   const [value, setValue] = React.useState(null);
 
@@ -41,6 +42,6 @@ const EditableBox = function ({ component, properties, initialValue, updater, al
       </div>
     );
   }
-}
+});
 
 export default EditableBox;

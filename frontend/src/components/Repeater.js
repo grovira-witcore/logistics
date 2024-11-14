@@ -4,9 +4,10 @@
 import React from 'react';
 import AvatarField from './AvatarField.js';
 import ComplexField from './ComplexField.js';
+import { identity } from '../utils/identity.js';
 
 
-const Repeater = function ({ fields, hideLabels, contextualActions, onClickItem, items, selectedKey }) {
+const Repeater = identity(function ({ fields, hideLabels, contextualActions, onClickItem, items, selectedKey }) {
   const getRenderizableField = function (field, item) {
     const renderizableField = { ...field };
     if (field.visibilityBindIndex !== null && field.visibilityBindIndex !== undefined && !item.data[field.visibilityBindIndex]) {
@@ -157,6 +158,6 @@ const Repeater = function ({ fields, hideLabels, contextualActions, onClickItem,
       ))}
     </div>
   );
-}
+});
 
 export default Repeater;

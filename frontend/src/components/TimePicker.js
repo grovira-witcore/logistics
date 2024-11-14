@@ -2,8 +2,9 @@
 // Copyright(c) 2024 Witcore LLC. All rights reserved.
 
 import React from 'react';
+import { identity } from '../utils/identity.js';
 
-const TimePicker = function ({ value, onChange }) {
+const TimePicker = identity(function ({ value, onChange }) {
 
   const handleHourMinute = function (hour, minute) {
     if (value !== null && value !== undefined) {
@@ -34,6 +35,6 @@ const TimePicker = function ({ value, onChange }) {
       )}
     </div>
   );
-}
+});
 
 export default TimePicker;

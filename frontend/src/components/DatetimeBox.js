@@ -6,10 +6,11 @@ import * as ReactBootstrap from 'react-bootstrap';
 import { useAppContext } from '../context/AppContext.js';
 import DatePicker from './DatePicker.js';
 import TimePicker from './TimePicker.js';
+import { identity } from '../utils/identity.js';
 import { formatDatetime } from '../utils/format.js';
 import { getWords } from '../utils/get-words.js';
 
-const DatetimeBox = function ({
+const DatetimeBox = identity(function ({
   label,
   placeholder,
   value,
@@ -202,6 +203,6 @@ const DatetimeBox = function ({
       }
     </div>
   );
-}
+});
 
 export default DatetimeBox;

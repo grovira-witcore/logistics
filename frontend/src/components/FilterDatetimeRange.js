@@ -5,10 +5,11 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext.js';
 import DatePicker from './DatePicker.js';
 import TimePicker from './TimePicker.js';
+import { identity } from '../utils/identity.js';
 import { formatDatetime } from '../utils/format.js';
 import { getWords } from '../utils/get-words.js';
 
-const FilterDatetimeRange = function ({ filterValue, setFilterValue, trySubmit }) {
+const FilterDatetimeRange = identity(function ({ filterValue, setFilterValue, trySubmit }) {
   const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
@@ -185,6 +186,6 @@ const FilterDatetimeRange = function ({ filterValue, setFilterValue, trySubmit }
       </div>
     </div>
   );
-}
+});
 
 export default FilterDatetimeRange;
