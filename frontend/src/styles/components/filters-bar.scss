@@ -7,6 +7,8 @@
 }
 
 .wit-filter {
+  background-color: transparent;
+  border: 0px;
   gap: 8px;
   padding: 8px;
   border-radius: 8px;
@@ -14,6 +16,11 @@
 
 .wit-filter:hover {
   background-color: $hover-color;
+}
+
+.wit-filter:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
 .wit-filter-label {
@@ -39,12 +46,19 @@
 }
 
 .wit-filter-icon-delete {
+  background-color: transparent;
+  border: 0px;
   padding: 8px;
   border-radius: 8px;
 }
 
 .wit-filter-icon-delete:hover {
   background-color: $hover-color;
+}
+
+.wit-filter-icon-delete:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
 }
 
 .wit-filter-icon-delete svg {
@@ -107,6 +121,18 @@
   gap: 8px;
 }
 
+.wit-filter-box-ok-button {
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.wit-filter-box-ok-button:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 40%);
+}
+
 .wit-filter-box-ok-button svg {
   width: 14px;
   height: 14px;
@@ -117,6 +143,18 @@
   width: 14px;
   height: 14px;
   color: $disabled-color;
+}
+
+.wit-filter-box-cancel-button {
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.wit-filter-box-cancel-button:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 40%);
 }
 
 .wit-filter-box-cancel-button svg {

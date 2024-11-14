@@ -159,7 +159,7 @@ const Omnisearch = function ({
       </div>
       {result &&
         <ReactBootstrap.Overlay show={true} target={refInput.current} placement="bottom-start">
-          <div className="wit-omnisearch-dd" style={{ zIndex: 100000 }} onMouseDown={(e) => e.preventDefault()}>
+          <div className="wit-omnisearch-dd" style={{ zIndex: 100000 }}>
             {result.groups.map(function (resultGroup, indexGroup) {
               if (resultGroup.items.length === 0) {
                 return null;
@@ -183,7 +183,7 @@ const Omnisearch = function ({
                       }
                     }
                     return (
-                      <div key={'item-' + indexItem} className={'wit-omnisearch-dd-item ' + (selected && selected.indexGroup === indexGroup && selected.indexItem === indexItem ? 'current ' : '') + 'd-flex align-items-center cursor-pointer'} onClick={(e) => handleClickItem(e, resultItem[0])}>
+                      <button key={'item-' + indexItem} className={'wit-omnisearch-dd-item ' + (selected && selected.indexGroup === indexGroup && selected.indexItem === indexItem ? 'current ' : '') + 'd-flex align-items-center cursor-pointer'} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleClickItem(e, resultItem[0])}>
                         {React.createElement(resultGroup.icon)}
                         <div>
                           <div>{solvedLine1.element}</div>
@@ -192,7 +192,7 @@ const Omnisearch = function ({
                             null
                           }
                         </div>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>

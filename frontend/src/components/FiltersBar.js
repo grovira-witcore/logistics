@@ -223,7 +223,7 @@ const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFil
           const filterValue = index < filtersValues.length ? filtersValues[index] : null;
           return (
             <div className="wit-filter-container d-flex align-items-center" key={'filter-' + index}>
-              <div className="wit-filter d-flex align-items-center cursor-pointer" data-filter={'filter-' + index} onClick={(e) => handleStartFilterEdition(e, index)}>
+              <button className="wit-filter d-flex align-items-center cursor-pointer" data-filter={'filter-' + index} onClick={(e) => handleStartFilterEdition(e, index)}>
                 <div className="wit-filter-label">{filter.label + ':'}</div>
                 {filterValue ?
                   <div className="wit-filter-value">{convertFilterValueToText(filter, filterValue)}</div> :
@@ -232,11 +232,11 @@ const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFil
                 <div className="wit-filter-icon-arrow-down d-flex align-items-center">
                   <IconMenuCollapsed />
                 </div>
-              </div>
+              </button>
               {filterValue ?
-                <div className="wit-filter-icon-delete cursor-pointer d-flex align-items-center" onClick={(e) => handleDeleteFilterValue(e, index)}>
+                <button className="wit-filter-icon-delete cursor-pointer d-flex align-items-center" onClick={(e) => handleDeleteFilterValue(e, index)}>
                   <IconDelete />
-                </div> :
+                </button> :
                 null
               }
             </div>
@@ -284,16 +284,16 @@ const FiltersBar = function ({ sessionStorageKey, filters, filtersValues, setFil
             )}
             <div className="wit-filter-box-bottom d-flex justify-content-end">
               {isValidCurrentFilter() ?
-                <div className="wit-filter-box-ok-button cursor-pointer" onClick={handleSubmitFilterEdition}>
+                <button className="wit-filter-box-ok-button cursor-pointer" onClick={handleSubmitFilterEdition}>
                   <IconOk/>
-                </div> :
+                </button> :
                 <div className="wit-filter-box-ok-button-disabled">
                   <IconOk/>
                 </div>
               }
-              <div className="wit-filter-box-cancel-button cursor-pointer" onClick={handleCancelFilterEdition}>
+              <button className="wit-filter-box-cancel-button cursor-pointer" onClick={handleCancelFilterEdition}>
                 <IconCancel/>
-              </div>
+              </button>
             </div>
           </div>
         </ReactBootstrap.Overlay>

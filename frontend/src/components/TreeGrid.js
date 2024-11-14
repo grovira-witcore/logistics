@@ -273,7 +273,7 @@ const TreeGrid = function ({ levels, items }) {
     currentLevel = levels.find((levelX) => levelX.key === current.item.levelKey);
   }
   return (
-    <div className="table-responsive" onMouseLeave={() => setCurrent(null)}>
+    <div className="table-responsive" role="region" onMouseLeave={() => setCurrent(null)}>
       <table className="table">
         <thead>
           <tr

@@ -102,7 +102,7 @@ const Grid = function ({ fields, hideLabels, contextualActions, onClickItem, ite
   }
 
   return (
-    <div className="table-responsive" onMouseLeave={() => setCurrent(null)}>
+    <div className="table-responsive" role="region" onMouseLeave={() => setCurrent(null)}>
       <table className="table">
         {hideLabels ? 
           null :
