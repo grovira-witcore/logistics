@@ -142,6 +142,7 @@ const TreeGrid = identity(function ({ levels, items }) {
             key={fullKey}
             className={level.selectedKey !== item.key ? (current && current.item.levelKey === item.levelKey && current.item.key === item.key && (current.childLevelKey === null || current.childLevelKey === undefined) ? 'hover' + (hasChildren || level.onClickItem ? ' cursor-pointer' : '') : '') : 'current'}
             onMouseOver={level.selectedKey !== item.key ? (e) => handleItemMouseOver(e, item) : null}
+            onFocus={() => null}
             onClick={level.selectedKey !== item.key ? function (e) {
               if (e.ctrlKey || e.altKey) {
                 return;
@@ -221,6 +222,7 @@ const TreeGrid = identity(function ({ levels, items }) {
         key={parentFullKey + '|' + level.key}
         className={(current && current.item.levelKey === parentItem.levelKey && current.item.key === parentItem.key && current.childLevelKey === level.key ? 'hover' + (hasChildren ? ' cursor-pointer' : '') : '')}
         onMouseOver={(e) => handleItemMouseOver(e, parentItem, level.key)}
+        onFocus={() => null}
         onClick={function (e) {
           if (e.ctrlKey || e.altKey) {
             return;
@@ -279,6 +281,7 @@ const TreeGrid = identity(function ({ levels, items }) {
         <thead>
           <tr
             onMouseOver={() => setCurrent(null)}
+            onFocus={() => null}
            
           >
             {levels[0].fields.map(function (field, index) {

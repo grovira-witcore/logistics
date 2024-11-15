@@ -155,8 +155,10 @@ const DatePicker = identity(function ({ value, onChange }) {
                 {[1, 2, 3, 4, 5, 6, 7].map(function (j) {
                   const calendarItem = calendarItems[((i - 1) * 7) + (j - 1)];
                   return (
-                    <td key={j} className={'wit-date-picker-day-value' + (equalCalendarItems(currentCalendarItem, calendarItem) ? ' wit-date-picker-day-value-selected' : '') + (equalCalendarItems(nowCalendarItem, calendarItem) ? ' fw-bold' : (calendarItem.month !== calendarPointer.month ? ' text-gray' : '')) + ' text-center'} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleCalendarItemClick(e, calendarItem)} >
-                      {calendarItem.day}
+                    <td key={j} className="wit-date-picker-day-area">
+                      <button className={'wit-date-picker-day-value' + (equalCalendarItems(currentCalendarItem, calendarItem) ? ' wit-date-picker-day-value-selected' : '') + (equalCalendarItems(nowCalendarItem, calendarItem) ? ' fw-bold' : (calendarItem.month !== calendarPointer.month ? ' text-gray' : '')) + ' text-center'} onMouseDown={(e) => e.preventDefault()} onClick={(e) => handleCalendarItemClick(e, calendarItem)}>
+                        {calendarItem.day}
+                      </button>
                     </td>
                   );
                 })}

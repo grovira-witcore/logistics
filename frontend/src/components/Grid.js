@@ -108,7 +108,7 @@ const Grid = identity(function ({ fields, hideLabels, contextualActions, onClick
         {hideLabels ? 
           null :
           <thead>
-            <tr onMouseOver={() => setCurrent(null)}>
+            <tr onMouseOver={() => setCurrent(null)} onFocus={() => null}>
               {fields.map(function (field, index) {
                 return (
                   <th key={index} className={(field.dispensable ? 'd-none d-' + field.dispensable + '-table-cell' : '') + getCssAlignmentTitle(field.alignment)}>
@@ -126,6 +126,7 @@ const Grid = identity(function ({ fields, hideLabels, contextualActions, onClick
               key={item.key}
               className={selectedKey !== item.key ? (current && current.item.key === item.key ? 'hover' + (onClickItem ? ' cursor-pointer' : '') : '') : 'current'}
               onMouseOver={selectedKey !== item.key ? (e) => handleItemMouseOver(e, item) : null}
+              onFocus={() => null}
               onClick={selectedKey !== item.key ? function (e) {
                 if (e.ctrlKey || e.altKey) {
                   return;
