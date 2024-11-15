@@ -9,7 +9,7 @@ import IconQuantity from '../../components/icons/IconQuantity.js';
 import { getWords } from '../../utils/get-words.js';
 
 const ContractCostsBodyPart1 = ReactRouterDOM.withRouter(function ({ contract }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

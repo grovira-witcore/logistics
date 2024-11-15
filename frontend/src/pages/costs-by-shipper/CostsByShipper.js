@@ -4,7 +4,6 @@ import { useAppContext } from '../../context/AppContext.js';
 import CostsByShipperBody from './CostsByShipperBody.js';
 
 const CostsByShipper = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
 
   return (
     <div>

@@ -5,7 +5,7 @@ import StepProgressBar from '../../components/StepProgressBar.js';
 import { getWords } from '../../utils/get-words.js';
 
 const CargoLeft1 = ReactRouterDOM.withRouter(function ({ cargo }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

@@ -5,7 +5,7 @@ import TextBox from '../../components/TextBox.js';
 import { getWords } from '../../utils/get-words.js';
 
 const CustomersBodyContextualAction1 = ReactRouterDOM.withRouter(function ({ customer, data, updateData, validated }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

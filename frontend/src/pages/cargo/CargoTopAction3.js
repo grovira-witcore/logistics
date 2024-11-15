@@ -5,7 +5,7 @@ import MoneyBox from '../../components/MoneyBox.js';
 import { getWords } from '../../utils/get-words.js';
 
 const CargoTopAction3 = ReactRouterDOM.withRouter(function ({ cargo, data, updateData, validated }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

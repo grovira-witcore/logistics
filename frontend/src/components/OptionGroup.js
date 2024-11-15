@@ -29,7 +29,7 @@ const OptionGroup = identity(function ({
 
   React.useEffect(() => {
     const crypto = window.crypto || window.msCrypto;
-    var array = new Uint32Array(1);
+    const array = new Uint32Array(1);
     crypto.getRandomValues(array);
     setUniqueName('unique_' + array[0]);
   }, []);
@@ -50,14 +50,14 @@ const OptionGroup = identity(function ({
       }
       <div className="d-flex align-items-center gap-3">
         {dataSource.map((dataSourceItem, i) => (
-          <div>
-            <input key={dataSourceItem[0]} ref={i === 0 ? refInput : null} type="radio" name={uniqueName} value={dataSourceItem[0]} checked={value === dataSourceItem[0]} onChange={(e) => onChange(e.target.value)} />
+          <div key={dataSourceItem[0]}>
+            <input ref={i === 0 ? refInput : null} type="radio" name={uniqueName} value={dataSourceItem[0]} checked={value === dataSourceItem[0]} onChange={(e) => onChange(e.target.value)} />
             <span className="ps-2">{dataSourceItem[1]}</span>
           </div>
         ))}
       </div>
       {validated && errors.map((error, index) => (
-        <div key={index} className="form-error">{error}</div>
+        <div key={'error-' + index} className="form-error">{error}</div>
       ))}
     </div>
   );

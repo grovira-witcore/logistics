@@ -34,7 +34,7 @@ const ProgressBar = identity(function ({ fields }) {
       <div className="pt-1 d-flex">
         {fields
           .map((field, i) => (
-            <div className="d-flex">
+            <div key={'field-' + i} className="d-flex">
               {i > 0 ? (<div className="px-2 fw-bold">{'/'}</div>) : null}
               <div className={'text-' + (protect(field.color, field.value) ?? 'primary')}>{format(field.value, 'percentage', {})}</div>
             </div>

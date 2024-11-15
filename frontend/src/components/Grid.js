@@ -111,7 +111,7 @@ const Grid = identity(function ({ fields, hideLabels, contextualActions, onClick
             <tr onMouseOver={() => setCurrent(null)} onFocus={() => null}>
               {fields.map(function (field, index) {
                 return (
-                  <th key={index} className={(field.dispensable ? 'd-none d-' + field.dispensable + '-table-cell' : '') + getCssAlignmentTitle(field.alignment)}>
+                  <th key={'field-' + index} className={(field.dispensable ? 'd-none d-' + field.dispensable + '-table-cell' : '') + getCssAlignmentTitle(field.alignment)}>
                     <span className="text-lg text-default">{field.label}</span>
                   </th>
                 );
@@ -139,7 +139,7 @@ const Grid = identity(function ({ fields, hideLabels, contextualActions, onClick
               {fields.map(function (field, index) {
                 const renderizableField = getRenderizableField(field, item);
                 return (
-                  <td key={'value-' + index} className={(field.dispensable ? 'd-none d-' + field.dispensable + '-table-cell ' : '') + 'align-middle'}>
+                  <td key={'field-' + index} className={(field.dispensable ? 'd-none d-' + field.dispensable + '-table-cell ' : '') + 'align-middle'}>
                     <div className={'d-flex align-items-center' + getCssAlignmentCell(field.alignment) + getCssAlignmentTitle(field.alignment)}>
                       <AvatarField size="sm" field={renderizableField} />
                       <ComplexField size="sm" field={renderizableField} />
@@ -157,7 +157,7 @@ const Grid = identity(function ({ fields, hideLabels, contextualActions, onClick
           <div className="d-flex ps-2 hover" style={{ zIndex: 100000 }}>
             {contextualActions.map((contextualAction, index) =>
               !(contextualAction.hidden && contextualAction.hidden(current.item)) ? (
-                <div key={index}>
+                <div key={'contextual-action-' + index}>
                   <button className={'d-flex btn-outline-' + (contextualAction.color ?? 'primary') + ' border-0'} onClick={(e) => contextualActionClick(e, contextualAction, current.item)}>
                     <div className="icon-sm">
                       {React.createElement(contextualAction.icon)}

@@ -4,7 +4,6 @@ import { useAppContext } from '../../context/AppContext.js';
 import CustomersBody from './CustomersBody.js';
 
 const Customers = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
 
   return (
     <div>

@@ -4,7 +4,6 @@ import { useAppContext } from '../../context/AppContext.js';
 import ShippersBody from './ShippersBody.js';
 
 const Shippers = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
 
   return (
     <div>

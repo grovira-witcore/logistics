@@ -5,7 +5,7 @@ import Brief from '../../components/Brief.js';
 import { getWords } from '../../utils/get-words.js';
 
 const CargoLeft2Part2 = ReactRouterDOM.withRouter(function ({ cargo }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

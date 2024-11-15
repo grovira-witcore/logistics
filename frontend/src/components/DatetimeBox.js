@@ -23,7 +23,6 @@ const DatetimeBox = identity(function ({
   onCancel
 }) {
   const { i18n } = useAppContext();
-  const words = getWords(i18n.code);
 
   const [textValue, setTextValue] = React.useState(null);
   const [showDropdown, setShowDropdown] = React.useState(false);

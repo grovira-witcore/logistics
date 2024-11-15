@@ -4,7 +4,6 @@ import { useAppContext } from '../../context/AppContext.js';
 import ContractsBody from './ContractsBody.js';
 
 const Contracts = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
 
   return (
     <div>

@@ -4,7 +4,6 @@ import { useAppContext } from '../../context/AppContext.js';
 import CargosBody from './CargosBody.js';
 
 const Cargos = ReactRouterDOM.withRouter(function () {
-  const { setError } = useAppContext();
 
   return (
     <div>

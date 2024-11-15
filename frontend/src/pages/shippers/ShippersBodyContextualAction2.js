@@ -5,7 +5,7 @@ import Paragraph from '../../components/Paragraph.js';
 import { getWords } from '../../utils/get-words.js';
 
 const ShippersBodyContextualAction2 = ReactRouterDOM.withRouter(function ({ shipper }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

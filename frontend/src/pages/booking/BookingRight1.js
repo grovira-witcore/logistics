@@ -7,7 +7,7 @@ import IconDetails from '../../components/icons/IconDetails.js';
 import { getWords } from '../../utils/get-words.js';
 
 const BookingRight1 = ReactRouterDOM.withRouter(function ({ booking }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

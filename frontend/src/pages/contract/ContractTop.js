@@ -10,7 +10,7 @@ import { getWords } from '../../utils/get-words.js';
 import { protect } from '../../utils/protect.js';
 
 const ContractTop = ReactRouterDOM.withRouter(function ({ contract }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
   const history = ReactRouterDOM.useHistory();
 

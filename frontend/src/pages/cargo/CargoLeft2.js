@@ -8,7 +8,7 @@ import CargoLeft2Part2 from './CargoLeft2Part2.js';
 import { getWords } from '../../utils/get-words.js';
 
 const CargoLeft2 = ReactRouterDOM.withRouter(function ({ cargo }) {
-  const { i18n, setError } = useAppContext();
+  const { i18n } = useAppContext();
   const words = getWords(i18n.code);
 
   return (

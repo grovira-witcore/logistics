@@ -23,7 +23,7 @@ const FilterOption = identity(function ({ filterValue, setFilterValue, trySubmit
   return (
     <div className="wit-filter-box-options">
       {dataSource.map((dataSourceItem) =>
-        <div className="d-flex">
+        <div key={dataSourceItem[0]} className="d-flex">
           <input type="checkbox" checked={filterValue && (filterValue === dataSourceItem[0] || (Array.isArray(filterValue) && filterValue.includes(dataSourceItem[0])))} onChange={(e) => handleCheckboxChange(e, dataSourceItem[0])} />
           <div>{dataSourceItem[1]}</div>
         </div>

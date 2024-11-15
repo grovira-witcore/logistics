@@ -55,7 +55,7 @@ const Paragraph = identity(function ({ template, fields, color, style }) {
     return (
       <div className={classNameParts.join(' ')}>
         {parts.map(function (part, index) {
-          return (<div key={index} className={(index > 0 ? 'ps-1 ' : '') + 'd-inline-block'}>{part}</div>);
+          return (<div key={'part-' + index} className={(index > 0 ? 'ps-1 ' : '') + 'd-inline-block'}>{part}</div>);
         })}
       </div>
     );
@@ -64,7 +64,7 @@ const Paragraph = identity(function ({ template, fields, color, style }) {
     return (
       <div>
         {parts.map(function (part, index) {
-          return (<div key={index} className={(index > 0 ? 'ps-1 ' : '') + 'd-inline-block'}>{part}</div>);
+          return (<div key={'part-' + index} className={(index > 0 ? 'ps-1 ' : '') + 'd-inline-block'}>{part}</div>);
         })}
       </div>
     );
