@@ -1,0 +1,98 @@
+.wit-menu-button {
+  background-color: $section-color;
+  border: 0px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.wit-menu-button:hover {
+  background-color: $hover-color;
+}
+
+.wit-menu-button:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-menu-button svg {
+  width: 26px;
+  height: 26px;
+}
+
+.wit-menu {
+  background-color: $section-color;
+  color: $default-color;
+}
+
+.wit-menu ::-webkit-scrollbar {
+  width: 10px;
+  background-color: $hover-color;
+}
+
+.wit-menu ::-webkit-scrollbar-thumb {
+  background-color: $border-color;
+}
+
+.wit-menu-group {
+  padding-top: 30px;
+}
+
+.wit-menu-group>button:first-child {
+  background-color: transparent;
+  border: 0px;
+  width: 100%;
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.wit-menu-group>button:first-child svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wit-menu-group>button:first-child:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-menu-option {
+  background-color: transparent;
+  border: 0px;
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.wit-menu-option:hover {
+  background-color: $hover-color;
+}
+
+.wit-menu-option:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-menu-option-icon {
+  background-color: $primary-color;
+  color: $section-color;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.wit-menu-option-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wit-menu-option-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 12px;
+  padding-left: 10px;
+}

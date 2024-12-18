@@ -1,0 +1,254 @@
+.wit-header {
+  background-color: $section-color;
+  color: $default-color;
+  height: 70px;
+  padding: 15px;
+  box-shadow: 0px 3.5px 5.5px -1.21px $border-color;
+}
+
+.wit-header-title {
+  background-color: $section-color;
+  border: 0px;
+  gap: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-family: Raleway-Black, sans-serif;
+  font-size: 25px;
+  border-radius: 8px;
+}
+.wit-header-title:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-header-title svg {
+  color: $primary-color;
+  height: 50px;
+}
+
+.wit-header-language {
+  background-color: transparent;
+  border: 0px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 8px;
+  gap: 8px;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  >svg:first-child {
+    width: 30px;
+    height: 30px;
+  }
+
+  >svg:last-child {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.wit-header-language:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-header-language-dd {
+  background-color: $section-color;
+  color: $default-color;
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 12px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+
+  >button {
+    background-color: transparent;
+    border: 0px;
+    width: 100%;
+    padding: 10px 12px 10px 12px;
+    border-radius: 10px;
+    gap: 8px;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+
+    &:focus {
+      outline: 0px;
+      box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.wit-header-user {
+  background-color: transparent;
+  border: 0px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 8px;
+  gap: 8px;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  >svg:last-child {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.wit-header-user:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-header-user-dd {
+  background-color: $section-color;
+  color: $default-color;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  padding: 24px 48px 24px 48px;
+
+  >div:first-child {
+    width: 86px;
+    height: 86px;
+  }
+}
+
+.wit-header-user-dd-full-name {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 16px;
+  padding-top: 18px;
+}
+
+.wit-header-user-dd-username {
+  font-family: Inter-Regular, sans-serif;
+  font-size: 12px;
+  padding-top: 6px;
+  padding-bottom: 24px;
+}
+
+.wit-header-small {
+  display: none !important;
+}
+
+.wit-body {
+  height: calc(100vh - 70px);
+}
+
+@media (max-width: 768px) {
+  .wit-header {
+    display: none !important;
+  }
+
+  .wit-header-small {
+    display: flex !important;
+    height: 60px;
+    background-color: $section-color;
+    color: $default-color;
+    padding: 5px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .wit-header-title {
+    background-color: $section-color;
+    border: 0px;
+    gap: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 8px;
+
+    >div:last-child {
+      display: none !important;
+    }
+  }
+
+  .wit-header-title:focus {
+    outline: 0px;
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+  }
+
+  .wit-header-title svg {
+    color: $primary-color;
+    height: 30px;
+  }
+
+  .wit-header-search {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 4px;
+    border: 0px;
+    
+    &:hover {
+      background-color: $hover-color;
+    }
+    
+    >svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .wit-header-search:focus {
+    outline: 0px;
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+  }
+
+  .wit-header-language {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+    border-radius: 8px;
+    gap: 0px;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+
+    >svg:first-child {
+      width: 30px;
+      height: 30px;
+    }
+
+    >svg:last-child {
+      width: 0px;
+      height: 0px;
+    }
+  }
+
+  .wit-header-language:focus {
+    outline: 0px;
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+  }
+
+  .wit-header-user {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+    border-radius: 8px;
+    gap: 0px;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+
+    >svg:last-child {
+      width: 0px;
+      height: 0px;
+    }
+  }
+
+  .wit-header-user:focus {
+    outline: 0px;
+    box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+  }
+
+  .wit-body {
+    height: calc(100vh - 50px);
+  }
+}

@@ -1,0 +1,27 @@
+.wit-time-picker {
+  padding: 8px;
+  border-left: $border-color 1px solid;
+  height: 280px;
+}
+
+.wit-time-picker-hour {
+  display: block;
+  background-color: $section-color;
+  border: 0px;
+  width: 100%;
+  text-align: left;
+  font-family: Inter-Regular, sans-serif;
+  font-size: 12px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+  }
+}
+
+.wit-time-picker-hour-selected {
+  background-color: $primary-color !important;
+  color: $section-color;
+}

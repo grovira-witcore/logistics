@@ -1,0 +1,68 @@
+.wit-paging-bar {
+  gap: 12px;
+}
+
+.wit-paging-icon {
+  background-color: transparent;
+  border: 0px;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.wit-paging-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.wit-paging-icon-enabled {
+  color: $primary-color;
+}
+
+.wit-paging-icon-enabled:hover {
+  background-color: $primary-color;
+  color: $section-color;
+  border-radius: 4px;
+}
+
+.wit-paging-icon-disabled {
+  color: $disabled-color;
+}
+
+.wit-paging-numbers {
+  font-family: Inter-Regular, sans-serif;
+  font-size: 12px;
+  gap: 8px;
+}
+
+.wit-paging-number {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: transparent;
+  color: $primary-color;
+  border: 0px;
+}
+
+.wit-paging-number:hover {
+  background-color: $primary-color;
+  color: $section-color;
+  border-radius: 4px;
+}
+
+.wit-paging-number-active {
+  font-family: Inter-Bold, sans-serif;
+  font-size: 12px;
+  background-color: $primary-color;
+  color: $section-color;
+  border-radius: 4px;
+}
+
+.wit-paging-info {
+  font-family: Inter-Regular, sans-serif;
+  font-size: 12px;
+  gap: 4px;
+  padding-right: 8px;
+}

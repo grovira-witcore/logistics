@@ -1,0 +1,28 @@
+.wit-tab {
+  background-color: transparent;
+  border: 0px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-family: Inter-Regular, sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid $border-color;
+}
+
+.wit-tab:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-tab-active {
+  font-family: Inter-Bold, sans-serif;
+  font-size: 14px;
+  color: $primary-color;
+  border-bottom: 2px solid $primary-color;
+}
+
+.wit-tab-icon svg {
+  width: 20px;
+  height: 20px;
+}

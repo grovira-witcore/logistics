@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url('./fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('./fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Raleway-Black';
+  src: url('./fonts/Raleway/Raleway-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter-Regular';
+  src: url('./fonts/Inter/Inter-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('./fonts/Inter/Inter-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('./fonts/Inter/Inter-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-Regular';
+  src: url('./fonts/Rubik/Rubik-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik-SemiBold';
+  src: url('./fonts/Rubik/Rubik-SemiBold.ttf') format('truetype');
+}

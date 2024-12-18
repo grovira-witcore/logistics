@@ -1,0 +1,74 @@
+.wit-omnisearch {
+  padding: 6px 12px 6px 4px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.wit-omnisearch input {
+  background-color: $section-color;
+  color: $default-color;
+  font-family: Rubik-Regular, sans-serif;
+  font-size: 14px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.wit-omnisearch input:focus {
+  background-color: $section-color;
+  color: $default-color;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.wit-omnisearch svg {
+  color: $primary-color;
+  width: 20px;
+  height: 20px;
+}
+
+.wit-omnisearch-dd {
+  background-color: $section-color;
+  color: $default-color;
+  padding: 0px 12px 12px 12px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.wit-omnisearch-dd-group-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-top: 16px;
+  padding-bottom: 4px;
+}
+
+.wit-omnisearch-dd-item {
+  background-color: transparent;
+  border: 0px;
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
+  gap: 8px;
+  font-family: Inter-Regular, sans-serif;
+  font-size: 14px;
+}
+
+.wit-omnisearch-dd-item:hover {
+  background-color: $hover-color;
+}
+
+.wit-omnisearch-dd-item svg {
+  width: 18px;
+  height: 18px;
+  color: $primary-color;
+}
+
+@media (max-width: 768px) {
+  .wit-omnisearch {
+    width: 100%;
+  }
+}

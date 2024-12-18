@@ -1,0 +1,45 @@
+.wit-title {
+  gap: 10px;
+  color: $default-color;
+}
+
+.wit-title-icon svg {
+  width: 26px;
+  height: 26px;
+  color: $primary-color;
+}
+
+@each $name, $color in $colors {
+  .wit-title-icon-#{$name} svg {
+    color: $color;
+  }
+}
+
+.wit-title-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 22px;
+  white-space: nowrap
+}
+
+.wit-title-primary-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.wit-title-secondary-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .wit-title-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .wit-title-label {
+    font-size: 18px;
+  }
+}

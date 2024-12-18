@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: logistics-frontend
+    restart: unless-stopped
+    image: logistics-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment: {}
+    ports:
+      - '3000:80'
+    networks:
+      - shared-network
+    depends_on:
+      - backend
+  backend:
+    container_name: logistics-backend
+    restart: unless-stopped
+    image: logistics-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: logistics-db
+      POSTGRES_USER: my-user
+      POSTGRES_PASSWORD: my-password
+      POSTGRES_SSL: 'false'
+      ACCESS_TOKEN_SECRET: my-access-token-secret
+      ACCESS_TOKEN_EXPIRES: 1h
+      REFRESH_TOKEN_SECRET: my-refresh-token-secret
+      REFRESH_TOKEN_EXPIRES: 1w
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: '123456'
+      ENABLE_AUDIT_LOGS: 'true'
+      FRONT_URL: http://localhost:3000
+      TARGET_PORT: 4000
+    networks:
+      - shared-network
+    depends_on:
+      - postgres
+  postgres:
+    container_name: logistics-postgres
+    image: postgres:alpine3.16
+    environment:
+      POSTGRES_DB: logistics-db
+      POSTGRES_USER: my-user
+      POSTGRES_PASSWORD: my-password
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - shared-network
+    depends_on: []
+volumes:
+  postgres-data:
+    driver: local
+networks:
+  shared-network: {}

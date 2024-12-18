@@ -1,0 +1,165 @@
+.wit-filters-bar {
+  gap: 24px;
+}
+
+.wit-filter-container {
+  gap: 4px;
+}
+
+.wit-filter {
+  background-color: transparent;
+  border: 0px;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.wit-filter:hover {
+  background-color: $hover-color;
+}
+
+.wit-filter:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-filter-label {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.wit-filter-value {
+  font-family: Rubik-Regular, sans-serif;
+  font-size: 14px;
+  color: $primary-color;
+}
+
+.wit-filter-all {
+  font-family: Rubik-Regular, sans-serif;
+  font-size: 14px;
+}
+
+.wit-filter-icon-arrow-down svg {
+  width: 16px;
+  height: 16px;
+  color: $primary-color;
+}
+
+.wit-filter-icon-delete {
+  background-color: transparent;
+  border: 0px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.wit-filter-icon-delete:hover {
+  background-color: $hover-color;
+}
+
+.wit-filter-icon-delete:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 20%);
+}
+
+.wit-filter-icon-delete svg {
+  width: 14px;
+  height: 14px;
+  color: $red-color;
+}
+
+.wit-filter-box {
+  background-color: $section-color;
+  color: $default-color;
+  padding: 12px 12px 12px 12px;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+}
+
+.wit-filter-box-range {
+  gap: 8px;
+}
+
+.wit-filter-box-options>div {
+  font-family: Inter-Regular, sans-serif;
+  font-size: 12px;
+  gap: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.wit-filter-box-options>div input {
+  accent-color: $default-color;
+}
+
+.wit-filter-box-base input {
+  font-family: Rubik-Regular, sans-serif;
+  font-size: 12px;
+  color: $default-color;
+  padding: 6px;
+  border: 1px solid $border-color !important;
+  box-shadow: none !important;
+}
+
+.wit-filter-box-base input:focus {
+  border: 1px solid $primary-color !important;
+}
+
+.wit-filter-box-item-sm {
+  width: 120px;
+}
+
+.wit-filter-box-item-lg {
+  width: 240px;
+}
+
+.wit-filter-box-picker {
+  padding-top: 8px;
+}
+
+.wit-filter-box-bottom {
+  padding-top: 8px;
+  gap: 8px;
+}
+
+.wit-filter-box-ok-button {
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.wit-filter-box-ok-button:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 40%);
+}
+
+.wit-filter-box-ok-button svg {
+  width: 14px;
+  height: 14px;
+  color: $green-color;
+}
+
+.wit-filter-box-ok-button-disabled svg {
+  width: 14px;
+  height: 14px;
+  color: $disabled-color;
+}
+
+.wit-filter-box-cancel-button {
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.wit-filter-box-cancel-button:focus {
+  outline: 0px;
+  box-shadow: 0 0 0 0.2rem lighten($primary-color, 40%);
+}
+
+.wit-filter-box-cancel-button svg {
+  width: 14px;
+  height: 14px;
+  color: $red-color;
+}
